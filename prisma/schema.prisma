@@ -1,0 +1,41 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearchPostgres"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Episode {
+  id           Int               @id @default(autoincrement())
+  title        String
+  season       Int?
+  episode      Int?
+  airDate      DateTime?
+  description  String?
+  keywords     String[]
+  wikiSummary  String?
+  searchVector Unsupported("tsvector")?
+  locations    EpisodeLocation[]
+
+  @@index([searchVector], type: Gin)
+  @@unique([season, episode])
+}
+
+model EpisodeLocation {
+  id             Int     @id @default(autoincrement())
+  episodeId      Int
+  episode        Episode @relation(fields: [episodeId], references: [id], onDelete: Cascade)
+  communeName    String
+  department     String
+  departmentName String
+  latitude       Float
+  longitude      Float
+  isPrimary      Boolean @default(false)
+  eventDescription String?
+
+  @@index([episodeId])
+  @@index([department])
+}
