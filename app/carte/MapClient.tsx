@@ -90,7 +90,7 @@ export default function MapClient() {
   const totalLocations = episodes.reduce((sum, ep) => sum + ep.locations.length, 0);
 
   return (
-    <div className="flex flex-col" style={{ height: "calc(100dvh - 49px)" }}>
+    <div className="flex flex-col h-[calc(100dvh-49px-64px)] md:h-[calc(100dvh-49px)]">
       <MapFilters
         initialAffaireIds={initialAffaireIds}
         onFilterChange={handleFilterChange}
