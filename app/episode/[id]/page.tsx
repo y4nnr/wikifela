@@ -82,38 +82,36 @@ export default async function EpisodePage({
       </div>
       <article className="max-w-3xl mx-auto px-4 pb-10">
 
-        {(episode.description || shortSummary) && (
-          <section className="mb-8">
-            <h2 className="text-xs uppercase tracking-widest text-gray-500 mb-3">
-              L&apos;affaire
-            </h2>
-            {episode.description && (
-              <p className="text-gray-300 leading-relaxed mb-3">
-                {episode.description}
-              </p>
-            )}
-            {shortSummary && (
-              <p className="text-gray-400 leading-relaxed text-sm">
-                {shortSummary}
-              </p>
-            )}
-            {wikiUrl && (
-              <a
-                href={wikiUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 mt-3 text-sm text-[#4285f4] hover:underline"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                  <polyline points="15 3 21 3 21 9"/>
-                  <line x1="10" y1="14" x2="21" y2="3"/>
-                </svg>
-                Lire sur Wikipédia
-              </a>
-            )}
-          </section>
-        )}
+        <section className="mb-8">
+          <h2 className="text-xs uppercase tracking-widest text-gray-500 mb-3">
+            L&apos;affaire
+          </h2>
+          {episode.description && (
+            <p className="text-gray-300 leading-relaxed mb-3">
+              {episode.description}
+            </p>
+          )}
+          {shortSummary && (
+            <p className="text-gray-400 leading-relaxed text-sm mb-3">
+              {shortSummary}
+            </p>
+          )}
+          {wikiUrl && (
+            <a
+              href={wikiUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm text-[#4285f4] hover:underline"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+              Lire sur Wikipédia
+            </a>
+          )}
+        </section>
 
         {episode.keywords.length > 0 && (
           <section className="mb-8">
