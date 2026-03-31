@@ -139,7 +139,9 @@
       "Bash(git merge:*)",
       "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -c \"\n-- Add small random offset to pins that share exact coordinates\n-- Keep first pin at original position, offset subsequent ones\nWITH ranked AS \\(\n  SELECT id, latitude, longitude,\n    ROW_NUMBER\\(\\) OVER \\(PARTITION BY latitude, longitude ORDER BY id\\) as rn\n  FROM \\\\\"EpisodeLocation\\\\\"\n\\)\nUPDATE \\\\\"EpisodeLocation\\\\\" el\nSET \n  latitude = el.latitude + \\(r.rn - 1\\) * 0.003 * \\(CASE WHEN r.rn % 2 = 0 THEN 1 ELSE -1 END\\),\n  longitude = el.longitude + \\(r.rn - 1\\) * 0.004 * \\(CASE WHEN r.rn % 3 = 0 THEN -1 WHEN r.rn % 3 = 1 THEN 1 ELSE 0 END\\)\nFROM ranked r\nWHERE el.id = r.id AND r.rn > 1;\")",
       "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -t -A -c \"\nSELECT id, title, length\\(\\\\\"wikiSummary\\\\\"\\) as wiki_len, substring\\(coalesce\\(\\\\\"wikiSummary\\\\\",''\\) from 1 for 200\\) as wiki, description\nFROM \\\\\"Episode\\\\\" WHERE title ILIKE '%Constantien%';\")",
-      "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -t -A -c \"\nSELECT count\\(*\\) FROM \\\\\"Episode\\\\\" \nWHERE \\\\\"wikiSummary\\\\\" IS NULL \nAND \\(description IS NULL OR length\\(description\\) < 50\\);\")"
+      "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -t -A -c \"\nSELECT count\\(*\\) FROM \\\\\"Episode\\\\\" \nWHERE \\\\\"wikiSummary\\\\\" IS NULL \nAND \\(description IS NULL OR length\\(description\\) < 50\\);\")",
+      "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -t -A -c \"\nSELECT id, title FROM \\\\\"Episode\\\\\" WHERE id IN \\(11,20,31,33,45,62,95,183,209,217,234\\) ORDER BY id;\")",
+      "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -t -A -c \"\nSELECT title, description FROM \\\\\"Episode\\\\\" WHERE id = 29;\")"
     ]
   }
 }

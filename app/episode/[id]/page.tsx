@@ -1,6 +1,9 @@
 import { prisma } from "@/lib/db";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
+import { readFileSync } from "fs";
+import { resolve } from "path";
 import PageTitle from "@/components/PageTitle";
 
 function formatDate(date: Date | null): string {
@@ -66,6 +69,16 @@ export default async function EpisodePage({
       ? `Saison ${episode.season}, Épisode ${episode.episode}`
       : null;
 
+  // Check for portrait
+  let portrait: { name: string; file: string } | null = null;
+  try {
+    const portraits = JSON.parse(
+      readFileSync(resolve(process.cwd(), "data/portraits.json"), "utf-8")
+    ) as { id: number; name: string; file: string }[];
+    const match = portraits.find((p) => p.id === episodeId);
+    if (match) portrait = match;
+  } catch {}
+
   const shortSummary = episode.wikiSummary
     ? getSummary(episode.wikiSummary)
     : null;
@@ -86,6 +99,22 @@ export default async function EpisodePage({
           <h2 className="text-xs uppercase tracking-widest text-[var(--fg-dim)] mb-3">
             L&apos;affaire
           </h2>
+          <div className={portrait ? "flex gap-4 sm:gap-6" : ""}>
+            {portrait && (
+              <div className="shrink-0">
+                <div className="relative w-24 h-32 sm:w-32 sm:h-40 rounded border border-[var(--border)] overflow-hidden bg-[var(--bg-card)]">
+                  <Image
+                    src={`/portraits/${portrait.file}`}
+                    alt={portrait.name}
+                    fill
+                    className="object-cover"
+                    sizes="128px"
+                  />
+                </div>
+                <p className="text-[10px] text-[var(--fg-dim)] mt-1 text-center">{portrait.name}</p>
+              </div>
+            )}
+            <div>
           {episode.description && (
             <p className="text-gray-300 leading-relaxed mb-3">
               {episode.description}
@@ -111,6 +140,8 @@ export default async function EpisodePage({
               Lire sur Wikipédia
             </a>
           )}
+            </div>
+          </div>
         </section>
 
         {episode.keywords.length > 0 && (
