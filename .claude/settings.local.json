@@ -142,7 +142,15 @@
       "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -t -A -c \"\nSELECT count\\(*\\) FROM \\\\\"Episode\\\\\" \nWHERE \\\\\"wikiSummary\\\\\" IS NULL \nAND \\(description IS NULL OR length\\(description\\) < 50\\);\")",
       "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -t -A -c \"\nSELECT id, title FROM \\\\\"Episode\\\\\" WHERE id IN \\(11,20,31,33,45,62,95,183,209,217,234\\) ORDER BY id;\")",
       "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -t -A -c \"\nSELECT title, description FROM \\\\\"Episode\\\\\" WHERE id = 29;\")",
-      "WebFetch(domain:www.lemonde.fr)"
+      "WebFetch(domain:www.lemonde.fr)",
+      "Bash(rm -f /home/y4n/dev/fela/public/portraits/25.*)",
+      "Bash(__NEW_LINE_e05182ae043cc8d8__ python3 -c \":*)",
+      "Bash(rm -f /home/y4n/dev/fela/public/portraits/42.*)",
+      "Bash(__NEW_LINE_e60a144d5ad99215__ python3 -c \":*)",
+      "Bash(rm -f /home/y4n/dev/fela/public/portraits/12.*)",
+      "Bash(__NEW_LINE_a6d781af26fe73a3__ python3 -c \":*)",
+      "Bash(rm -f /home/y4n/dev/fela/public/portraits/41.* /home/y4n/dev/fela/public/portraits/50.*)",
+      "Bash(__NEW_LINE_d806d0c251e1b41f__ python3 -c \":*)"
     ]
   }
 }

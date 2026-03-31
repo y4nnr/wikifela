@@ -25,11 +25,6 @@
     "file": "11.jpg"
   },
   {
-    "id": 12,
-    "name": "Pierre Chanal",
-    "file": "12.jpg"
-  },
-  {
     "id": 14,
     "name": "Christian Ranucci",
     "file": "14.jpg"
@@ -73,11 +68,6 @@
     "id": 24,
     "name": "Magali Guillemot",
     "file": "24.jpg"
-  },
-  {
-    "id": 25,
-    "name": "Christian van Geloven",
-    "file": "25.jpg"
   },
   {
     "id": 26,
@@ -130,16 +120,6 @@
     "file": "40.jpg"
   },
   {
-    "id": 41,
-    "name": "Sid Ahmed Rezala",
-    "file": "41.webp"
-  },
-  {
-    "id": 42,
-    "name": "Pierre Dubois",
-    "file": "42.jpg"
-  },
-  {
     "id": 43,
     "name": "Nadir Sedrati",
     "file": "43.jpg"
@@ -168,11 +148,6 @@
     "id": 48,
     "name": "Francisco Arce Montes",
     "file": "48.jpg"
-  },
-  {
-    "id": 50,
-    "name": "Pierre Bodein",
-    "file": "50.jpg"
   },
   {
     "id": 62,
