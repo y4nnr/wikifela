@@ -215,7 +215,7 @@ export default function EpisodesClient() {
                     <span className="text-xs text-[var(--fg-dim)] w-6 shrink-0 text-right">
                       {ep.episode ?? ""}
                     </span>
-                    <span className="text-sm text-[var(--fg)] group-hover:text-[#fcf84f] transition-colors flex-1 min-w-0 truncate">
+                    <span className="text-sm text-[var(--fg)] group-hover:text-[var(--accent)] transition-colors flex-1 min-w-0 truncate">
                       {ep.title}
                     </span>
                     {ep.airDate && (

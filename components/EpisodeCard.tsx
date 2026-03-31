@@ -29,7 +29,7 @@ export default function EpisodeCard({ episode }: EpisodeCardProps) {
         {episode.airDate && <span>{formatDate(episode.airDate)}</span>}
       </div>
       <Link href={`/episode/${episode.id}`}>
-        <h2 className="text-lg text-[#fcf84f] hover:underline cursor-pointer leading-snug mb-1">
+        <h2 className="text-lg text-[var(--accent)] hover:underline cursor-pointer leading-snug mb-1">
           {episode.title}
         </h2>
       </Link>

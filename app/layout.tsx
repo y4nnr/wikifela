@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Poppins, Libre_Baskerville, Oswald } from "next/font/google";
+import { Geist, Poppins, Libre_Baskerville, Oswald, Black_Ops_One } from "next/font/google";
 import localFont from "next/font/local";
 import Header from "@/components/Header";
 import ThemeProvider from "@/components/ThemeProvider";
+import ThemeToggle from "@/components/ThemeToggle";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -17,9 +18,15 @@ const poppins = Poppins({
 });
 
 const oswald = Oswald({
-  variable: "--font-fela",
+  variable: "--font-fela-alt",
   subsets: ["latin"],
   weight: ["700"],
+});
+
+const blackOps = Black_Ops_One({
+  variable: "--font-fela",
+  subsets: ["latin"],
+  weight: ["400"],
 });
 
 const libreBaskerville = Libre_Baskerville({
@@ -54,11 +61,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${geistSans.variable} ${titleFont.variable} ${poppins.variable} ${libreBaskerville.variable} ${tanker.variable} ${oswald.variable} h-full antialiased`}>
+    <html lang="fr" className={`${geistSans.variable} ${titleFont.variable} ${poppins.variable} ${libreBaskerville.variable} ${tanker.variable} ${oswald.variable} ${blackOps.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col font-[family-name:var(--font-geist-sans)] pb-16 md:pb-0" suppressHydrationWarning>
         <ThemeProvider>
           <Header />
           {children}
+          <ThemeToggle />
         </ThemeProvider>
       </body>
     </html>

@@ -157,7 +157,7 @@ export default function MapFilters({ initialAffaireIds, onFilterChange }: MapFil
                         <label
                           key={ep.id}
                           className={`flex items-center gap-2 px-3 py-1.5 text-sm cursor-pointer hover:bg-gray-800 ${
-                            checked ? "text-[#fcf84f]" : "text-gray-300"
+                            checked ? "text-[var(--accent)]" : "text-gray-300"
                           }`}
                         >
                           <input

@@ -39,7 +39,7 @@ export default function Home() {
 
   const searchInput = (
     <div className="flex items-center w-full rounded border border-[var(--border)] bg-[var(--bg)] font-mono">
-      <span className="ml-3 text-green-600 text-sm shrink-0">&gt;</span>
+      <span className="ml-3 text-[var(--terminal)] text-sm shrink-0">&gt;</span>
       <input
         ref={!hasQuery ? inputRef : undefined}
         type="text"
@@ -47,7 +47,7 @@ export default function Home() {
         onChange={(e) => handleChange(e.target.value)}
         placeholder="rechercher..."
         autoFocus
-        className="w-full py-2.5 px-2 text-sm bg-transparent outline-none text-green-400 placeholder:text-[var(--fg-dim)] font-mono"
+        className="w-full py-2.5 px-2 text-sm bg-transparent outline-none text-[var(--terminal)] placeholder:text-[var(--fg-dim)] font-mono"
       />
       {hasQuery && (
         <button
@@ -75,11 +75,11 @@ export default function Home() {
           <div className="border border-[var(--border)] rounded-lg bg-[var(--bg-card)] p-4 sm:p-6 max-w-xl w-full mb-4">
             <div className="border-b border-[var(--border)] pb-3 mb-4 flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-[10px] font-mono text-green-700 uppercase tracking-widest">
+              <span className="text-[10px] font-mono text-[var(--terminal-dim)] uppercase tracking-widest">
                 Système actif — Terminal sécurisé
               </span>
             </div>
-            <h1 className="text-2xl sm:text-4xl font-mono font-bold tracking-widest text-green-400 mb-1 text-center">
+            <h1 className="text-2xl sm:text-4xl font-mono font-bold tracking-widest text-[var(--terminal)] mb-1 text-center">
               &gt; FNAEF_
             </h1>
             <p className="text-[10px] font-mono text-[var(--fg-dim)] tracking-wider text-center mb-5">
@@ -92,7 +92,7 @@ export default function Home() {
               <p className="text-[10px] font-mono text-[var(--fg-dim)]">
                 313 dossiers chargés
               </p>
-              <p className="text-[10px] font-mono text-green-700">
+              <p className="text-[10px] font-mono text-[var(--terminal-dim)]">
                 Accès autorisé
               </p>
             </div>
@@ -103,7 +103,7 @@ export default function Home() {
               const id = Math.floor(Math.random() * 313) + 1;
               window.location.href = `/episode/${id}`;
             }}
-            className="px-4 py-2 text-xs font-mono text-[var(--fg-dim)] border border-[var(--border)] rounded bg-[var(--bg-card)] hover:border-gray-500 hover:text-green-400 transition-colors"
+            className="px-4 py-2 text-xs font-mono text-[var(--fg-dim)] border border-[var(--border)] rounded bg-[var(--bg-card)] hover:border-gray-500 hover:text-[var(--terminal)] transition-colors"
           >
             &gt; choisir_episode --random
           </button>

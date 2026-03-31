@@ -113,7 +113,7 @@ export default function QuizClient() {
                   onClick={() => setCount(n)}
                   className={`flex-1 py-2.5 rounded-lg border text-sm font-medium transition-all ${
                     count === n
-                      ? "border-[#fcf84f] text-[#fcf84f] bg-white/5"
+                      ? "border-[var(--accent)] text-[var(--accent)] bg-white/5"
                       : "border-[var(--border)] text-[var(--fg-dim)] hover:border-gray-600"
                   }`}
                 >
@@ -174,7 +174,7 @@ export default function QuizClient() {
               if (!revealed) {
                 cls +=
                   selected === i
-                    ? "border-[#fcf84f] text-[#fcf84f] bg-white/5"
+                    ? "border-[var(--accent)] text-[var(--accent)] bg-white/5"
                     : "border-[var(--border)] text-gray-300 hover:border-gray-500";
               } else if (i === q.correctIndex) {
                 cls += "border-green-500 text-green-400 bg-green-500/10";

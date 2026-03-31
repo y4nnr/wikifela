@@ -4,6 +4,7 @@ import { useCallback, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import MapFilters from "@/components/MapFilters";
+import { useTheme } from "@/components/ThemeProvider";
 import { COLORS } from "@/lib/map-colors";
 
 const MapView = dynamic(() => import("@/components/MapView"), { ssr: false });
@@ -57,6 +58,7 @@ export default function MapClient() {
 
   const [episodes, setEpisodes] = useState<MapEpisode[]>([]);
   const [loading, setLoading] = useState(true);
+  const { theme } = useTheme();
   const [selectedAffaireIds, setSelectedAffaireIds] = useState<string[]>(initialAffaireIds);
 
   const handleFilterChange = useCallback(
@@ -101,13 +103,13 @@ export default function MapClient() {
             <p className="text-[var(--fg-muted)] text-sm">Chargement de la carte...</p>
           </div>
         )}
-        <MapView episodes={episodes} colorMap={colorMap} />
+        <MapView episodes={episodes} colorMap={colorMap} theme={theme} />
       </div>
       <div className="px-4 py-2 border-t border-[var(--border)] text-xs text-[var(--fg-dim)]">
         {!loading && (
           <>
             {episodes.length} épisode{episodes.length !== 1 ? "s" : ""} —{" "}
-            {totalLocations} lieu{totalLocations !== 1 ? "x" : ""}
+            {totalLocations} lieu{totalLocations !== 1 ? "x" : ""} — mode: {theme}
             {selectedAffaireIds.length >= 2 && (
               <span className="text-[var(--fg-muted)]">
                 {" "}({selectedAffaireIds.length} affaires colorées)
