@@ -141,7 +141,8 @@
       "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -t -A -c \"\nSELECT id, title, length\\(\\\\\"wikiSummary\\\\\"\\) as wiki_len, substring\\(coalesce\\(\\\\\"wikiSummary\\\\\",''\\) from 1 for 200\\) as wiki, description\nFROM \\\\\"Episode\\\\\" WHERE title ILIKE '%Constantien%';\")",
       "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -t -A -c \"\nSELECT count\\(*\\) FROM \\\\\"Episode\\\\\" \nWHERE \\\\\"wikiSummary\\\\\" IS NULL \nAND \\(description IS NULL OR length\\(description\\) < 50\\);\")",
       "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -t -A -c \"\nSELECT id, title FROM \\\\\"Episode\\\\\" WHERE id IN \\(11,20,31,33,45,62,95,183,209,217,234\\) ORDER BY id;\")",
-      "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -t -A -c \"\nSELECT title, description FROM \\\\\"Episode\\\\\" WHERE id = 29;\")"
+      "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -t -A -c \"\nSELECT title, description FROM \\\\\"Episode\\\\\" WHERE id = 29;\")",
+      "WebFetch(domain:www.lemonde.fr)"
     ]
   }
 }
