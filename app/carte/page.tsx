@@ -13,7 +13,7 @@ export default function CartePage() {
     <Suspense
       fallback={
         <div className="flex-1 flex items-center justify-center">
-          <p className="text-gray-400 text-sm">Chargement...</p>
+          <p className="text-[var(--fg-muted)] text-sm">Chargement...</p>
         </div>
       }
     >

@@ -10,7 +10,7 @@ export default function PageTitle({ title, subtitle, children }: PageTitleProps)
       <div>
         <h1 className="text-2xl font-bold">{title}</h1>
         {subtitle && (
-          <p className="text-sm text-gray-500 mt-1">{subtitle}</p>
+          <p className="text-sm text-[var(--fg-dim)] mt-1">{subtitle}</p>
         )}
       </div>
       {children && <div className="flex items-center gap-3">{children}</div>}

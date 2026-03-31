@@ -99,12 +99,12 @@ export default function MapFilters({ initialAffaireIds, onFilterChange }: MapFil
     .map((ep) => ep.title) ?? [];
 
   const selectClass =
-    "bg-[#1a1a1a] border border-gray-700 text-gray-200 text-sm rounded-lg px-3 py-2 focus:outline-none focus:border-gray-500";
+    "bg-[var(--bg-input)] border border-[var(--border)] text-[var(--fg)] text-sm rounded-lg px-3 py-2 focus:outline-none focus:border-gray-500";
   const inputClass =
-    "bg-[#1a1a1a] border border-gray-700 text-gray-200 text-sm rounded-lg px-3 py-2 w-20 focus:outline-none focus:border-gray-500";
+    "bg-[var(--bg-input)] border border-[var(--border)] text-[var(--fg)] text-sm rounded-lg px-3 py-2 w-20 focus:outline-none focus:border-gray-500";
 
   return (
-    <div className="border-b border-gray-800">
+    <div className="border-b border-[var(--border)]">
       <div className="flex flex-wrap items-center gap-3 px-4 py-3">
         <select
           value={department}
@@ -134,21 +134,21 @@ export default function MapFilters({ initialAffaireIds, onFilterChange }: MapFil
           </button>
 
           {affaireDropdownOpen && (
-            <div className="absolute z-[2000] mt-1 w-[calc(100vw-2rem)] sm:w-96 left-0 sm:left-auto bg-[#1a1a1a] border border-gray-700 rounded-lg shadow-xl max-h-96 flex flex-col">
-              <div className="p-2 border-b border-gray-700">
+            <div className="absolute z-[2000] mt-1 w-[calc(100vw-2rem)] sm:w-96 left-0 sm:left-auto bg-[var(--bg-input)] border border-[var(--border)] rounded-lg shadow-xl max-h-96 flex flex-col">
+              <div className="p-2 border-b border-[var(--border)]">
                 <input
                   type="text"
                   placeholder="Rechercher une affaire..."
                   value={affaireSearch}
                   onChange={(e) => setAffaireSearch(e.target.value)}
-                  className="w-full bg-[#0a0a0a] border border-gray-700 text-gray-200 text-sm rounded px-2 py-1.5 focus:outline-none focus:border-gray-500 placeholder:text-gray-500"
+                  className="w-full bg-[var(--bg)] border border-[var(--border)] text-[var(--fg)] text-sm rounded px-2 py-1.5 focus:outline-none focus:border-gray-500 placeholder:text-[var(--fg-dim)]"
                   autoFocus
                 />
               </div>
               <div className="overflow-y-auto flex-1">
                 {[...groupedEpisodes.entries()].map(([season, eps]) => (
                   <div key={season}>
-                    <div className="sticky top-0 bg-[#111] px-3 py-1.5 text-xs font-semibold text-gray-400 border-b border-gray-800">
+                    <div className="sticky top-0 bg-[var(--bg-card)] px-3 py-1.5 text-xs font-semibold text-[var(--fg-muted)] border-b border-[var(--border)]">
                       {season === 0 ? "Hors saison" : `Saison ${season}`}
                     </div>
                     {eps.map((ep) => {
@@ -166,7 +166,7 @@ export default function MapFilters({ initialAffaireIds, onFilterChange }: MapFil
                             onChange={() => toggleAffaire(String(ep.id))}
                             className="accent-[#fe0000] shrink-0"
                           />
-                          <span className="text-gray-500 shrink-0 w-6 text-xs">
+                          <span className="text-[var(--fg-dim)] shrink-0 w-6 text-xs">
                             {ep.episode ?? ""}
                           </span>
                           <span className="truncate">{ep.title}</span>
@@ -176,11 +176,11 @@ export default function MapFilters({ initialAffaireIds, onFilterChange }: MapFil
                   </div>
                 ))}
                 {groupedEpisodes.size === 0 && (
-                  <p className="text-xs text-gray-500 px-3 py-3">Aucun résultat</p>
+                  <p className="text-xs text-[var(--fg-dim)] px-3 py-3">Aucun résultat</p>
                 )}
               </div>
               {affaireIds.length > 0 && (
-                <div className="p-2 border-t border-gray-700">
+                <div className="p-2 border-t border-[var(--border)]">
                   <button
                     onClick={() => { setAffaireIds([]); setAffaireDropdownOpen(false); }}
                     className="text-xs text-[#fe0000] hover:underline"
@@ -195,7 +195,7 @@ export default function MapFilters({ initialAffaireIds, onFilterChange }: MapFil
 
         <button
           onClick={() => setShowAdvanced(!showAdvanced)}
-          className="text-xs text-gray-400 hover:text-gray-200 transition-colors"
+          className="text-xs text-[var(--fg-muted)] hover:text-[var(--fg)] transition-colors"
         >
           {showAdvanced ? "Masquer les filtres" : "Filtres avancés"}
         </button>
@@ -225,7 +225,7 @@ export default function MapFilters({ initialAffaireIds, onFilterChange }: MapFil
             ))}
           </select>
 
-          <div className="flex items-center gap-2 text-sm text-gray-400">
+          <div className="flex items-center gap-2 text-sm text-[var(--fg-muted)]">
             <span>De</span>
             <input
               type="number"

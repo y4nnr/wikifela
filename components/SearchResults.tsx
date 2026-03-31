@@ -18,15 +18,15 @@ export default function SearchResults({
 
   if (loading) {
     return (
-      <p className="text-gray-500 text-sm mt-10 text-center">Recherche...</p>
+      <p className="text-[var(--fg-dim)] text-sm mt-10 text-center">Recherche...</p>
     );
   }
 
   if (results.length === 0) {
     return (
       <div className="w-full max-w-xl mt-10 px-4">
-        <p className="text-sm text-gray-400">
-          Aucun résultat pour <span className="font-semibold text-gray-200">{query}</span>.
+        <p className="text-sm text-[var(--fg-muted)]">
+          Aucun résultat pour <span className="font-semibold text-[var(--fg)]">{query}</span>.
           Essayez avec d&apos;autres mots-clés.
         </p>
       </div>
@@ -35,7 +35,7 @@ export default function SearchResults({
 
   return (
     <div className="w-full max-w-xl mt-6 px-4 pb-12">
-      <p className="text-xs text-gray-500 mb-5">
+      <p className="text-xs text-[var(--fg-dim)] mb-5">
         {results.length} résultat{results.length > 1 ? "s" : ""}
       </p>
       {results.map((ep) => (

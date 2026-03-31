@@ -23,7 +23,7 @@ export default function EpisodeCard({ episode }: EpisodeCardProps) {
 
   return (
     <article className="mb-7">
-      <div className="flex items-center gap-2 text-xs text-gray-500 mb-0.5">
+      <div className="flex items-center gap-2 text-xs text-[var(--fg-dim)] mb-0.5">
         {seasonEp && <span>{seasonEp}</span>}
         {seasonEp && episode.airDate && <span>·</span>}
         {episode.airDate && <span>{formatDate(episode.airDate)}</span>}
@@ -34,7 +34,7 @@ export default function EpisodeCard({ episode }: EpisodeCardProps) {
         </h2>
       </Link>
       <p
-        className="text-sm text-gray-400 leading-relaxed [&_mark]:bg-transparent [&_mark]:text-[#fe6c03] [&_mark]:font-semibold"
+        className="text-sm text-[var(--fg-muted)] leading-relaxed [&_mark]:bg-transparent [&_mark]:text-[#fe6c03] [&_mark]:font-semibold"
         dangerouslySetInnerHTML={{ __html: episode.headline }}
       />
     </article>

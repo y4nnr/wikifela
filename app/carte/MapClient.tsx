@@ -97,19 +97,19 @@ export default function MapClient() {
       />
       <div className="flex-1 relative">
         {loading && (
-          <div className="absolute inset-0 flex items-center justify-center z-[1000] bg-[#0a0a0a]/80">
-            <p className="text-gray-400 text-sm">Chargement de la carte...</p>
+          <div className="absolute inset-0 flex items-center justify-center z-[1000] bg-[var(--bg)]/80">
+            <p className="text-[var(--fg-muted)] text-sm">Chargement de la carte...</p>
           </div>
         )}
         <MapView episodes={episodes} colorMap={colorMap} />
       </div>
-      <div className="px-4 py-2 border-t border-gray-800 text-xs text-gray-500">
+      <div className="px-4 py-2 border-t border-[var(--border)] text-xs text-[var(--fg-dim)]">
         {!loading && (
           <>
             {episodes.length} épisode{episodes.length !== 1 ? "s" : ""} —{" "}
             {totalLocations} lieu{totalLocations !== 1 ? "x" : ""}
             {selectedAffaireIds.length >= 2 && (
-              <span className="text-gray-400">
+              <span className="text-[var(--fg-muted)]">
                 {" "}({selectedAffaireIds.length} affaires colorées)
               </span>
             )}

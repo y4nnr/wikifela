@@ -91,9 +91,9 @@ export default function EpisodesClient() {
   const [showFilters, setShowFilters] = useState(false);
 
   const selectClass =
-    "bg-[#1a1a1a] border border-gray-700 text-gray-200 text-sm rounded-lg px-3 py-2 focus:outline-none focus:border-gray-500";
+    "bg-[var(--bg-input)] border border-[var(--border)] text-[var(--fg)] text-sm rounded-lg px-3 py-2 focus:outline-none focus:border-gray-500";
   const inputClass =
-    "bg-[#1a1a1a] border border-gray-700 text-gray-200 text-sm rounded-lg px-3 py-2 w-20 focus:outline-none focus:border-gray-500";
+    "bg-[var(--bg-input)] border border-[var(--border)] text-[var(--fg)] text-sm rounded-lg px-3 py-2 w-20 focus:outline-none focus:border-gray-500";
 
   return (
     <div className="flex-1">
@@ -104,7 +104,7 @@ export default function EpisodesClient() {
         >
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg border border-gray-700 text-gray-300 hover:border-gray-500 hover:text-white transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg border border-[var(--border)] text-gray-300 hover:border-gray-500 hover:text-white transition-colors"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
@@ -123,7 +123,7 @@ export default function EpisodesClient() {
 
         {/* Filters */}
         {showFilters && (
-        <div className="flex flex-wrap gap-2 sm:gap-3 mb-6 pb-6 border-b border-gray-800 px-4">
+        <div className="flex flex-wrap gap-2 sm:gap-3 mb-6 pb-6 border-b border-[var(--border)] px-4">
           <select
             value={season}
             onChange={(e) => setSeason(e.target.value)}
@@ -163,7 +163,7 @@ export default function EpisodesClient() {
             ))}
           </select>
 
-          <div className="flex items-center gap-2 text-sm text-gray-400">
+          <div className="flex items-center gap-2 text-sm text-[var(--fg-muted)]">
             <span>De</span>
             <input
               type="number"
@@ -191,7 +191,7 @@ export default function EpisodesClient() {
 
         {/* Episodes list */}
         {episodes.length === 0 && !loading && (
-          <p className="text-sm text-gray-500 text-center py-10">
+          <p className="text-sm text-[var(--fg-dim)] text-center py-10">
             Aucun épisode trouvé avec ces filtres.
           </p>
         )}
@@ -199,9 +199,9 @@ export default function EpisodesClient() {
         <div className="space-y-8 px-4">
           {[...seasons.entries()].map(([s, eps]) => (
             <section key={s}>
-              <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-3 sticky top-0 bg-[#0a0a0a] py-2 border-b border-gray-800 z-10">
+              <h2 className="text-sm font-semibold text-[var(--fg-muted)] uppercase tracking-widest mb-3 sticky top-0 bg-[var(--bg)] py-2 border-b border-[var(--border)] z-10">
                 {s === 0 ? "Hors saison" : `Saison ${s}`}
-                <span className="text-gray-600 font-normal ml-2">
+                <span className="text-[var(--fg-dim)] font-normal ml-2">
                   ({eps.length})
                 </span>
               </h2>
@@ -210,16 +210,16 @@ export default function EpisodesClient() {
                   <Link
                     key={ep.id}
                     href={`/episode/${ep.id}`}
-                    className="flex items-baseline gap-3 px-3 py-2.5 -mx-3 rounded-lg hover:bg-[#111] transition-colors group"
+                    className="flex items-baseline gap-3 px-3 py-2.5 -mx-3 rounded-lg hover:bg-[var(--bg-card)] transition-colors group"
                   >
-                    <span className="text-xs text-gray-600 w-6 shrink-0 text-right">
+                    <span className="text-xs text-[var(--fg-dim)] w-6 shrink-0 text-right">
                       {ep.episode ?? ""}
                     </span>
-                    <span className="text-sm text-gray-200 group-hover:text-[#fcf84f] transition-colors flex-1 min-w-0 truncate">
+                    <span className="text-sm text-[var(--fg)] group-hover:text-[#fcf84f] transition-colors flex-1 min-w-0 truncate">
                       {ep.title}
                     </span>
                     {ep.airDate && (
-                      <span className="text-xs text-gray-600 shrink-0 hidden sm:block">
+                      <span className="text-xs text-[var(--fg-dim)] shrink-0 hidden sm:block">
                         {formatDate(ep.airDate)}
                       </span>
                     )}

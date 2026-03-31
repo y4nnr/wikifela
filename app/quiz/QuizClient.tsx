@@ -82,7 +82,7 @@ export default function QuizClient() {
 
         <div className="w-full max-w-sm space-y-6 px-4">
           <div>
-            <label className="block text-sm text-gray-400 mb-3">
+            <label className="block text-sm text-[var(--fg-muted)] mb-3">
               Difficulté
             </label>
             <div className="flex gap-3">
@@ -93,7 +93,7 @@ export default function QuizClient() {
                   className={`flex-1 py-2.5 rounded-lg border text-sm font-medium capitalize transition-all ${
                     difficulty === d
                       ? `${difficultyColors[d]} bg-white/5`
-                      : "border-gray-700 text-gray-500 hover:border-gray-600"
+                      : "border-[var(--border)] text-[var(--fg-dim)] hover:border-gray-600"
                   }`}
                 >
                   {d}
@@ -103,7 +103,7 @@ export default function QuizClient() {
           </div>
 
           <div>
-            <label className="block text-sm text-gray-400 mb-3">
+            <label className="block text-sm text-[var(--fg-muted)] mb-3">
               Nombre de questions
             </label>
             <div className="flex gap-3">
@@ -114,7 +114,7 @@ export default function QuizClient() {
                   className={`flex-1 py-2.5 rounded-lg border text-sm font-medium transition-all ${
                     count === n
                       ? "border-[#fcf84f] text-[#fcf84f] bg-white/5"
-                      : "border-gray-700 text-gray-500 hover:border-gray-600"
+                      : "border-[var(--border)] text-[var(--fg-dim)] hover:border-gray-600"
                   }`}
                 >
                   {n}
@@ -142,7 +142,7 @@ export default function QuizClient() {
       <div className="flex-1 flex flex-col items-center px-4 pt-8">
         {/* Progress */}
         <div className="w-full max-w-lg mb-6">
-          <div className="flex justify-between text-xs text-gray-500 mb-2">
+          <div className="flex justify-between text-xs text-[var(--fg-dim)] mb-2">
             <span>
               Question {currentIndex + 1} / {questions.length}
             </span>
@@ -175,13 +175,13 @@ export default function QuizClient() {
                 cls +=
                   selected === i
                     ? "border-[#fcf84f] text-[#fcf84f] bg-white/5"
-                    : "border-gray-700 text-gray-300 hover:border-gray-500";
+                    : "border-[var(--border)] text-gray-300 hover:border-gray-500";
               } else if (i === q.correctIndex) {
                 cls += "border-green-500 text-green-400 bg-green-500/10";
               } else if (i === selected) {
                 cls += "border-[#fe0000] text-[#fe0000] bg-red-500/10";
               } else {
-                cls += "border-gray-800 text-gray-600";
+                cls += "border-[var(--border)] text-[var(--fg-dim)]";
               }
 
               return (
@@ -200,13 +200,13 @@ export default function QuizClient() {
             <div className="mt-6 flex justify-between items-center">
               <Link
                 href={`/episode/${q.episodeId}`}
-                className="text-xs text-gray-500 hover:text-[#fe0000] transition-colors"
+                className="text-xs text-[var(--fg-dim)] hover:text-[#fe0000] transition-colors"
               >
                 Voir l&apos;épisode
               </Link>
               <button
                 onClick={nextQuestion}
-                className="px-6 py-2 rounded-lg bg-[#1a1a1a] border border-gray-700 text-sm hover:border-gray-500 transition-colors"
+                className="px-6 py-2 rounded-lg bg-[var(--bg-input)] border border-[var(--border)] text-sm hover:border-gray-500 transition-colors"
               >
                 {currentIndex + 1 >= questions.length
                   ? "Voir le résultat"
@@ -237,10 +237,10 @@ export default function QuizClient() {
           <span className={percentage >= 50 ? "text-green-400" : "text-[#fe0000]"}>
             {score}
           </span>
-          <span className="text-gray-600">/{questions.length}</span>
+          <span className="text-[var(--fg-dim)]">/{questions.length}</span>
         </div>
         <p className="text-xl text-gray-300 mb-2">{emoji}</p>
-        <p className="text-sm text-gray-500 mb-8">{percentage}% de bonnes réponses</p>
+        <p className="text-sm text-[var(--fg-dim)] mb-8">{percentage}% de bonnes réponses</p>
 
         <button
           onClick={() => {

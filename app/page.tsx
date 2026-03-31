@@ -38,7 +38,7 @@ export default function Home() {
   const hasQuery = query.trim().length > 0;
 
   const searchInput = (
-    <div className="flex items-center w-full rounded border border-gray-700 bg-[#0a0a0a] font-mono">
+    <div className="flex items-center w-full rounded border border-[var(--border)] bg-[var(--bg)] font-mono">
       <span className="ml-3 text-green-600 text-sm shrink-0">&gt;</span>
       <input
         ref={!hasQuery ? inputRef : undefined}
@@ -47,7 +47,7 @@ export default function Home() {
         onChange={(e) => handleChange(e.target.value)}
         placeholder="rechercher..."
         autoFocus
-        className="w-full py-2.5 px-2 text-sm bg-transparent outline-none text-green-400 placeholder:text-gray-600 font-mono"
+        className="w-full py-2.5 px-2 text-sm bg-transparent outline-none text-green-400 placeholder:text-[var(--fg-dim)] font-mono"
       />
       {hasQuery && (
         <button
@@ -56,7 +56,7 @@ export default function Home() {
             setQuery("");
             setResults([]);
           }}
-          className="mr-3 text-gray-600 hover:text-gray-400 shrink-0"
+          className="mr-3 text-[var(--fg-dim)] hover:text-[var(--fg-muted)] shrink-0"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <line x1="18" y1="6" x2="6" y2="18" />
@@ -72,8 +72,8 @@ export default function Home() {
       {/* Landing view */}
       {!hasQuery && (
         <div className="flex flex-col items-center w-full pt-[10vh] sm:pt-[15vh] px-4">
-          <div className="border border-gray-700 rounded-lg bg-[#111] p-4 sm:p-6 max-w-xl w-full mb-4">
-            <div className="border-b border-gray-800 pb-3 mb-4 flex items-center gap-2">
+          <div className="border border-[var(--border)] rounded-lg bg-[var(--bg-card)] p-4 sm:p-6 max-w-xl w-full mb-4">
+            <div className="border-b border-[var(--border)] pb-3 mb-4 flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
               <span className="text-[10px] font-mono text-green-700 uppercase tracking-widest">
                 Système actif — Terminal sécurisé
@@ -82,14 +82,14 @@ export default function Home() {
             <h1 className="text-2xl sm:text-4xl font-mono font-bold tracking-widest text-green-400 mb-1 text-center">
               &gt; FNAEF_
             </h1>
-            <p className="text-[10px] font-mono text-gray-500 tracking-wider text-center mb-5">
+            <p className="text-[10px] font-mono text-[var(--fg-dim)] tracking-wider text-center mb-5">
               FICHIER NATIONAL AUTOMATISÉ DES ÉPISODES DE FELA
             </p>
 
             {searchInput}
 
-            <div className="border-t border-gray-800 pt-3 mt-4 flex justify-between">
-              <p className="text-[10px] font-mono text-gray-600">
+            <div className="border-t border-[var(--border)] pt-3 mt-4 flex justify-between">
+              <p className="text-[10px] font-mono text-[var(--fg-dim)]">
                 313 dossiers chargés
               </p>
               <p className="text-[10px] font-mono text-green-700">
@@ -103,7 +103,7 @@ export default function Home() {
               const id = Math.floor(Math.random() * 313) + 1;
               window.location.href = `/episode/${id}`;
             }}
-            className="px-4 py-2 text-xs font-mono text-gray-500 border border-gray-700 rounded bg-[#111] hover:border-gray-500 hover:text-green-400 transition-colors"
+            className="px-4 py-2 text-xs font-mono text-[var(--fg-dim)] border border-[var(--border)] rounded bg-[var(--bg-card)] hover:border-gray-500 hover:text-green-400 transition-colors"
           >
             &gt; choisir_episode --random
           </button>

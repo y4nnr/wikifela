@@ -95,7 +95,7 @@ export default function MapView({ episodes, colorMap }: MapViewProps) {
             >
               <Popup>
                 <div className="min-w-[200px]">
-                  <div className="text-xs text-gray-400 mb-1">
+                  <div className="text-xs text-[var(--fg-muted)] mb-1">
                     {loc.communeName} ({loc.departmentName})
                   </div>
                   <Link
@@ -106,7 +106,7 @@ export default function MapView({ episodes, colorMap }: MapViewProps) {
                     {ep.title}
                   </Link>
                   {ep.airDate && (
-                    <div className="text-[10px] text-gray-500 mb-1">
+                    <div className="text-[10px] text-[var(--fg-dim)] mb-1">
                       {formatDate(ep.airDate)}
                     </div>
                   )}

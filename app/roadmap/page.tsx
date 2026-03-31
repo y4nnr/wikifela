@@ -78,7 +78,7 @@ const items: RoadmapItem[] = [
 const statusConfig = {
   done: { label: "Terminé", color: "bg-green-500/20 text-green-400 border-green-500/30" },
   "in-progress": { label: "En cours", color: "bg-[#fe6c03]/20 text-[#fe6c03] border-[#fe6c03]/30" },
-  planned: { label: "Prévu", color: "bg-gray-500/20 text-gray-400 border-gray-500/30" },
+  planned: { label: "Prévu", color: "bg-gray-500/20 text-[var(--fg-muted)] border-gray-500/30" },
 };
 
 export default function RoadmapPage() {
@@ -96,11 +96,11 @@ export default function RoadmapPage() {
             return (
               <div
                 key={item.title}
-                className="flex gap-4 p-4 rounded-lg border border-gray-800 bg-[#111]"
+                className="flex gap-4 p-4 rounded-lg border border-[var(--border)] bg-[var(--bg-card)]"
               >
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-1">
-                    <h3 className="text-sm font-semibold text-gray-200">
+                    <h3 className="text-sm font-semibold text-[var(--fg)]">
                       {item.title}
                     </h3>
                     <span
@@ -109,7 +109,7 @@ export default function RoadmapPage() {
                       {label}
                     </span>
                   </div>
-                  <p className="text-xs text-gray-500 leading-relaxed">
+                  <p className="text-xs text-[var(--fg-dim)] leading-relaxed">
                     {item.description}
                   </p>
                 </div>

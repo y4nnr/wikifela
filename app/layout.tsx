@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Poppins, Libre_Baskerville, Oswald } from "next/font/google";
 import localFont from "next/font/local";
 import Header from "@/components/Header";
+import ThemeProvider from "@/components/ThemeProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -54,9 +55,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className={`${geistSans.variable} ${titleFont.variable} ${poppins.variable} ${libreBaskerville.variable} ${tanker.variable} ${oswald.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-[#0a0a0a] text-gray-200 font-[family-name:var(--font-geist-sans)] pb-16 md:pb-0">
-        <Header />
-        {children}
+      <body className="min-h-full flex flex-col font-[family-name:var(--font-geist-sans)] pb-16 md:pb-0" suppressHydrationWarning>
+        <ThemeProvider>
+          <Header />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

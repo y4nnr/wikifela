@@ -83,7 +83,7 @@ export default async function EpisodePage({
       <article className="max-w-3xl mx-auto px-4 pb-10">
 
         <section className="mb-8">
-          <h2 className="text-xs uppercase tracking-widest text-gray-500 mb-3">
+          <h2 className="text-xs uppercase tracking-widest text-[var(--fg-dim)] mb-3">
             L&apos;affaire
           </h2>
           {episode.description && (
@@ -92,7 +92,7 @@ export default async function EpisodePage({
             </p>
           )}
           {shortSummary && (
-            <p className="text-gray-400 leading-relaxed text-sm mb-3">
+            <p className="text-[var(--fg-muted)] leading-relaxed text-sm mb-3">
               {shortSummary}
             </p>
           )}
@@ -115,7 +115,7 @@ export default async function EpisodePage({
 
         {episode.keywords.length > 0 && (
           <section className="mb-8">
-            <h2 className="text-xs uppercase tracking-widest text-gray-500 mb-3">
+            <h2 className="text-xs uppercase tracking-widest text-[var(--fg-dim)] mb-3">
               Mots-clés
             </h2>
             <div className="flex flex-wrap gap-2">
@@ -133,7 +133,7 @@ export default async function EpisodePage({
 
         {episode.locations.length > 0 && (
           <section className="mb-8">
-            <h2 className="text-xs uppercase tracking-widest text-gray-500 mb-3">
+            <h2 className="text-xs uppercase tracking-widest text-[var(--fg-dim)] mb-3">
               Lieux
             </h2>
             <div className="flex flex-wrap gap-2 mb-3">

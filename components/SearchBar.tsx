@@ -38,14 +38,14 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
       className="w-full flex justify-center px-4"
     >
       <div
-        className={`flex items-center w-full max-w-xl rounded-full border transition-shadow bg-[#1a1a1a] ${
+        className={`flex items-center w-full max-w-xl rounded-full border transition-shadow bg-[var(--bg-input)] ${
           focused
             ? "shadow-lg shadow-black/30 border-gray-600"
-            : "border-gray-700 hover:shadow-lg hover:shadow-black/30"
+            : "border-[var(--border)] hover:shadow-lg hover:shadow-black/30"
         }`}
       >
         <svg
-          className="ml-4 mr-2 text-gray-500 shrink-0"
+          className="ml-4 mr-2 text-[var(--fg-dim)] shrink-0"
           xmlns="http://www.w3.org/2000/svg"
           width="18"
           height="18"
@@ -67,7 +67,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
           onBlur={() => setFocused(false)}
           placeholder="Rechercher une affaire, un nom, un lieu..."
           autoFocus
-          className="w-full py-3 pr-4 text-base bg-transparent outline-none text-gray-200 placeholder:text-gray-500"
+          className="w-full py-3 pr-4 text-base bg-transparent outline-none text-[var(--fg)] placeholder:text-[var(--fg-dim)]"
         />
         {value && (
           <button
@@ -76,7 +76,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
               setValue("");
               triggerSearch("");
             }}
-            className="mr-3 text-gray-500 hover:text-gray-300 shrink-0"
+            className="mr-3 text-[var(--fg-dim)] hover:text-gray-300 shrink-0"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
