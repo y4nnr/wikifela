@@ -104,7 +104,18 @@
       "Bash(gh auth:*)",
       "Bash(gh repo:*)",
       "Bash(git init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git branch:*)",
+      "Bash(git commit:*)",
+      "Bash(git remote:*)",
+      "Bash(git push:*)",
+      "Bash(git checkout:*)",
+      "Bash(git clone:*)",
+      "Bash(cp /home/y4n/dev/fela/.env.local /home/y4n/dev/fela-prod/.env.local)",
+      "Bash(cp /home/y4n/dev/fela/.env /home/y4n/dev/fela-prod/.env)",
+      "Bash(pnpm install:*)",
+      "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -c \"\nSELECT el.\\\\\"communeName\\\\\", el.\\\\\"departmentName\\\\\", el.\\\\\"eventDescription\\\\\"\nFROM \\\\\"EpisodeLocation\\\\\" el JOIN \\\\\"Episode\\\\\" e ON e.id = el.\\\\\"episodeId\\\\\"\nWHERE e.title ILIKE '%Sedrati%';\")",
+      "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -c \"\nUPDATE \\\\\"EpisodeLocation\\\\\" SET \\\\\"eventDescription\\\\\" = 'Résidence de la victime Gachy, squattée par Sedrati après la disparition' WHERE \\\\\"episodeId\\\\\" = 43 AND \\\\\"communeName\\\\\" = 'Saintes';\n\nINSERT INTO \\\\\"EpisodeLocation\\\\\" \\(\\\\\"episodeId\\\\\", \\\\\"communeName\\\\\", department, \\\\\"departmentName\\\\\", latitude, longitude, \\\\\"isPrimary\\\\\", \\\\\"eventDescription\\\\\"\\)\nVALUES \\(43, 'Nancy', '54', 'Meurthe-et-Moselle', 49.1193, 6.1757, false, 'Deux victimes retrouvées dépecées dans le Canal de la Marne au Rhin'\\);\")"
     ]
   }
 }
