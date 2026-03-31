@@ -12,6 +12,36 @@ function formatDate(date: Date | null): string {
   });
 }
 
+function getSummary(text: string): string {
+  // Get just the first sentence or two — keep it very short
+  const lines = text.split(/\n+/).filter((p) => {
+    const t = p.trim();
+    return t.length > 30 && !t.startsWith("==");
+  });
+  if (lines.length === 0) return "";
+  const first = lines[0].trim();
+  // Cut at second sentence if possible
+  const dots = [...first.matchAll(/\./g)];
+  if (dots.length >= 2 && (dots[1].index ?? 0) < 250) {
+    return first.slice(0, (dots[1].index ?? 0) + 1);
+  }
+  if (dots.length >= 1 && (dots[0].index ?? 0) < 200) {
+    return first.slice(0, (dots[0].index ?? 0) + 1);
+  }
+  return first.slice(0, 150) + "...";
+}
+
+function guessWikipediaUrl(title: string): string | null {
+  // Try to extract a case name for Wikipedia search
+  // "Person — Subtitle" -> search for "Affaire Person"
+  const dashMatch = title.match(/^(.+?)\s*[—–-]\s*/);
+  if (dashMatch) {
+    const name = dashMatch[1].trim();
+    return `https://fr.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent("Affaire " + name)}`;
+  }
+  return `https://fr.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(title)}`;
+}
+
 export default async function EpisodePage({
   params,
 }: {
@@ -32,6 +62,12 @@ export default async function EpisodePage({
       ? `Saison ${episode.season}, Épisode ${episode.episode}`
       : null;
 
+  const shortSummary = episode.wikiSummary
+    ? getSummary(episode.wikiSummary)
+    : null;
+
+  const wikiUrl = guessWikipediaUrl(episode.title);
+
   return (
     <div className="flex-1">
       <div className="max-w-3xl mx-auto w-full">
@@ -42,25 +78,36 @@ export default async function EpisodePage({
       </div>
       <article className="max-w-3xl mx-auto px-4 pb-10">
 
-        {episode.description && (
-          <section className="mb-8">
-            <h2 className="text-xs uppercase tracking-widest text-gray-500 mb-3">
-              Résumé
-            </h2>
-            <p className="text-gray-300 leading-relaxed">
-              {episode.description}
-            </p>
-          </section>
-        )}
-
-        {episode.wikiSummary && (
+        {(episode.description || shortSummary) && (
           <section className="mb-8">
             <h2 className="text-xs uppercase tracking-widest text-gray-500 mb-3">
               L&apos;affaire
             </h2>
-            <div className="text-gray-300 leading-relaxed whitespace-pre-line">
-              {episode.wikiSummary}
-            </div>
+            {episode.description && (
+              <p className="text-gray-300 leading-relaxed mb-3">
+                {episode.description}
+              </p>
+            )}
+            {shortSummary && (
+              <p className="text-gray-400 leading-relaxed text-sm">
+                {shortSummary}
+              </p>
+            )}
+            {wikiUrl && (
+              <a
+                href={wikiUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 mt-3 text-sm text-[#4285f4] hover:underline"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+                Lire sur Wikipédia
+              </a>
+            )}
           </section>
         )}
 
