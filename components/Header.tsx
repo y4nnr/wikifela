@@ -33,6 +33,14 @@ const links = [
       <line x1="12" y1="17" x2="12.01" y2="17"/>
     </svg>
   )},
+  { href: "/tapissage", label: "Tapissage", icon: (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="3" width="7" height="9" rx="1"/>
+      <rect x="14" y="3" width="7" height="9" rx="1"/>
+      <line x1="6.5" y1="15" x2="6.5" y2="21"/>
+      <line x1="17.5" y1="15" x2="17.5" y2="21"/>
+    </svg>
+  )},
   { href: "/roadmap", label: "Roadmap", icon: (
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
