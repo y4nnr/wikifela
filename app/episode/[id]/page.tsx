@@ -13,22 +13,26 @@ function formatDate(date: Date | null): string {
 }
 
 function getSummary(text: string): string {
-  // Get just the first sentence or two — keep it very short
-  const lines = text.split(/\n+/).filter((p) => {
+  // Get first 1-2 paragraphs, around 300-500 chars
+  const paragraphs = text.split(/\n+/).filter((p) => {
     const t = p.trim();
     return t.length > 30 && !t.startsWith("==");
   });
-  if (lines.length === 0) return "";
-  const first = lines[0].trim();
-  // Cut at second sentence if possible
-  const dots = [...first.matchAll(/\./g)];
-  if (dots.length >= 2 && (dots[1].index ?? 0) < 250) {
-    return first.slice(0, (dots[1].index ?? 0) + 1);
+  if (paragraphs.length === 0) return "";
+
+  let summary = paragraphs[0].trim();
+  if (paragraphs.length > 1 && summary.length < 300) {
+    summary += " " + paragraphs[1].trim();
   }
-  if (dots.length >= 1 && (dots[0].index ?? 0) < 200) {
-    return first.slice(0, (dots[0].index ?? 0) + 1);
+
+  // Cap at ~500 chars on a sentence boundary
+  if (summary.length > 500) {
+    const cut = summary.slice(0, 500);
+    const lastDot = cut.lastIndexOf(".");
+    return lastDot > 150 ? cut.slice(0, lastDot + 1) : cut + "...";
   }
-  return first.slice(0, 150) + "...";
+
+  return summary;
 }
 
 function guessWikipediaUrl(title: string): string | null {
