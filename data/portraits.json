@@ -552,6 +552,30 @@
     "episode": 3
   },
   {
+    "id": 130,
+    "name": "Francis Leroy",
+    "file": "130.png",
+    "subtitle": "Le tueur de la pleine lune",
+    "season": 11,
+    "episode": 6
+  },
+  {
+    "id": 136,
+    "name": "Robert Greiner",
+    "file": "136.jpg",
+    "subtitle": "Le pompier criminel",
+    "season": 11,
+    "episode": 12
+  },
+  {
+    "id": 140,
+    "name": "Albert Foulcher",
+    "file": "140.jpg",
+    "subtitle": "La vengeance de l'assureur",
+    "season": 11,
+    "episode": 16
+  },
+  {
     "id": 183,
     "name": "Marc Machin",
     "file": "183.jpg",
