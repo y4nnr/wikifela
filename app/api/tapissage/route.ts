@@ -76,6 +76,7 @@ export async function GET(request: NextRequest) {
       episodeId: correct.id,
       lineup: lineup.map((p) => ({
         file: `/portraits/${p.file}`,
+        name: p.name,
         number: 0, // will be set below
       })),
       correctIndex,
