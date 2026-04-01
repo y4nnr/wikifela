@@ -12,6 +12,9 @@ interface LineupMember {
 
 interface Round {
   question: string;
+  subtitle: string;
+  season: number | null;
+  episode: number | null;
   episodeId: number;
   lineup: LineupMember[];
   correctIndex: number;
@@ -172,10 +175,21 @@ export default function TapissageClient() {
               </span>
             </div>
 
-            <p className="text-center text-lg font-semibold mb-6">
+            <p className="text-center text-lg font-semibold mb-1">
               Identifiez{" "}
               <span className="text-[var(--brand-red)]">{round.question}</span>
             </p>
+            {round.subtitle && !round.subtitle.toLowerCase().includes(round.question.split(' ').pop()?.toLowerCase() || '') ? (
+              <p className="text-center text-sm text-[var(--fg-dim)] mb-5 italic">
+                {round.subtitle}
+              </p>
+            ) : round.season ? (
+              <p className="text-center text-xs text-[var(--fg-dim)] mb-5">
+                Saison {round.season}, Épisode {round.episode}
+              </p>
+            ) : (
+              <div className="mb-5" />
+            )}
 
             {/* Lineup */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">

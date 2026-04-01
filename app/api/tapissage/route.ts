@@ -6,6 +6,9 @@ interface Portrait {
   id: number;
   name: string;
   file: string;
+  subtitle?: string;
+  season?: number;
+  episode?: number;
 }
 
 let portraitsCache: Portrait[] | null = null;
@@ -67,6 +70,9 @@ export async function GET(request: NextRequest) {
 
     rounds.push({
       question: correct.name,
+      subtitle: correct.subtitle || "",
+      season: correct.season || null,
+      episode: correct.episode || null,
       episodeId: correct.id,
       lineup: lineup.map((p) => ({
         file: `/portraits/${p.file}`,

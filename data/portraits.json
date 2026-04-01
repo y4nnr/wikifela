@@ -2,241 +2,481 @@
   {
     "id": 4,
     "name": "Jean-Marc Deperrois",
-    "file": "4.jpg"
+    "file": "4.jpg",
+    "subtitle": "La Josacine empoisonnée",
+    "season": 1,
+    "episode": 4
   },
   {
     "id": 6,
     "name": "Marie-Élisabeth Cons-Boutboul",
-    "file": "6.jpg"
+    "file": "6.jpg",
+    "subtitle": "Secrets de famille",
+    "season": 1,
+    "episode": 6
   },
   {
     "id": 9,
     "name": "Patrick Henry",
-    "file": "9.png"
+    "file": "9.png",
+    "subtitle": "Le procès de la guillotine",
+    "season": 2,
+    "episode": 2
   },
   {
     "id": 10,
     "name": "Richard Roman",
-    "file": "10.jpg"
+    "file": "10.jpg",
+    "subtitle": "Le procès d'un innocent",
+    "season": 2,
+    "episode": 3
   },
   {
     "id": 11,
     "name": "Omar Raddad",
-    "file": "11.jpg"
+    "file": "11.jpg",
+    "subtitle": "Le coupable désigné",
+    "season": 2,
+    "episode": 4
   },
   {
     "id": 14,
     "name": "Christian Ranucci",
-    "file": "14.jpg"
+    "file": "14.jpg",
+    "subtitle": "L'énigme du pull-over rouge",
+    "season": 3,
+    "episode": 2
   },
   {
     "id": 15,
     "name": "Pierre Michel",
-    "file": "15.jpg"
+    "file": "15.jpg",
+    "subtitle": "L'assassinat du juge Michel",
+    "season": 3,
+    "episode": 3
   },
   {
     "id": 17,
     "name": "Patrick Dils",
-    "file": "17.jpg"
+    "file": "17.jpg",
+    "subtitle": "Marathon pour un acquittement",
+    "season": 3,
+    "episode": 5
   },
   {
     "id": 18,
     "name": "Jean-Louis Turquin",
-    "file": "18.jpg"
+    "file": "18.jpg",
+    "subtitle": "Voyage au bout de la haine",
+    "season": 3,
+    "episode": 6
   },
   {
     "id": 19,
     "name": "François Besse",
-    "file": "19.png"
+    "file": "19.png",
+    "subtitle": "Lieutenant de Mesrine",
+    "season": 3,
+    "episode": 7
   },
   {
     "id": 20,
     "name": "Marc Dutroux",
-    "file": "20.jpg"
+    "file": "20.jpg",
+    "subtitle": "Le démon belge",
+    "season": 3,
+    "episode": 8
   },
   {
     "id": 22,
     "name": "Florence Rey",
-    "file": "22.jpg"
+    "file": "22.jpg",
+    "subtitle": "Tueurs-nés ?",
+    "season": 4,
+    "episode": 2
   },
   {
     "id": 23,
     "name": "Yves Dandonneau",
-    "file": "23.jpg"
+    "file": "23.jpg",
+    "subtitle": "Le mort vivant",
+    "season": 4,
+    "episode": 3
   },
   {
     "id": 24,
     "name": "Magali Guillemot",
-    "file": "24.jpg"
+    "file": "24.jpg",
+    "subtitle": "La mort du petit Lubin",
+    "season": 4,
+    "episode": 4
   },
   {
     "id": 26,
     "name": "Francis Heaulme",
-    "file": "26.jpg"
+    "file": "26.jpg",
+    "subtitle": "Le routard du crime",
+    "season": 4,
+    "episode": 6
   },
   {
     "id": 28,
     "name": "Thierry Paulin",
-    "file": "28.jpg"
+    "file": "28.jpg",
+    "subtitle": "Le tueur de vieilles dames",
+    "season": 4,
+    "episode": 8
   },
   {
     "id": 29,
     "name": "Alexis Krickovic",
-    "file": "29.jpg"
+    "file": "29.jpg",
+    "subtitle": "La tuerie de Louveciennes",
+    "season": 4,
+    "episode": 9
   },
   {
     "id": 30,
     "name": "Érick Schmitt",
-    "file": "30.jpg"
+    "file": "30.jpg",
+    "subtitle": "Prise d'otages à la maternelle",
+    "season": 4,
+    "episode": 10
   },
   {
     "id": 31,
     "name": "Roberto Succo",
-    "file": "31.jpg"
+    "file": "31.jpg",
+    "subtitle": "Succo le fou",
+    "season": 4,
+    "episode": 11
   },
   {
     "id": 32,
     "name": "Albert Spaggiari",
-    "file": "32.jpg"
+    "file": "32.jpg",
+    "subtitle": "Le casse du siècle",
+    "season": 4,
+    "episode": 12
   },
   {
     "id": 33,
     "name": "Guy Georges",
-    "file": "33.jpg"
+    "file": "33.jpg",
+    "subtitle": "Le tueur de l'Est parisien",
+    "season": 4,
+    "episode": 13
   },
   {
     "id": 34,
     "name": "Jean-Marc Rouillan",
-    "file": "34.jpg"
+    "file": "34.jpg",
+    "subtitle": "L'assassinat de Georges Besse",
+    "season": 5,
+    "episode": 1
   },
   {
     "id": 35,
     "name": "Marcel Barbeault",
-    "file": "35.jpg"
+    "file": "35.jpg",
+    "subtitle": "Le tueur de l'ombre",
+    "season": 5,
+    "episode": 2
   },
   {
     "id": 40,
     "name": "Alfredo Stranieri",
-    "file": "40.jpg"
+    "file": "40.jpg",
+    "subtitle": "Voleur de vies",
+    "season": 5,
+    "episode": 7
   },
   {
     "id": 43,
     "name": "Nadir Sedrati",
-    "file": "43.jpg"
+    "file": "43.jpg",
+    "subtitle": "Le dépeceur du canal",
+    "season": 5,
+    "episode": 10
   },
   {
     "id": 44,
     "name": "Marcel Lechien",
-    "file": "44.jpg"
+    "file": "44.jpg",
+    "subtitle": "Marcel Lechien Le maître d'école",
+    "season": 5,
+    "episode": 11
   },
   {
     "id": 45,
     "name": "Émile Louis",
-    "file": "45.jpg"
+    "file": "45.jpg",
+    "subtitle": "Les disparues de l'Yonne",
+    "season": 5,
+    "episode": 12
   },
   {
     "id": 46,
     "name": "Alain Lamare",
-    "file": "46.jpg"
+    "file": "46.jpg",
+    "subtitle": "État de démence",
+    "season": 5,
+    "episode": 13
   },
   {
     "id": 47,
     "name": "Jamila Belkacem",
-    "file": "47.jpg"
+    "file": "47.jpg",
+    "subtitle": "L’empoisonneuse",
+    "season": 5,
+    "episode": 14
   },
   {
     "id": 48,
     "name": "Francisco Arce Montes",
-    "file": "48.jpg"
+    "file": "48.jpg",
+    "subtitle": "L'affaire Caroline Dickinson",
+    "season": 6,
+    "episode": 1
   },
   {
     "id": 51,
     "name": "Arnaud Thomas-Chevallier",
-    "file": "51.jpg"
+    "file": "51.jpg",
+    "subtitle": "Le meurtre de maître Flauder",
+    "season": 6,
+    "episode": 4
   },
   {
     "id": 52,
     "name": "Bruno Joushomme",
-    "file": "52.jpg"
+    "file": "52.jpg",
+    "subtitle": "Meurtre en 2 CV",
+    "season": 6,
+    "episode": 5
   },
   {
     "id": 54,
     "name": "Pierre Goldman",
-    "file": "54.jpg"
+    "file": "54.jpg",
+    "subtitle": "L'assassinat",
+    "season": 6,
+    "episode": 7
   },
   {
     "id": 55,
     "name": "Jean-Louis Jourdain",
-    "file": "55_jl.jpg"
+    "file": "55_jl.jpg",
+    "subtitle": "Meurtres au carnaval",
+    "season": 6,
+    "episode": 8
   },
   {
     "id": 55,
     "name": "Jean-Michel Jourdain",
-    "file": "55_jm.jpg"
+    "file": "55_jm.jpg",
+    "subtitle": "Meurtres au carnaval",
+    "season": 6,
+    "episode": 8
   },
   {
     "id": 60,
     "name": "Jean-Claude Romand",
-    "file": "60.jpg"
+    "file": "60.jpg",
+    "subtitle": "Le menteur",
+    "season": 7,
+    "episode": 1
   },
   {
     "id": 61,
     "name": "Roland Cazaux",
-    "file": "61.jpg"
+    "file": "61.jpg",
+    "subtitle": "« Le Chat »",
+    "season": 7,
+    "episode": 2
   },
   {
     "id": 62,
     "name": "Khaled Kelkal",
-    "file": "62.jpg"
+    "file": "62.jpg",
+    "subtitle": "« Ennemi public »",
+    "season": 7,
+    "episode": 3
   },
   {
     "id": 64,
     "name": "Paul Touvier",
-    "file": "64.jpg"
+    "file": "64.jpg",
+    "subtitle": "La traque",
+    "season": 7,
+    "episode": 5
   },
   {
     "id": 65,
     "name": "Jean-Claude Bonnal",
-    "file": "65.jpg"
+    "file": "65.jpg",
+    "subtitle": "Le « Chinois »",
+    "season": 7,
+    "episode": 6
   },
   {
     "id": 67,
     "name": "Dany Leprince",
-    "file": "67.jpg"
+    "file": "67.jpg",
+    "subtitle": "La feuille de boucher",
+    "season": 7,
+    "episode": 8
   },
   {
     "id": 70,
     "name": "Louis Poirson",
-    "file": "70.jpg"
+    "file": "70.jpg",
+    "subtitle": "Le tailleur de pierres",
+    "season": 8,
+    "episode": 1
   },
   {
     "id": 72,
     "name": "Alfred Petit",
-    "file": "72.png"
+    "file": "72.png",
+    "subtitle": "L'énigme Alfred Petit",
+    "season": 8,
+    "episode": 3
+  },
+  {
+    "id": 76,
+    "name": "Marc Fasquel",
+    "file": "76.jpg",
+    "subtitle": "Le couple pervers",
+    "season": 8,
+    "episode": 7
+  },
+  {
+    "id": 78,
+    "name": "Jacques Maire",
+    "file": "78.jpg",
+    "subtitle": "Le caïd de Dombasle",
+    "season": 8,
+    "episode": 9
+  },
+  {
+    "id": 80,
+    "name": "Christian Marletta",
+    "file": "80.jpg",
+    "subtitle": "L'aveu",
+    "season": 8,
+    "episode": 11
+  },
+  {
+    "id": 81,
+    "name": "Myriam Badaoui",
+    "file": "81.jpg",
+    "subtitle": "Débat : Outreau - Que sont-ils devenus ?",
+    "season": 8,
+    "episode": 12
+  },
+  {
+    "id": 84,
+    "name": "Luc Tangorre",
+    "file": "84.jpg",
+    "subtitle": "Innocent à tout prix",
+    "season": 8,
+    "episode": 15
+  },
+  {
+    "id": 86,
+    "name": "Jean-Marc Petroff",
+    "file": "86.jpg",
+    "subtitle": "La mort de Jean-Claude Poulet Dachary",
+    "season": 8,
+    "episode": 17
+  },
+  {
+    "id": 88,
+    "name": "Patrick Tissier",
+    "file": "88.jpg",
+    "subtitle": "Débat : Que faire des multirécidivistes ?",
+    "season": 8,
+    "episode": 19
+  },
+  {
+    "id": 90,
+    "name": "Jacques Plumain",
+    "file": "90.jpg",
+    "subtitle": "Le fantôme de Kehl",
+    "season": 9,
+    "episode": 1
+  },
+  {
+    "id": 92,
+    "name": "David Hotyat",
+    "file": "92.jpg",
+    "subtitle": "La tuerie du Grand-Bornand",
+    "season": 9,
+    "episode": 3
+  },
+  {
+    "id": 93,
+    "name": "Jacques Mesrine",
+    "file": "93.jpg",
+    "subtitle": "L'homme aux 1000 visages",
+    "season": 9,
+    "episode": 4
+  },
+  {
+    "id": 94,
+    "name": "Didier Tallineau",
+    "file": "94.jpg",
+    "subtitle": "L'homme aux deux visages",
+    "season": 9,
+    "episode": 5
   },
   {
     "id": 95,
     "name": "Jacques Fruminet",
-    "file": "95.jpg"
+    "file": "95.jpg",
+    "subtitle": "Tueur de femmes",
+    "season": 9,
+    "episode": 6
+  },
+  {
+    "id": 96,
+    "name": "Henri-Jean Jacomet",
+    "file": "96.jpg",
+    "subtitle": "Massacre à huis clos",
+    "season": 9,
+    "episode": 7
   },
   {
     "id": 183,
     "name": "Marc Machin",
-    "file": "183.jpg"
+    "file": "183.jpg",
+    "subtitle": "Les meurtres du Pont de Neuilly",
+    "season": 14,
+    "episode": 3
   },
   {
     "id": 209,
     "name": "Gilles de Vallière",
-    "file": "209.jpg"
+    "file": "209.jpg",
+    "subtitle": "L'assassin aux cordelettes",
+    "season": 15,
+    "episode": 9
   },
   {
     "id": 217,
     "name": "Yvan Colonna",
-    "file": "217.jpg"
+    "file": "217.jpg",
+    "subtitle": "La traque",
+    "season": 16,
+    "episode": 1
   },
   {
     "id": 234,
     "name": "Amanda Knox",
-    "file": "234.jpg"
+    "file": "234.jpg",
+    "subtitle": "Ange ou démon",
+    "season": 17,
+    "episode": 5
   }
 ]
