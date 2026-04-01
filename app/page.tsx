@@ -74,7 +74,7 @@ export default function Home() {
         <div className="flex flex-col items-center w-full pt-[10vh] sm:pt-[15vh] px-4">
           <div className="border border-[var(--border)] rounded-lg bg-[var(--bg-card)] p-4 sm:p-6 max-w-xl w-full mb-4">
             <div className="border-b border-[var(--border)] pb-3 mb-4 flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              <div className="w-2 h-2 rounded-full bg-[var(--success)] animate-pulse" />
               <span className="text-[10px] font-mono text-[var(--terminal-dim)] uppercase tracking-widest">
                 Système actif — Terminal sécurisé
               </span>
@@ -103,7 +103,7 @@ export default function Home() {
               const id = Math.floor(Math.random() * 313) + 1;
               window.location.href = `/episode/${id}`;
             }}
-            className="px-4 py-2 text-xs font-mono text-[var(--fg-dim)] border border-[var(--border)] rounded bg-[var(--bg-card)] hover:border-gray-500 hover:text-[var(--terminal)] transition-colors"
+            className="px-4 py-2 text-xs font-mono text-[var(--fg-dim)] border border-[var(--border)] rounded bg-[var(--bg-card)] hover:border-[var(--border-hover)] hover:text-[var(--terminal)] transition-colors"
           >
             &gt; choisir_episode --random
           </button>

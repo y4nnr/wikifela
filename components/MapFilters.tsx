@@ -99,9 +99,9 @@ export default function MapFilters({ initialAffaireIds, onFilterChange }: MapFil
     .map((ep) => ep.title) ?? [];
 
   const selectClass =
-    "bg-[var(--bg-input)] border border-[var(--border)] text-[var(--fg)] text-sm rounded-lg px-3 py-2 focus:outline-none focus:border-gray-500";
+    "bg-[var(--bg-input)] border border-[var(--border)] text-[var(--fg)] text-sm rounded-lg px-3 py-2 focus:outline-none focus:border-[var(--border-hover)]";
   const inputClass =
-    "bg-[var(--bg-input)] border border-[var(--border)] text-[var(--fg)] text-sm rounded-lg px-3 py-2 w-20 focus:outline-none focus:border-gray-500";
+    "bg-[var(--bg-input)] border border-[var(--border)] text-[var(--fg)] text-sm rounded-lg px-3 py-2 w-20 focus:outline-none focus:border-[var(--border-hover)]";
 
   return (
     <div className="border-b border-[var(--border)]">
@@ -141,7 +141,7 @@ export default function MapFilters({ initialAffaireIds, onFilterChange }: MapFil
                   placeholder="Rechercher une affaire..."
                   value={affaireSearch}
                   onChange={(e) => setAffaireSearch(e.target.value)}
-                  className="w-full bg-[var(--bg)] border border-[var(--border)] text-[var(--fg)] text-sm rounded px-2 py-1.5 focus:outline-none focus:border-gray-500 placeholder:text-[var(--fg-dim)]"
+                  className="w-full bg-[var(--bg)] border border-[var(--border)] text-[var(--fg)] text-sm rounded px-2 py-1.5 focus:outline-none focus:border-[var(--border-hover)] placeholder:text-[var(--fg-dim)]"
                   autoFocus
                 />
               </div>
@@ -156,15 +156,15 @@ export default function MapFilters({ initialAffaireIds, onFilterChange }: MapFil
                       return (
                         <label
                           key={ep.id}
-                          className={`flex items-center gap-2 px-3 py-1.5 text-sm cursor-pointer hover:bg-gray-800 ${
-                            checked ? "text-[var(--accent)]" : "text-gray-300"
+                          className={`flex items-center gap-2 px-3 py-1.5 text-sm cursor-pointer hover:bg-[var(--bg-input)] ${
+                            checked ? "text-[var(--accent)]" : "text-[var(--fg-muted)]"
                           }`}
                         >
                           <input
                             type="checkbox"
                             checked={checked}
                             onChange={() => toggleAffaire(String(ep.id))}
-                            className="accent-[#fe0000] shrink-0"
+                            className="accent-[var(--brand-red)] shrink-0"
                           />
                           <span className="text-[var(--fg-dim)] shrink-0 w-6 text-xs">
                             {ep.episode ?? ""}
@@ -183,7 +183,7 @@ export default function MapFilters({ initialAffaireIds, onFilterChange }: MapFil
                 <div className="p-2 border-t border-[var(--border)]">
                   <button
                     onClick={() => { setAffaireIds([]); setAffaireDropdownOpen(false); }}
-                    className="text-xs text-[#fe0000] hover:underline"
+                    className="text-xs text-[var(--brand-red)] hover:underline"
                   >
                     Tout désélectionner
                   </button>
@@ -203,7 +203,7 @@ export default function MapFilters({ initialAffaireIds, onFilterChange }: MapFil
         {hasFilters && (
           <button
             onClick={reset}
-            className="text-sm text-[#fe0000] hover:underline ml-auto"
+            className="text-sm text-[var(--brand-red)] hover:underline ml-auto"
           >
             Réinitialiser
           </button>

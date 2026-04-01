@@ -67,9 +67,9 @@ export default function QuizClient() {
   };
 
   const difficultyColors: Record<Difficulty, string> = {
-    facile: "border-green-600 text-green-400",
-    moyen: "border-[#fe6c03] text-[#fe6c03]",
-    difficile: "border-[#fe0000] text-[#fe0000]",
+    facile: "border-[var(--success-dim)] text-[var(--success)]",
+    moyen: "border-[var(--brand-orange)] text-[var(--brand-orange)]",
+    difficile: "border-[var(--brand-red)] text-[var(--brand-red)]",
   };
 
   // SETUP
@@ -93,7 +93,7 @@ export default function QuizClient() {
                   className={`flex-1 py-2.5 rounded-lg border text-sm font-medium capitalize transition-all ${
                     difficulty === d
                       ? `${difficultyColors[d]} bg-white/5`
-                      : "border-[var(--border)] text-[var(--fg-dim)] hover:border-gray-600"
+                      : "border-[var(--border)] text-[var(--fg-dim)] hover:border-[var(--border-hover)]"
                   }`}
                 >
                   {d}
@@ -114,7 +114,7 @@ export default function QuizClient() {
                   className={`flex-1 py-2.5 rounded-lg border text-sm font-medium transition-all ${
                     count === n
                       ? "border-[var(--accent)] text-[var(--accent)] bg-white/5"
-                      : "border-[var(--border)] text-[var(--fg-dim)] hover:border-gray-600"
+                      : "border-[var(--border)] text-[var(--fg-dim)] hover:border-[var(--border-hover)]"
                   }`}
                 >
                   {n}
@@ -126,7 +126,7 @@ export default function QuizClient() {
           <button
             onClick={startQuiz}
             disabled={loading}
-            className="w-full py-3 rounded-lg bg-[#fe0000] text-white font-semibold hover:bg-[#e00000] transition-colors disabled:opacity-50 mt-4"
+            className="w-full py-3 rounded-lg bg-[var(--brand-red)] text-white font-semibold hover:bg-[var(--brand-red-hover)] transition-colors disabled:opacity-50 mt-4"
           >
             {loading ? "Chargement..." : "Commencer"}
           </button>
@@ -151,9 +151,9 @@ export default function QuizClient() {
               {score !== 1 ? "s" : ""}
             </span>
           </div>
-          <div className="w-full h-1 bg-gray-800 rounded-full">
+          <div className="w-full h-1 bg-[var(--border)] rounded-full">
             <div
-              className="h-1 bg-[#fe0000] rounded-full transition-all"
+              className="h-1 bg-[var(--brand-red)] rounded-full transition-all"
               style={{
                 width: `${((currentIndex + 1) / questions.length) * 100}%`,
               }}
@@ -175,11 +175,11 @@ export default function QuizClient() {
                 cls +=
                   selected === i
                     ? "border-[var(--accent)] text-[var(--accent)] bg-white/5"
-                    : "border-[var(--border)] text-gray-300 hover:border-gray-500";
+                    : "border-[var(--border)] text-[var(--fg-muted)] hover:border-[var(--border-hover)]";
               } else if (i === q.correctIndex) {
-                cls += "border-green-500 text-green-400 bg-green-500/10";
+                cls += "border-[var(--success)] text-[var(--success)] bg-[var(--success)]/10";
               } else if (i === selected) {
-                cls += "border-[#fe0000] text-[#fe0000] bg-red-500/10";
+                cls += "border-[var(--brand-red)] text-[var(--brand-red)] bg-red-500/10";
               } else {
                 cls += "border-[var(--border)] text-[var(--fg-dim)]";
               }
@@ -200,13 +200,13 @@ export default function QuizClient() {
             <div className="mt-6 flex justify-between items-center">
               <Link
                 href={`/episode/${q.episodeId}`}
-                className="text-xs text-[var(--fg-dim)] hover:text-[#fe0000] transition-colors"
+                className="text-xs text-[var(--fg-dim)] hover:text-[var(--brand-red)] transition-colors"
               >
                 Voir l&apos;épisode
               </Link>
               <button
                 onClick={nextQuestion}
-                className="px-6 py-2 rounded-lg bg-[var(--bg-input)] border border-[var(--border)] text-sm hover:border-gray-500 transition-colors"
+                className="px-6 py-2 rounded-lg bg-[var(--bg-input)] border border-[var(--border)] text-sm hover:border-[var(--border-hover)] transition-colors"
               >
                 {currentIndex + 1 >= questions.length
                   ? "Voir le résultat"
@@ -234,12 +234,12 @@ export default function QuizClient() {
     <div className="flex-1 flex flex-col items-center justify-center px-4">
       <div className="text-center max-w-sm">
         <div className="text-6xl font-bold mb-2">
-          <span className={percentage >= 50 ? "text-green-400" : "text-[#fe0000]"}>
+          <span className={percentage >= 50 ? "text-[var(--success)]" : "text-[var(--brand-red)]"}>
             {score}
           </span>
           <span className="text-[var(--fg-dim)]">/{questions.length}</span>
         </div>
-        <p className="text-xl text-gray-300 mb-2">{emoji}</p>
+        <p className="text-xl text-[var(--fg-muted)] mb-2">{emoji}</p>
         <p className="text-sm text-[var(--fg-dim)] mb-8">{percentage}% de bonnes réponses</p>
 
         <button
@@ -247,7 +247,7 @@ export default function QuizClient() {
             setPhase("setup");
             setQuestions([]);
           }}
-          className="w-full py-3 rounded-lg bg-[#fe0000] text-white font-semibold hover:bg-[#e00000] transition-colors"
+          className="w-full py-3 rounded-lg bg-[var(--brand-red)] text-white font-semibold hover:bg-[var(--brand-red-hover)] transition-colors"
         >
           Rejouer
         </button>

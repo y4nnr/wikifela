@@ -40,7 +40,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
       <div
         className={`flex items-center w-full max-w-xl rounded-full border transition-shadow bg-[var(--bg-input)] ${
           focused
-            ? "shadow-lg shadow-black/30 border-gray-600"
+            ? "shadow-lg shadow-black/30 border-[var(--border-hover)]"
             : "border-[var(--border)] hover:shadow-lg hover:shadow-black/30"
         }`}
       >
@@ -76,7 +76,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
               setValue("");
               triggerSearch("");
             }}
-            className="mr-3 text-[var(--fg-dim)] hover:text-gray-300 shrink-0"
+            className="mr-3 text-[var(--fg-dim)] hover:text-[var(--fg-muted)] shrink-0"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

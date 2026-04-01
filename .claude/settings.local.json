@@ -150,7 +150,14 @@
       "Bash(rm -f /home/y4n/dev/fela/public/portraits/12.*)",
       "Bash(__NEW_LINE_a6d781af26fe73a3__ python3 -c \":*)",
       "Bash(rm -f /home/y4n/dev/fela/public/portraits/41.* /home/y4n/dev/fela/public/portraits/50.*)",
-      "Bash(__NEW_LINE_d806d0c251e1b41f__ python3 -c \":*)"
+      "Bash(__NEW_LINE_d806d0c251e1b41f__ python3 -c \":*)",
+      "Bash(grep:*)",
+      "Bash(sed -i 's/focus:border-gray-500/focus:border-[var\\(--border-hover\\)]/g' app/episodes/EpisodesClient.tsx)",
+      "Bash(sed -i 's/bg-gray-800 rounded-full/bg-[var\\(--bg-input\\)] rounded-full/g' \"app/episode/[id]/page.tsx\")",
+      "Bash(sed -i 's/h-1 bg-gray-800/h-1 bg-[var\\(--border\\)]/g' app/quiz/QuizClient.tsx)",
+      "Bash(sed -i 's/accent-\\\\[#fe0000\\\\]/accent-[var\\(--brand-red\\)]/g' components/MapFilters.tsx)",
+      "Bash(sed -i 's/text-\\\\[#fe0000\\\\]/text-[var\\(--brand-red\\)]/g' components/MapFilters.tsx)",
+      "Bash(sed -i 's/text-\\\\[#fe6c03\\\\]/text-[var\\(--brand-orange\\)]/g' components/EpisodeCard.tsx)"
     ]
   }
 }

@@ -91,9 +91,9 @@ export default function EpisodesClient() {
   const [showFilters, setShowFilters] = useState(false);
 
   const selectClass =
-    "bg-[var(--bg-input)] border border-[var(--border)] text-[var(--fg)] text-sm rounded-lg px-3 py-2 focus:outline-none focus:border-gray-500";
+    "bg-[var(--bg-input)] border border-[var(--border)] text-[var(--fg)] text-sm rounded-lg px-3 py-2 focus:outline-none focus:border-[var(--border-hover)]";
   const inputClass =
-    "bg-[var(--bg-input)] border border-[var(--border)] text-[var(--fg)] text-sm rounded-lg px-3 py-2 w-20 focus:outline-none focus:border-gray-500";
+    "bg-[var(--bg-input)] border border-[var(--border)] text-[var(--fg)] text-sm rounded-lg px-3 py-2 w-20 focus:outline-none focus:border-[var(--border-hover)]";
 
   return (
     <div className="flex-1">
@@ -104,7 +104,7 @@ export default function EpisodesClient() {
         >
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg border border-[var(--border)] text-gray-300 hover:border-gray-500 hover:text-white transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg border border-[var(--border)] text-[var(--fg-muted)] hover:border-[var(--border-hover)] hover:text-[var(--fg)] transition-colors"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
@@ -114,7 +114,7 @@ export default function EpisodesClient() {
           {hasFilters && (
             <button
               onClick={reset}
-              className="text-xs text-[#fe0000] hover:underline"
+              className="text-xs text-[var(--brand-red)] hover:underline"
             >
               Réinitialiser
             </button>

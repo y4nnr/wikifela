@@ -34,7 +34,7 @@ export default function EpisodeCard({ episode }: EpisodeCardProps) {
         </h2>
       </Link>
       <p
-        className="text-sm text-[var(--fg-muted)] leading-relaxed [&_mark]:bg-transparent [&_mark]:text-[#fe6c03] [&_mark]:font-semibold"
+        className="text-sm text-[var(--fg-muted)] leading-relaxed [&_mark]:bg-transparent [&_mark]:text-[var(--brand-orange)] [&_mark]:font-semibold"
         dangerouslySetInnerHTML={{ __html: episode.headline }}
       />
     </article>

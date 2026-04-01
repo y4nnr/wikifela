@@ -76,8 +76,8 @@ const items: RoadmapItem[] = [
 ];
 
 const statusConfig = {
-  done: { label: "Terminé", color: "bg-green-500/20 text-green-400 border-green-500/30" },
-  "in-progress": { label: "En cours", color: "bg-[#fe6c03]/20 text-[#fe6c03] border-[#fe6c03]/30" },
+  done: { label: "Terminé", color: "bg-[var(--success)]/20 text-[var(--success)] border-[var(--success)]/30" },
+  "in-progress": { label: "En cours", color: "bg-[var(--brand-orange)]/20 text-[var(--brand-orange)] border-[var(--brand-orange)]/30" },
   planned: { label: "Prévu", color: "bg-gray-500/20 text-[var(--fg-muted)] border-gray-500/30" },
 };
 

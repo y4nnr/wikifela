@@ -116,7 +116,7 @@ export default async function EpisodePage({
             )}
             <div>
           {episode.description && (
-            <p className="text-gray-300 leading-relaxed mb-3">
+            <p className="text-[var(--fg-muted)] leading-relaxed mb-3">
               {episode.description}
             </p>
           )}
@@ -153,7 +153,7 @@ export default async function EpisodePage({
               {episode.keywords.map((kw) => (
                 <span
                   key={kw}
-                  className="px-3 py-1 text-sm bg-gray-800 rounded-full text-gray-300"
+                  className="px-3 py-1 text-sm bg-[var(--bg-input)] rounded-full text-[var(--fg-muted)]"
                 >
                   {kw}
                 </span>
@@ -171,7 +171,7 @@ export default async function EpisodePage({
               {episode.locations.map((loc) => (
                 <span
                   key={`${loc.communeName}-${loc.department}`}
-                  className="px-3 py-1 text-sm bg-gray-800 rounded-full text-gray-300"
+                  className="px-3 py-1 text-sm bg-[var(--bg-input)] rounded-full text-[var(--fg-muted)]"
                 >
                   {loc.communeName} ({loc.departmentName})
                 </span>
@@ -179,7 +179,7 @@ export default async function EpisodePage({
             </div>
             <Link
               href={`/carte?affaire=${episode.id}`}
-              className="text-sm text-[#fe0000] hover:underline"
+              className="text-sm text-[var(--brand-red)] hover:underline"
             >
               Voir sur la carte
             </Link>

@@ -81,7 +81,7 @@ export default function TapissageClient() {
 
         <div className="w-full max-w-sm space-y-6 px-4">
           {/* Police lineup illustration */}
-          <div className="border border-[var(--border)] rounded bg-[var(--bg-card)] p-4 font-mono text-center">
+          <div className="border border-[var(--border)] rounded bg-[var(--bg-card)] p-4 text-center">
             <div className="text-[10px] text-[var(--fg-dim)] uppercase tracking-widest mb-3">
               Procédure de tapissage
             </div>
@@ -91,7 +91,7 @@ export default function TapissageClient() {
                   key={n}
                   className="w-12 h-14 border border-[var(--border)] rounded bg-[var(--bg)] flex items-end justify-center pb-1"
                 >
-                  <span className="text-[10px] text-[var(--fg-dim)] font-mono">
+                  <span className="text-[10px] text-[var(--fg-dim)]">
                     {n}
                   </span>
                 </div>
@@ -113,7 +113,7 @@ export default function TapissageClient() {
                   onClick={() => setCount(n)}
                   className={`flex-1 py-2.5 rounded-lg border text-sm font-medium transition-all ${
                     count === n
-                      ? "border-[#fe0000] text-[#fe0000] bg-[#fe0000]/5"
+                      ? "border-[var(--brand-red)] text-[var(--brand-red)] bg-[var(--brand-red)]/5"
                       : "border-[var(--border)] text-[var(--fg-dim)] hover:border-[var(--border-hover)]"
                   }`}
                 >
@@ -126,7 +126,7 @@ export default function TapissageClient() {
           <button
             onClick={start}
             disabled={loading}
-            className="w-full py-3 rounded-lg bg-[#fe0000] text-white font-semibold hover:bg-[#e00000] transition-colors disabled:opacity-50"
+            className="w-full py-3 rounded-lg bg-[var(--brand-red)] text-white font-semibold hover:bg-[var(--brand-red-hover)] transition-colors disabled:opacity-50"
           >
             {loading ? "Chargement..." : "Commencer le tapissage"}
           </button>
@@ -153,7 +153,7 @@ export default function TapissageClient() {
           </div>
           <div className="w-full h-1 bg-[var(--border)] rounded-full">
             <div
-              className="h-1 bg-[#fe0000] rounded-full transition-all"
+              className="h-1 bg-[var(--brand-red)] rounded-full transition-all"
               style={{
                 width: `${((currentIndex + 1) / rounds.length) * 100}%`,
               }}
@@ -166,7 +166,7 @@ export default function TapissageClient() {
           <div className="border border-[var(--border)] rounded-lg bg-[var(--bg-card)] p-4 sm:p-6 mb-4">
             {/* Police header */}
             <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[var(--border)]">
-              <div className="w-2 h-2 rounded-full bg-[#fe0000]" />
+              <div className="w-2 h-2 rounded-full bg-[var(--brand-red)]" />
               <span className="text-[10px] font-mono text-[var(--fg-dim)] uppercase tracking-widest">
                 Tapissage — Identification de suspect
               </span>
@@ -174,7 +174,7 @@ export default function TapissageClient() {
 
             <p className="text-center text-lg font-semibold mb-6">
               Identifiez{" "}
-              <span className="text-[#fe0000]">{round.question}</span>
+              <span className="text-[var(--brand-red)]">{round.question}</span>
             </p>
 
             {/* Lineup */}
@@ -185,11 +185,11 @@ export default function TapissageClient() {
 
                 if (revealed) {
                   if (idx === round.correctIndex) {
-                    borderColor = "border-green-500";
-                    overlay = "ring-2 ring-green-500";
+                    borderColor = "border-[var(--success)]";
+                    overlay = "ring-2 ring-[var(--success)]";
                   } else if (idx === selected) {
-                    borderColor = "border-[#fe0000]";
-                    overlay = "ring-2 ring-[#fe0000]";
+                    borderColor = "border-[var(--brand-red)]";
+                    overlay = "ring-2 ring-[var(--brand-red)]";
                   } else {
                     overlay = "opacity-40";
                   }
@@ -237,17 +237,17 @@ export default function TapissageClient() {
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center gap-2">
                 {selected === round.correctIndex ? (
-                  <span className="text-green-500 text-sm font-medium">
+                  <span className="text-[var(--success)] text-sm font-medium">
                     ✓ Bonne identification
                   </span>
                 ) : (
-                  <span className="text-[#fe0000] text-sm font-medium">
+                  <span className="text-[var(--brand-red)] text-sm font-medium">
                     ✗ C&apos;était le n°{round.correctIndex + 1}
                   </span>
                 )}
                 <Link
                   href={`/episode/${round.episodeId}`}
-                  className="text-xs text-[var(--fg-dim)] hover:text-[#fe0000] transition-colors"
+                  className="text-xs text-[var(--fg-dim)] hover:text-[var(--brand-red)] transition-colors"
                 >
                   Voir l&apos;affaire
                 </Link>
@@ -281,14 +281,14 @@ export default function TapissageClient() {
   return (
     <div className="flex-1 flex flex-col items-center justify-center px-4">
       <div className="text-center max-w-sm">
-        <div className="border border-[var(--border)] rounded-lg bg-[var(--bg-card)] p-6 mb-6 font-mono">
+        <div className="border border-[var(--border)] rounded-lg bg-[var(--bg-card)] p-6 mb-6">
           <div className="text-[10px] text-[var(--fg-dim)] uppercase tracking-widest mb-4">
             Résultat du tapissage
           </div>
           <div className="text-5xl font-bold mb-2">
             <span
               className={
-                percentage >= 50 ? "text-green-500" : "text-[#fe0000]"
+                percentage >= 50 ? "text-[var(--success)]" : "text-[var(--brand-red)]"
               }
             >
               {score}
@@ -306,7 +306,7 @@ export default function TapissageClient() {
             setPhase("setup");
             setRounds([]);
           }}
-          className="w-full py-3 rounded-lg bg-[#fe0000] text-white font-semibold hover:bg-[#e00000] transition-colors"
+          className="w-full py-3 rounded-lg bg-[var(--brand-red)] text-white font-semibold hover:bg-[var(--brand-red-hover)] transition-colors"
         >
           Nouveau tapissage
         </button>

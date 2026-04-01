@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -53,6 +54,8 @@ const links = [
 
 export default function Header() {
   const pathname = usePathname();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   return (
     <>
@@ -69,20 +72,23 @@ export default function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-2">
-            {links.map((link) => (
+            {links.map((link) => {
+              const isActive = mounted && pathname === link.href;
+              return (
               <Link
                 key={link.href}
                 href={link.href}
                 className={`flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg border transition-colors ${
-                  pathname === link.href
-                    ? "border-gray-600 text-[var(--fg)]"
-                    : "border-[var(--border)] text-[var(--fg-muted)] hover:text-[var(--fg)] hover:border-gray-600"
+                  isActive
+                    ? "border-[var(--border-hover)] text-[var(--fg)]"
+                    : "border-[var(--border)] text-[var(--fg-muted)] hover:text-[var(--fg)] hover:border-[var(--border-hover)]"
                 }`}
               >
                 <span className="[&_svg]:w-3.5 [&_svg]:h-3.5">{link.icon}</span>
                 {link.label}
               </Link>
-            ))}
+              );
+            })}
           </nav>
         </div>
       </header>
@@ -91,7 +97,7 @@ export default function Header() {
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[var(--bg)] border-t border-[var(--border)] safe-bottom">
         <div className="flex justify-around items-center py-1.5 pb-[max(0.375rem,env(safe-area-inset-bottom))]">
           {links.map((link) => {
-            const active = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
+            const active = mounted && (pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href)));
             return (
               <Link
                 key={link.href}

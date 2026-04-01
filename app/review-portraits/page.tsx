@@ -36,7 +36,7 @@ export default function ReviewPortraits() {
                 sizes="150px"
               />
             </div>
-            <span className="text-xs font-mono text-[#fe0000] font-bold">#{p.id}</span>
+            <span className="text-xs font-mono text-[var(--brand-red)] font-bold">#{p.id}</span>
             <p className="text-[10px] text-[var(--fg-dim)] truncate">{p.title}</p>
           </div>
         ))}
