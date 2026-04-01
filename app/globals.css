@@ -36,8 +36,8 @@ html.light {
   --brand-orange: #d45a00;
   --success: #16a34a;
   --success-dim: #15803d;
-  --terminal: #16a34a;
-  --terminal-dim: #15803d;
+  --terminal: #4a4a4a;
+  --terminal-dim: #737373;
 }
 
 body {
