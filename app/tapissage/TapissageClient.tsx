@@ -180,7 +180,7 @@ export default function TapissageClient() {
               <span className="text-[var(--brand-red)]">{round.question}</span>
             </p>
             {round.subtitle && !round.subtitle.toLowerCase().includes(round.question.split(' ').pop()?.toLowerCase() || '') ? (
-              <p className="text-center text-sm text-[var(--fg-dim)] mb-5 italic">
+              <p className="text-center text-sm text-[var(--fg-muted)] mb-5 italic">
                 {round.subtitle}
               </p>
             ) : round.season ? (
