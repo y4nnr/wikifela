@@ -47,7 +47,7 @@ export default function RootLayout({
         <ThemeProvider>
           <Header />
           {children}
-          <ThemeToggle />
+          {/* <ThemeToggle /> disabled for now */}
         </ThemeProvider>
       </body>
     </html>
