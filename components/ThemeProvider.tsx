@@ -17,6 +17,12 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
   const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
+    // v2: force reset to light for all users, then respect their choice going forward
+    const version = localStorage.getItem("theme-v");
+    if (version !== "2") {
+      localStorage.setItem("theme", "light");
+      localStorage.setItem("theme-v", "2");
+    }
     const saved = localStorage.getItem("theme") as Theme | null;
     if (saved === "dark") setTheme("dark");
   }, []);
