@@ -1,8 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 const links = [
   { href: "/", label: "Recherche", icon: (
@@ -53,9 +51,6 @@ const links = [
 ];
 
 export default function Header() {
-  const pathname = usePathname();
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
 
   return (
     <>
@@ -72,23 +67,16 @@ export default function Header() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-2">
-            {links.map((link) => {
-              const isActive = mounted && pathname === link.href;
-              return (
+            {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg border transition-colors ${
-                  isActive
-                    ? "border-[var(--border-hover)] text-[var(--fg)]"
-                    : "border-[var(--border)] text-[var(--fg-muted)] hover:text-[var(--fg)] hover:border-[var(--border-hover)]"
-                }`}
+                className="flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg border border-[var(--border)] text-[var(--fg-muted)] hover:text-[var(--fg)] hover:border-[var(--border-hover)] transition-colors"
               >
                 <span className="[&_svg]:w-3.5 [&_svg]:h-3.5">{link.icon}</span>
                 {link.label}
               </Link>
-              );
-            })}
+            ))}
           </nav>
         </div>
       </header>
@@ -96,23 +84,16 @@ export default function Header() {
       {/* Mobile bottom tab bar */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[var(--bg)] border-t border-[var(--border)] safe-bottom">
         <div className="flex justify-around items-center py-1.5 pb-[max(0.375rem,env(safe-area-inset-bottom))]">
-          {links.map((link) => {
-            const active = mounted && (pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href)));
-            return (
+          {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg transition-colors min-w-[3.5rem] ${
-                  active
-                    ? "text-[var(--accent)]"
-                    : "text-[var(--fg-dim)]"
-                }`}
+                className="flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg transition-colors min-w-[3.5rem] text-[var(--fg-dim)] hover:text-[var(--fg-muted)]"
               >
                 {link.icon}
                 <span className="text-[10px]">{link.label}</span>
               </Link>
-            );
-          })}
+          ))}
         </div>
       </nav>
     </>

@@ -157,7 +157,9 @@
       "Bash(sed -i 's/h-1 bg-gray-800/h-1 bg-[var\\(--border\\)]/g' app/quiz/QuizClient.tsx)",
       "Bash(sed -i 's/accent-\\\\[#fe0000\\\\]/accent-[var\\(--brand-red\\)]/g' components/MapFilters.tsx)",
       "Bash(sed -i 's/text-\\\\[#fe0000\\\\]/text-[var\\(--brand-red\\)]/g' components/MapFilters.tsx)",
-      "Bash(sed -i 's/text-\\\\[#fe6c03\\\\]/text-[var\\(--brand-orange\\)]/g' components/EpisodeCard.tsx)"
+      "Bash(sed -i 's/text-\\\\[#fe6c03\\\\]/text-[var\\(--brand-orange\\)]/g' components/EpisodeCard.tsx)",
+      "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -c \"\nSELECT id, latitude, longitude FROM \\\\\"EpisodeLocation\\\\\" \nWHERE \\\\\"episodeId\\\\\" = 33 AND \\\\\"communeName\\\\\" = 'Angers';\")",
+      "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -c \"\nUPDATE \\\\\"EpisodeLocation\\\\\" SET latitude = 47.4784, longitude = -0.5632\nWHERE id = 9623;\")"
     ]
   }
 }
