@@ -172,7 +172,8 @@
       "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -t -A -c \"\nSELECT description, substring\\(coalesce\\(\\\\\"wikiSummary\\\\\",''\\) from 1 for 300\\) FROM \\\\\"Episode\\\\\" WHERE id = 96;\")",
       "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -c \"\nUPDATE \\\\\"Episode\\\\\" SET \\\\\"wikiSummary\\\\\" = 'Henri-Jean Jacomet, médecin respecté de la commune de Huos en Haute-Garonne, assassine sa femme et ses deux enfants avant de se suicider. L''enquête révèle un homme au double visage, rongé par des secrets familiaux et financiers.'\nWHERE id = 96;\")",
       "Bash(__NEW_LINE_d640459da3705549__ python3 -c \":*)",
-      "Bash(__NEW_LINE_426623b1e1756eb9__ python3 -c \":*)"
+      "Bash(__NEW_LINE_426623b1e1756eb9__ python3 -c \":*)",
+      "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -t -A -c \"\nSELECT id, title FROM \\\\\"Episode\\\\\" WHERE id = 106;\")"
     ]
   }
 }
