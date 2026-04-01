@@ -59,7 +59,7 @@ export default function Header() {
         <div className="flex items-center justify-between px-4 py-3">
           <Link
             href="/"
-            className="text-2xl font-black font-[family-name:var(--font-fela)] uppercase shrink-0 bg-black inline-flex items-center px-2.5 py-1 rounded-sm tracking-wide"
+            className="text-2xl font-black font-[family-name:var(--font-fela)] uppercase shrink-0 bg-black inline-flex items-center px-2.5 py-1 rounded-md tracking-wide"
           >
             <span className="text-[#fcf84f]">WIKI</span>
             <span className="text-[#fe0000]">FELA</span>
