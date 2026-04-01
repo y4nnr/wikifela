@@ -242,7 +242,7 @@ export default function TapissageClient() {
                     <div className="w-full text-center py-1 bg-[var(--bg-card)] border-t border-[var(--border)] rounded-b font-mono text-sm font-bold text-[var(--fg)]">
                       {member.number}
                     </div>
-                    {revealed && (
+                    {revealed && idx === selected && selected !== round.correctIndex && (
                       <p className="text-[10px] text-[var(--fg-muted)] mt-1 text-center truncate w-full">
                         {member.name}
                       </p>
