@@ -212,7 +212,7 @@ export default function TapissageClient() {
                     onClick={() => handleSelect(idx)}
                     className={`relative flex flex-col items-center rounded-lg border-2 ${borderColor} ${overlay} bg-[var(--bg)] p-1.5 sm:p-2 transition-all active:scale-95`}
                   >
-                    <div className="relative w-full aspect-[3/4] mb-1 sm:mb-2 overflow-hidden rounded bg-[var(--bg-card)]">
+                    <div className="relative w-full aspect-square sm:aspect-[3/4] mb-1 sm:mb-2 overflow-hidden rounded bg-[var(--bg-card)]">
                       <Image
                         src={member.file}
                         alt={`Suspect ${member.number}`}
@@ -259,11 +259,11 @@ export default function TapissageClient() {
               </div>
               <button
                 onClick={next}
-                className="w-full sm:w-auto px-6 py-2.5 sm:py-2 rounded-lg bg-[var(--bg-input)] border border-[var(--border)] text-sm hover:border-[var(--border-hover)] transition-colors"
+                className="w-full sm:w-auto px-6 py-2.5 sm:py-2 rounded-lg bg-[var(--brand-red)] text-white text-sm font-semibold hover:bg-[var(--brand-red-hover)] transition-colors"
               >
                 {currentIndex + 1 >= rounds.length
-                  ? "Voir le résultat"
-                  : "Suivant"}
+                  ? "Voir le résultat →"
+                  : "Suivant →"}
               </button>
             </div>
           )}
