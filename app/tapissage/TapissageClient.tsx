@@ -84,20 +84,17 @@ export default function TapissageClient() {
         </div>
 
         <div className="w-full max-w-sm space-y-6 px-4">
-          {/* Police lineup illustration */}
           <div className="border border-[var(--border)] rounded bg-[var(--bg-card)] p-4 text-center">
-            <div className="text-[10px] text-[var(--fg-dim)] uppercase tracking-widest mb-3">
+            <div className="text-[10px] text-[var(--fg-dim)] uppercase tracking-wider mb-3">
               Procédure de tapissage
             </div>
-            <div className="flex justify-center gap-3 mb-3">
+            <div className="flex justify-center gap-2 sm:gap-3 mb-3">
               {[1, 2, 3, 4].map((n) => (
                 <div
                   key={n}
-                  className="w-12 h-14 border border-[var(--border)] rounded bg-[var(--bg)] flex items-end justify-center pb-1"
+                  className="w-10 h-12 sm:w-12 sm:h-14 border border-[var(--border)] rounded bg-[var(--bg)] flex items-end justify-center pb-1"
                 >
-                  <span className="text-[10px] text-[var(--fg-dim)]">
-                    {n}
-                  </span>
+                  <span className="text-[10px] text-[var(--fg-dim)]">{n}</span>
                 </div>
               ))}
             </div>
@@ -143,16 +140,15 @@ export default function TapissageClient() {
   if (phase === "playing") {
     const round = rounds[currentIndex];
     return (
-      <div className="flex-1 flex flex-col items-center px-4 pt-4">
+      <div className="flex-1 flex flex-col items-center px-3 sm:px-4 pt-3 sm:pt-4">
         {/* Progress */}
-        <div className="w-full max-w-2xl mb-4">
-          <div className="flex justify-between text-xs text-[var(--fg-dim)] mb-2">
+        <div className="w-full max-w-2xl mb-3">
+          <div className="flex justify-between text-[10px] sm:text-xs text-[var(--fg-dim)] mb-1.5">
             <span>
-              Tapissage {currentIndex + 1} / {rounds.length}
+              {currentIndex + 1} / {rounds.length}
             </span>
             <span>
-              {score} identification{score !== 1 ? "s" : ""} correcte
-              {score !== 1 ? "s" : ""}
+              {score} correcte{score !== 1 ? "s" : ""}
             </span>
           </div>
           <div className="w-full h-1 bg-[var(--border)] rounded-full">
@@ -167,33 +163,33 @@ export default function TapissageClient() {
 
         {/* Question */}
         <div className="w-full max-w-2xl">
-          <div className="border border-[var(--border)] rounded-lg bg-[var(--bg-card)] p-4 sm:p-6 mb-4">
-            {/* Police header */}
-            <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[var(--border)]">
+          <div className="border border-[var(--border)] rounded-lg bg-[var(--bg-card)] p-3 sm:p-6 mb-3">
+            {/* Police header — hidden on very small screens */}
+            <div className="hidden sm:flex items-center gap-2 mb-4 pb-3 border-b border-[var(--border)]">
               <div className="w-2 h-2 rounded-full bg-[var(--brand-red)]" />
-              <span className="text-[10px] font-mono text-[var(--fg-dim)] uppercase tracking-widest">
-                Tapissage — Identification de suspect
+              <span className="text-[10px] font-mono text-[var(--fg-dim)] uppercase tracking-wider">
+                Tapissage — Identification
               </span>
             </div>
 
-            <p className="text-center text-lg font-semibold mb-1">
+            <p className="text-center text-base sm:text-lg font-semibold mb-1">
               Identifiez{" "}
               <span className="text-[var(--brand-red)]">{round.question}</span>
             </p>
             {round.subtitle && !round.subtitle.toLowerCase().includes(round.question.split(' ').pop()?.toLowerCase() || '') ? (
-              <p className="text-center text-sm text-[var(--fg-muted)] mb-5 italic">
+              <p className="text-center text-xs sm:text-sm text-[var(--fg-muted)] mb-3 sm:mb-5 italic">
                 {round.subtitle}
               </p>
             ) : round.season ? (
-              <p className="text-center text-xs text-[var(--fg-dim)] mb-5">
+              <p className="text-center text-[10px] sm:text-xs text-[var(--fg-dim)] mb-3 sm:mb-5">
                 Saison {round.season}, Épisode {round.episode}
               </p>
             ) : (
-              <div className="mb-5" />
+              <div className="mb-3 sm:mb-5" />
             )}
 
-            {/* Lineup */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+            {/* Lineup — 2x2 grid on mobile, 4 across on desktop */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4">
               {round.lineup.map((member, idx) => {
                 let borderColor = "border-[var(--border)]";
                 let overlay = "";
@@ -208,27 +204,15 @@ export default function TapissageClient() {
                   } else {
                     overlay = "opacity-40";
                   }
-                } else if (idx === selected) {
-                  borderColor = "border-[var(--accent)]";
                 }
 
                 return (
                   <button
                     key={idx}
                     onClick={() => handleSelect(idx)}
-                    className={`relative flex flex-col items-center rounded-lg border-2 ${borderColor} ${overlay} bg-[var(--bg)] p-2 transition-all hover:border-[var(--border-hover)]`}
+                    className={`relative flex flex-col items-center rounded-lg border-2 ${borderColor} ${overlay} bg-[var(--bg)] p-1.5 sm:p-2 transition-all active:scale-95`}
                   >
-                    {/* Height measurement lines */}
-                    <div className="absolute top-0 right-1 h-full flex flex-col justify-between py-2 opacity-20">
-                      {[...Array(5)].map((_, i) => (
-                        <div
-                          key={i}
-                          className="w-2 border-t border-[var(--fg-dim)]"
-                        />
-                      ))}
-                    </div>
-
-                    <div className="relative w-full aspect-[3/4] mb-2 overflow-hidden rounded bg-[var(--bg-card)]">
+                    <div className="relative w-full aspect-[3/4] mb-1 sm:mb-2 overflow-hidden rounded bg-[var(--bg-card)]">
                       <Image
                         src={member.file}
                         alt={`Suspect ${member.number}`}
@@ -239,11 +223,11 @@ export default function TapissageClient() {
                     </div>
 
                     {/* Number plate */}
-                    <div className="w-full text-center py-1 bg-[var(--bg-card)] border-t border-[var(--border)] rounded-b font-mono text-sm font-bold text-[var(--fg)]">
+                    <div className="w-full text-center py-0.5 sm:py-1 bg-[var(--bg-card)] border-t border-[var(--border)] rounded-b font-mono text-xs sm:text-sm font-bold text-[var(--fg)]">
                       {member.number}
                     </div>
                     {revealed && idx === selected && selected !== round.correctIndex && (
-                      <p className="text-[10px] text-[var(--fg-muted)] mt-1 text-center truncate w-full">
+                      <p className="text-[9px] sm:text-[10px] text-[var(--fg-muted)] mt-0.5 text-center truncate w-full">
                         {member.name}
                       </p>
                     )}
@@ -253,8 +237,9 @@ export default function TapissageClient() {
             </div>
           </div>
 
+          {/* Actions — stacked on mobile */}
           {revealed && (
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-4">
               <div className="flex items-center gap-2">
                 {selected === round.correctIndex ? (
                   <span className="text-[var(--success)] text-sm font-medium">
@@ -274,11 +259,11 @@ export default function TapissageClient() {
               </div>
               <button
                 onClick={next}
-                className="px-6 py-2 rounded-lg bg-[var(--bg-input)] border border-[var(--border)] text-sm hover:border-[var(--border-hover)] transition-colors"
+                className="w-full sm:w-auto px-6 py-2.5 sm:py-2 rounded-lg bg-[var(--bg-input)] border border-[var(--border)] text-sm hover:border-[var(--border-hover)] transition-colors"
               >
                 {currentIndex + 1 >= rounds.length
                   ? "Voir le résultat"
-                  : "Tapissage suivant"}
+                  : "Suivant"}
               </button>
             </div>
           )}
@@ -300,12 +285,12 @@ export default function TapissageClient() {
 
   return (
     <div className="flex-1 flex flex-col items-center justify-center px-4">
-      <div className="text-center max-w-sm">
-        <div className="border border-[var(--border)] rounded-lg bg-[var(--bg-card)] p-6 mb-6">
-          <div className="text-[10px] text-[var(--fg-dim)] uppercase tracking-widest mb-4">
+      <div className="text-center max-w-sm w-full">
+        <div className="border border-[var(--border)] rounded-lg bg-[var(--bg-card)] p-5 sm:p-6 mb-6">
+          <div className="text-[10px] text-[var(--fg-dim)] uppercase tracking-wider mb-4">
             Résultat du tapissage
           </div>
-          <div className="text-5xl font-bold mb-2">
+          <div className="text-4xl sm:text-5xl font-bold mb-2">
             <span
               className={
                 percentage >= 50 ? "text-[var(--success)]" : "text-[var(--brand-red)]"
@@ -315,7 +300,7 @@ export default function TapissageClient() {
             </span>
             <span className="text-[var(--fg-dim)]">/{rounds.length}</span>
           </div>
-          <p className="text-lg text-[var(--fg)] mb-1">{verdict}</p>
+          <p className="text-base sm:text-lg text-[var(--fg)] mb-1">{verdict}</p>
           <p className="text-sm text-[var(--fg-dim)]">
             {percentage}% d&apos;identifications correctes
           </p>
