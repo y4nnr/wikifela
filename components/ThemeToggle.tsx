@@ -8,7 +8,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggle}
-      className="fixed bottom-20 md:bottom-4 right-4 z-50 w-9 h-9 rounded-full bg-[var(--bg-card)] border border-[var(--border)] shadow-lg flex items-center justify-center text-[var(--fg-muted)] hover:text-[var(--fg)] hover:border-[var(--border-hover)] transition-colors"
+      className="fixed top-3 right-3 md:bottom-4 md:top-auto md:right-4 z-50 w-8 h-8 md:w-9 md:h-9 rounded-full bg-[var(--bg-card)] border border-[var(--border)] shadow-lg flex items-center justify-center text-[var(--fg-muted)] hover:text-[var(--fg)] hover:border-[var(--border-hover)] transition-colors"
       title={theme === "dark" ? "Mode clair" : "Mode sombre"}
     >
       {theme === "dark" ? (
