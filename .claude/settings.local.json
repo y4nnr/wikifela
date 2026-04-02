@@ -175,7 +175,9 @@
       "Bash(__NEW_LINE_426623b1e1756eb9__ python3 -c \":*)",
       "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -t -A -c \"\nSELECT id, title FROM \\\\\"Episode\\\\\" WHERE id = 106;\")",
       "Bash(ls -la /home/y4n/dev/fela/public/portraits/72.*)",
-      "Bash(ls -la /home/y4n/dev/fela-prod/public/portraits/72.*)"
+      "Bash(ls -la /home/y4n/dev/fela-prod/public/portraits/72.*)",
+      "Bash(ls:*)",
+      "Bash(__NEW_LINE_56263173033ec7fb__ python3 -c \":*)"
     ]
   }
 }

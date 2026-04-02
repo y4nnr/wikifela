@@ -46,7 +46,6 @@ export default function Home() {
         defaultValue={hasQuery ? query : undefined}
         onChange={(e) => handleChange(e.target.value)}
         placeholder="rechercher..."
-        autoFocus
         className="w-full py-2.5 px-2 text-sm bg-transparent outline-none text-[var(--terminal)] placeholder:text-[var(--fg-dim)] font-mono"
       />
       {hasQuery && (
