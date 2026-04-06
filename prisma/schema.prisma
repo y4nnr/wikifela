@@ -35,6 +35,7 @@ model EpisodeLocation {
   longitude      Float
   isPrimary      Boolean @default(false)
   eventDescription String?
+  category       String  @default("crime")
 
   @@index([episodeId])
   @@index([department])

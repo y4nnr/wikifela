@@ -16,6 +16,7 @@ interface MapLocation {
   latitude: number;
   longitude: number;
   eventDescription?: string | null;
+  category?: string;
 }
 
 interface MapEpisode {
@@ -105,17 +106,16 @@ export default function MapClient() {
         )}
         <MapView episodes={episodes} colorMap={colorMap} theme={theme} />
       </div>
-      <div className="px-4 py-2 border-t border-[var(--border)] text-xs text-[var(--fg-dim)]">
+      <div className="px-4 py-2 border-t border-[var(--border)] text-xs text-[var(--fg-dim)] flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <span className="flex items-center gap-1"><span className="inline-block w-2 h-2 rounded-full bg-[#fe0000]" /> Crime</span>
+          <span className="flex items-center gap-1"><span className="inline-block w-2 h-2 rounded-full bg-[#22c55e]" /> Arrestation</span>
+          <span className="flex items-center gap-1"><span className="inline-block w-2 h-2 rounded-full bg-[#3b82f6]" /> Tribunal</span>
+        </div>
         {!loading && (
-          <>
-            {episodes.length} épisode{episodes.length !== 1 ? "s" : ""} —{" "}
-            {totalLocations} lieu{totalLocations !== 1 ? "x" : ""} — mode: {theme}
-            {selectedAffaireIds.length >= 2 && (
-              <span className="text-[var(--fg-muted)]">
-                {" "}({selectedAffaireIds.length} affaires colorées)
-              </span>
-            )}
-          </>
+          <span>
+            {episodes.length} épisode{episodes.length !== 1 ? "s" : ""} — {totalLocations} lieu{totalLocations !== 1 ? "x" : ""}
+          </span>
         )}
       </div>
     </div>

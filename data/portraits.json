@@ -568,6 +568,78 @@
     "episode": 16
   },
   {
+    "id": 141,
+    "name": "Jean-Paul Leconte",
+    "file": "141.png",
+    "subtitle": "Le tueur de la Somme",
+    "season": 11,
+    "episode": 17
+  },
+  {
+    "id": 143,
+    "name": "Jacques Hyver",
+    "file": "143.jpg",
+    "subtitle": "L'aventurier et le P.D.G.",
+    "season": 11,
+    "episode": 19
+  },
+  {
+    "id": 145,
+    "name": "Poncé Gaudissard",
+    "file": "145.png",
+    "subtitle": "Les mystères de Meyrargues",
+    "season": 12,
+    "episode": 2
+  },
+  {
+    "id": 146,
+    "name": "Youssouf Fofana",
+    "file": "146.jpg",
+    "subtitle": "Le cerveau du gang des barbares",
+    "season": 12,
+    "episode": 3
+  },
+  {
+    "id": 148,
+    "name": "Michel Ambras",
+    "file": "148.jpg",
+    "subtitle": "L'homme à la cigarette",
+    "season": 12,
+    "episode": 5
+  },
+  {
+    "id": 150,
+    "name": "Albert Millet",
+    "file": "150.png",
+    "subtitle": "Le sanglier des Maures",
+    "season": 12,
+    "episode": 7
+  },
+  {
+    "id": 155,
+    "name": "Raoul Becquerel",
+    "file": "155.jpg",
+    "subtitle": "L'homme qui enlevait les femmes",
+    "season": 12,
+    "episode": 12
+  },
+  {
+    "id": 157,
+    "name": "Rémy Roy",
+    "file": "157.jpg",
+    "subtitle": "L'assassin du minitel",
+    "season": 12,
+    "episode": 14
+  },
+  {
+    "id": 161,
+    "name": "Antonio Ferrara",
+    "file": "161.jpg",
+    "subtitle": "La grande évasion",
+    "season": 12,
+    "episode": 18
+  },
+  {
     "id": 183,
     "name": "Marc Machin",
     "file": "183.jpg",

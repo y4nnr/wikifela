@@ -13,7 +13,14 @@ interface MapLocation {
   latitude: number;
   longitude: number;
   eventDescription?: string | null;
+  category?: string;
 }
+
+const CATEGORY_COLORS: Record<string, string> = {
+  crime: "#fe0000",
+  arrest: "#22c55e",
+  trial: "#3b82f6",
+};
 
 interface MapEpisode {
   id: number;
@@ -103,10 +110,15 @@ export default function MapView({ episodes, colorMap, theme }: MapViewProps) {
       >
         <TileSwapper theme={theme} />
         {episodes.flatMap((ep) => {
-          const color = colorMap.get(ep.id) ?? defaultColor;
-          const icon = getIcon(color);
+          const epColor = colorMap.get(ep.id);
 
-          return ep.locations.map((loc, i) => (
+          return ep.locations.map((loc, i) => {
+            // Use episode color if multi-select, otherwise category color
+            const pinColor = epColor ?? CATEGORY_COLORS[loc.category || "crime"] ?? defaultColor;
+            const icon = getIcon(pinColor);
+            const categoryLabel = loc.category === "arrest" ? "Arrestation" : loc.category === "trial" ? "Tribunal" : "Crime";
+
+            return (
             <Marker
               key={`${ep.id}-${i}`}
               position={[loc.latitude, loc.longitude]}
@@ -114,13 +126,14 @@ export default function MapView({ episodes, colorMap, theme }: MapViewProps) {
             >
               <Popup>
                 <div className="min-w-[200px]">
-                  <div style={{ fontSize: 11, color: isDark ? '#a1a1a1' : '#666', marginBottom: 4 }}>
-                    {loc.communeName} ({loc.departmentName})
+                  <div style={{ fontSize: 11, color: isDark ? '#a1a1a1' : '#666', marginBottom: 4, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span>{loc.communeName} ({loc.departmentName})</span>
+                    <span style={{ fontSize: 9, color: pinColor, fontWeight: 600, textTransform: 'uppercase' }}>{categoryLabel}</span>
                   </div>
                   <Link
                     href={`/episode/${ep.id}`}
                     className="font-semibold hover:underline text-sm leading-tight block mb-1"
-                    style={{ color }}
+                    style={{ color: isDark ? '#e5e5e5' : '#171717' }}
                   >
                     {ep.title}
                   </Link>
@@ -137,7 +150,8 @@ export default function MapView({ episodes, colorMap, theme }: MapViewProps) {
                 </div>
               </Popup>
             </Marker>
-          ));
+            );
+          });
         })}
       </MapContainer>
     </>

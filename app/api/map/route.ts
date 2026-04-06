@@ -53,6 +53,7 @@ export async function GET(request: NextRequest) {
             latitude: true,
             longitude: true,
             eventDescription: true,
+            category: true,
           },
         },
       },
