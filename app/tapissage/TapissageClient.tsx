@@ -21,10 +21,12 @@ interface Round {
   correctIndex: number;
 }
 
+type Mode = "classique" | "survie";
 type Phase = "setup" | "playing" | "result";
 
 export default function TapissageClient() {
   const [phase, setPhase] = useState<Phase>("setup");
+  const [mode, setMode] = useState<Mode>("classique");
   const [count, setCount] = useState(5);
   const [rounds, setRounds] = useState<Round[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -32,11 +34,13 @@ export default function TapissageClient() {
   const [revealed, setRevealed] = useState(false);
   const [score, setScore] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [survieOver, setSurvieOver] = useState(false);
 
   const start = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await fetch(`/api/tapissage?count=${count}`);
+      const fetchCount = mode === "survie" ? 100 : count;
+      const res = await fetch(`/api/tapissage?count=${fetchCount}&mode=${mode}`);
       const data = await res.json();
       if (data.rounds?.length > 0) {
         setRounds(data.rounds);
@@ -44,6 +48,7 @@ export default function TapissageClient() {
         setSelected(null);
         setRevealed(false);
         setScore(0);
+        setSurvieOver(false);
         setPhase("playing");
       }
     } catch {
@@ -51,7 +56,7 @@ export default function TapissageClient() {
     } finally {
       setLoading(false);
     }
-  }, [count]);
+  }, [count, mode]);
 
   const handleSelect = (idx: number) => {
     if (revealed) return;
@@ -59,10 +64,16 @@ export default function TapissageClient() {
     setRevealed(true);
     if (idx === rounds[currentIndex].correctIndex) {
       setScore((s) => s + 1);
+    } else if (mode === "survie") {
+      setSurvieOver(true);
     }
   };
 
   const next = () => {
+    if (mode === "survie" && survieOver) {
+      setPhase("result");
+      return;
+    }
     if (currentIndex + 1 >= rounds.length) {
       setPhase("result");
     } else {
@@ -105,24 +116,54 @@ export default function TapissageClient() {
 
           <div>
             <label className="block text-sm text-[var(--fg-muted)] mb-3">
-              Nombre de tapissages
+              Mode
             </label>
             <div className="flex gap-3">
-              {[3, 5, 8].map((n) => (
+              {(["classique", "survie"] as Mode[]).map((m) => (
                 <button
-                  key={n}
-                  onClick={() => setCount(n)}
+                  key={m}
+                  onClick={() => setMode(m)}
                   className={`flex-1 py-2.5 rounded-lg border text-sm font-medium transition-all ${
-                    count === n
-                      ? "border-[var(--brand-red)] text-[var(--brand-red)] bg-[var(--brand-red)]/5"
+                    mode === m
+                      ? m === "survie"
+                        ? "border-[var(--brand-red)] text-[var(--brand-red)] bg-[var(--brand-red)]/5"
+                        : "border-[var(--accent)] text-[var(--accent)] bg-white/5"
                       : "border-[var(--border)] text-[var(--fg-dim)] hover:border-[var(--border-hover)]"
                   }`}
                 >
-                  {n}
+                  {m === "classique" ? "Classique" : "Survie"}
                 </button>
               ))}
             </div>
+            {mode === "survie" && (
+              <p className="text-[10px] text-[var(--fg-dim)] mt-2">
+                La partie s&apos;arrête à la première erreur. Tenez le plus longtemps possible.
+              </p>
+            )}
           </div>
+
+          {mode === "classique" && (
+            <div>
+              <label className="block text-sm text-[var(--fg-muted)] mb-3">
+                Nombre de tapissages
+              </label>
+              <div className="flex gap-3">
+                {[3, 5, 8].map((n) => (
+                  <button
+                    key={n}
+                    onClick={() => setCount(n)}
+                    className={`flex-1 py-2.5 rounded-lg border text-sm font-medium transition-all ${
+                      count === n
+                        ? "border-[var(--brand-red)] text-[var(--brand-red)] bg-[var(--brand-red)]/5"
+                        : "border-[var(--border)] text-[var(--fg-dim)] hover:border-[var(--border-hover)]"
+                    }`}
+                  >
+                    {n}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
 
           <button
             onClick={start}
@@ -144,21 +185,37 @@ export default function TapissageClient() {
         {/* Progress */}
         <div className="w-full max-w-2xl mb-3">
           <div className="flex justify-between text-[10px] sm:text-xs text-[var(--fg-dim)] mb-1.5">
-            <span>
-              {currentIndex + 1} / {rounds.length}
-            </span>
-            <span>
-              {score} correcte{score !== 1 ? "s" : ""}
-            </span>
+            {mode === "survie" ? (
+              <>
+                <span className="flex items-center gap-1.5">
+                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-[var(--brand-red)] animate-pulse" />
+                  Survie
+                </span>
+                <span>
+                  Série : {score}
+                </span>
+              </>
+            ) : (
+              <>
+                <span>
+                  {currentIndex + 1} / {rounds.length}
+                </span>
+                <span>
+                  {score} correcte{score !== 1 ? "s" : ""}
+                </span>
+              </>
+            )}
           </div>
-          <div className="w-full h-1 bg-[var(--border)] rounded-full">
-            <div
-              className="h-1 bg-[var(--brand-red)] rounded-full transition-all"
-              style={{
-                width: `${((currentIndex + 1) / rounds.length) * 100}%`,
-              }}
-            />
-          </div>
+          {mode === "classique" && (
+            <div className="w-full h-1 bg-[var(--border)] rounded-full">
+              <div
+                className="h-1 bg-[var(--brand-red)] rounded-full transition-all"
+                style={{
+                  width: `${((currentIndex + 1) / rounds.length) * 100}%`,
+                }}
+              />
+            </div>
+          )}
         </div>
 
         {/* Question */}
@@ -243,7 +300,7 @@ export default function TapissageClient() {
               <div className="flex items-center gap-2">
                 {selected === round.correctIndex ? (
                   <span className="text-[var(--success)] text-sm font-medium">
-                    ✓ Bonne identification
+                    {mode === "survie" ? `✓ Série : ${score}` : "✓ Bonne identification"}
                   </span>
                 ) : (
                   <span className="text-[var(--brand-red)] text-sm font-medium">
@@ -261,9 +318,11 @@ export default function TapissageClient() {
                 onClick={next}
                 className="w-full sm:w-auto px-6 py-2.5 sm:py-2 rounded-lg bg-[var(--brand-red)] text-white text-sm font-semibold hover:bg-[var(--brand-red-hover)] transition-colors"
               >
-                {currentIndex + 1 >= rounds.length
-                  ? "Voir le résultat →"
-                  : "Suivant →"}
+                {mode === "survie" && survieOver
+                  ? "Voir le résultat"
+                  : currentIndex + 1 >= rounds.length
+                    ? "Voir le résultat →"
+                    : "Suivant →"}
               </button>
             </div>
           )}
@@ -272,7 +331,50 @@ export default function TapissageClient() {
     );
   }
 
-  // RESULT
+  // RESULT — Survie mode
+  if (mode === "survie") {
+    const streakVerdict =
+      score >= 20
+        ? "Imbattable !"
+        : score >= 10
+          ? "Impressionnant !"
+          : score >= 5
+            ? "Bien joué !"
+            : score >= 2
+              ? "Pas mal !"
+              : "Retour à l'école de police...";
+
+    return (
+      <div className="flex-1 flex flex-col items-center justify-center px-4">
+        <div className="text-center max-w-sm w-full">
+          <div className="border border-[var(--border)] rounded-lg bg-[var(--bg-card)] p-5 sm:p-6 mb-6">
+            <div className="text-[10px] text-[var(--fg-dim)] uppercase tracking-wider mb-4">
+              Fin de la série
+            </div>
+            <div className="text-4xl sm:text-5xl font-bold mb-2 text-[var(--brand-red)]">
+              {score}
+            </div>
+            <p className="text-sm text-[var(--fg-muted)] mb-1">
+              identification{score !== 1 ? "s" : ""} correcte{score !== 1 ? "s" : ""} d&apos;affilée
+            </p>
+            <p className="text-base sm:text-lg text-[var(--fg)] mt-3">{streakVerdict}</p>
+          </div>
+
+          <button
+            onClick={() => {
+              setPhase("setup");
+              setRounds([]);
+            }}
+            className="w-full py-3 rounded-lg bg-[var(--brand-red)] text-white font-semibold hover:bg-[var(--brand-red-hover)] transition-colors"
+          >
+            Nouveau tapissage
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // RESULT — Classique mode
   const percentage = Math.round((score / rounds.length) * 100);
   const verdict =
     percentage === 100

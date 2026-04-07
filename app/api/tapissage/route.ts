@@ -38,9 +38,11 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 export async function GET(request: NextRequest) {
+  const mode = request.nextUrl.searchParams.get("mode") || "classique";
+  const maxCount = mode === "survie" ? 100 : 10;
   const count = Math.min(
     parseInt(request.nextUrl.searchParams.get("count") || "5", 10),
-    10
+    maxCount
   );
 
   const portraits = loadPortraits();

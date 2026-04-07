@@ -38,7 +38,9 @@ function shuffle<T>(arr: T[]): T[] {
 export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams;
   const difficulty = params.get("difficulty") || "facile";
-  const count = Math.min(parseInt(params.get("count") || "5", 10), 10);
+  const mode = params.get("mode") || "classique";
+  const maxCount = mode === "survie" ? 100 : 10;
+  const count = Math.min(parseInt(params.get("count") || "5", 10), maxCount);
 
   const allQuestions = loadQuestions();
   const filtered = allQuestions.filter((q) => q.difficulty === difficulty);
