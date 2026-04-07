@@ -838,5 +838,85 @@
     "subtitle": "Le Jack l’Éventreur de Marseille",
     "season": 22,
     "episode": 2
+  },
+  {
+    "id": 261,
+    "name": "Mohamed Merah",
+    "file": "261.jpg",
+    "subtitle": "La Traque",
+    "season": 22,
+    "episode": 4
+  },
+  {
+    "id": 262,
+    "name": "Jonathann Daval",
+    "file": "262.jpg",
+    "subtitle": "La trahison du gendre idéal",
+    "season": 22,
+    "episode": 5
+  },
+  {
+    "id": 265,
+    "name": "Jean-Pierre Mura",
+    "file": "265.jpg",
+    "subtitle": "Lame fatale",
+    "season": 22,
+    "episode": 8
+  },
+  {
+    "id": 266,
+    "name": "Hubert Caouissin",
+    "file": "266.jpg",
+    "subtitle": "Obsession sur les Troadec",
+    "season": 23,
+    "episode": 1
+  },
+  {
+    "id": 275,
+    "name": "Pascal Payet",
+    "file": "275.jpg",
+    "subtitle": "Le roi de l'évasion",
+    "season": 23,
+    "episode": 10
+  },
+  {
+    "id": 276,
+    "name": "Nordahl Lelandais",
+    "file": "276.jpg",
+    "subtitle": "Les secrets de Nordahl Lelandais",
+    "season": 24,
+    "episode": 1
+  },
+  {
+    "id": 284,
+    "name": "Willy Bardon",
+    "file": "284.png",
+    "subtitle": "Willy Bardon, la voix du sang",
+    "season": 24,
+    "episode": 9
+  },
+  {
+    "id": 298,
+    "name": "Dino Scala",
+    "file": "298.png",
+    "subtitle": "Le violeur de la Sambre",
+    "season": 25,
+    "episode": 7
+  },
+  {
+    "id": 302,
+    "name": "François Vérove",
+    "file": "302.png",
+    "subtitle": "Le Crime sans visage",
+    "season": 25,
+    "episode": 11
+  },
+  {
+    "id": 313,
+    "name": "Jean-Marc Reiser",
+    "file": "313.png",
+    "subtitle": "Le Piège de Jean Marc Reiser",
+    "season": 26,
+    "episode": 7
   }
 ]
