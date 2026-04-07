@@ -9,6 +9,7 @@ interface Portrait {
   subtitle?: string;
   season?: number;
   episode?: number;
+  gender?: string;
 }
 
 let portraitsCache: Portrait[] | null = null;
@@ -48,21 +49,28 @@ export async function GET(request: NextRequest) {
   }
 
   const rounds = [];
-  const used = new Set<number>();
+  const usedAsCorrect = new Set<number>();
+  const usedAsWrong = new Set<number>();
 
   for (let i = 0; i < count; i++) {
-    // Pick a correct answer not yet used
-    const available = portraits.filter((p) => !used.has(p.id));
+    // Pick a correct answer not yet used as correct
+    const available = portraits.filter((p) => !usedAsCorrect.has(p.id));
     if (available.length === 0) break;
 
     const correct = available[Math.floor(Math.random() * available.length)];
-    used.add(correct.id);
+    usedAsCorrect.add(correct.id);
 
-    // Pick 3 wrong portraits
-    const wrong = shuffle(portraits.filter((p) => p.id !== correct.id)).slice(
-      0,
-      3
+    // Pick 3 wrong portraits of the same gender, not already used as wrong in this session
+    const sameGender = portraits.filter(
+      (p) => p.id !== correct.id && p.gender === correct.gender && !usedAsWrong.has(p.id)
     );
+    // Fallback to any same gender if not enough unused
+    const fallback = portraits.filter(
+      (p) => p.id !== correct.id && p.gender === correct.gender
+    );
+    const pool = sameGender.length >= 3 ? sameGender : fallback;
+    const wrong = shuffle(pool).slice(0, 3);
+    wrong.forEach((w) => usedAsWrong.add(w.id));
 
     // Build lineup: 4 portraits in random order
     const lineup = shuffle([correct, ...wrong]);

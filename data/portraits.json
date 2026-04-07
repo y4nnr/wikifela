@@ -5,7 +5,8 @@
     "file": "4.jpg",
     "subtitle": "La Josacine empoisonnée",
     "season": 1,
-    "episode": 4
+    "episode": 4,
+    "gender": "M"
   },
   {
     "id": 6,
@@ -13,7 +14,8 @@
     "file": "6.jpg",
     "subtitle": "Secrets de famille",
     "season": 1,
-    "episode": 6
+    "episode": 6,
+    "gender": "F"
   },
   {
     "id": 8,
@@ -21,7 +23,8 @@
     "file": "8.jpg",
     "subtitle": "La « diabolique » de Nancy",
     "season": 2,
-    "episode": 1
+    "episode": 1,
+    "gender": "F"
   },
   {
     "id": 9,
@@ -29,7 +32,8 @@
     "file": "9.png",
     "subtitle": "Le procès de la guillotine",
     "season": 2,
-    "episode": 2
+    "episode": 2,
+    "gender": "M"
   },
   {
     "id": 10,
@@ -37,7 +41,8 @@
     "file": "10.jpg",
     "subtitle": "Le procès d'un innocent",
     "season": 2,
-    "episode": 3
+    "episode": 3,
+    "gender": "M"
   },
   {
     "id": 11,
@@ -45,7 +50,8 @@
     "file": "11.jpg",
     "subtitle": "Le coupable désigné",
     "season": 2,
-    "episode": 4
+    "episode": 4,
+    "gender": "M"
   },
   {
     "id": 12,
@@ -53,7 +59,8 @@
     "file": "12.jpg",
     "subtitle": "L'énigme de Mourmelon",
     "season": 2,
-    "episode": 5
+    "episode": 5,
+    "gender": "M"
   },
   {
     "id": 14,
@@ -61,7 +68,8 @@
     "file": "14.jpg",
     "subtitle": "L'énigme du pull-over rouge",
     "season": 3,
-    "episode": 2
+    "episode": 2,
+    "gender": "M"
   },
   {
     "id": 16,
@@ -69,7 +77,8 @@
     "file": "16.jpg",
     "subtitle": "La mort au bout de l'aiguille",
     "season": 3,
-    "episode": 4
+    "episode": 4,
+    "gender": "F"
   },
   {
     "id": 17,
@@ -77,7 +86,8 @@
     "file": "17.jpg",
     "subtitle": "Marathon pour un acquittement",
     "season": 3,
-    "episode": 5
+    "episode": 5,
+    "gender": "M"
   },
   {
     "id": 18,
@@ -85,7 +95,8 @@
     "file": "18.jpg",
     "subtitle": "Voyage au bout de la haine",
     "season": 3,
-    "episode": 6
+    "episode": 6,
+    "gender": "M"
   },
   {
     "id": 19,
@@ -93,7 +104,8 @@
     "file": "19.png",
     "subtitle": "Lieutenant de Mesrine",
     "season": 3,
-    "episode": 7
+    "episode": 7,
+    "gender": "M"
   },
   {
     "id": 20,
@@ -101,7 +113,8 @@
     "file": "20.jpg",
     "subtitle": "Le démon belge",
     "season": 3,
-    "episode": 8
+    "episode": 8,
+    "gender": "M"
   },
   {
     "id": 22,
@@ -109,7 +122,8 @@
     "file": "22.jpg",
     "subtitle": "Tueurs-nés ?",
     "season": 4,
-    "episode": 2
+    "episode": 2,
+    "gender": "F"
   },
   {
     "id": 23,
@@ -117,7 +131,8 @@
     "file": "23.jpg",
     "subtitle": "Le mort vivant",
     "season": 4,
-    "episode": 3
+    "episode": 3,
+    "gender": "M"
   },
   {
     "id": 24,
@@ -125,7 +140,8 @@
     "file": "24.jpg",
     "subtitle": "La mort du petit Lubin",
     "season": 4,
-    "episode": 4
+    "episode": 4,
+    "gender": "F"
   },
   {
     "id": 25,
@@ -133,7 +149,8 @@
     "file": "25.jpg",
     "subtitle": "Criminel sexuel",
     "season": 4,
-    "episode": 5
+    "episode": 5,
+    "gender": "M"
   },
   {
     "id": 26,
@@ -141,7 +158,8 @@
     "file": "26.jpg",
     "subtitle": "Le routard du crime",
     "season": 4,
-    "episode": 6
+    "episode": 6,
+    "gender": "M"
   },
   {
     "id": 28,
@@ -149,7 +167,8 @@
     "file": "28.jpg",
     "subtitle": "Le tueur de vieilles dames",
     "season": 4,
-    "episode": 8
+    "episode": 8,
+    "gender": "M"
   },
   {
     "id": 30,
@@ -157,7 +176,8 @@
     "file": "30.jpg",
     "subtitle": "Prise d'otages à la maternelle",
     "season": 4,
-    "episode": 10
+    "episode": 10,
+    "gender": "M"
   },
   {
     "id": 31,
@@ -165,7 +185,8 @@
     "file": "31.jpg",
     "subtitle": "Succo le fou",
     "season": 4,
-    "episode": 11
+    "episode": 11,
+    "gender": "M"
   },
   {
     "id": 32,
@@ -173,7 +194,8 @@
     "file": "32.jpg",
     "subtitle": "Le casse du siècle",
     "season": 4,
-    "episode": 12
+    "episode": 12,
+    "gender": "M"
   },
   {
     "id": 33,
@@ -181,7 +203,8 @@
     "file": "33.jpg",
     "subtitle": "Le tueur de l'Est parisien",
     "season": 4,
-    "episode": 13
+    "episode": 13,
+    "gender": "M"
   },
   {
     "id": 34,
@@ -189,7 +212,8 @@
     "file": "34.jpg",
     "subtitle": "L'assassinat de Georges Besse",
     "season": 5,
-    "episode": 1
+    "episode": 1,
+    "gender": "M"
   },
   {
     "id": 35,
@@ -197,7 +221,8 @@
     "file": "35.jpg",
     "subtitle": "Le tueur de l'ombre",
     "season": 5,
-    "episode": 2
+    "episode": 2,
+    "gender": "M"
   },
   {
     "id": 38,
@@ -205,7 +230,8 @@
     "file": "38.jpg",
     "subtitle": "Le groupe 666",
     "season": 5,
-    "episode": 5
+    "episode": 5,
+    "gender": "M"
   },
   {
     "id": 40,
@@ -213,7 +239,8 @@
     "file": "40.jpg",
     "subtitle": "Voleur de vies",
     "season": 5,
-    "episode": 7
+    "episode": 7,
+    "gender": "M"
   },
   {
     "id": 41,
@@ -221,7 +248,8 @@
     "file": "41.jpg",
     "subtitle": "Le tueur des trains",
     "season": 5,
-    "episode": 8
+    "episode": 8,
+    "gender": "M"
   },
   {
     "id": 43,
@@ -229,7 +257,8 @@
     "file": "43.jpg",
     "subtitle": "Le dépeceur du canal",
     "season": 5,
-    "episode": 10
+    "episode": 10,
+    "gender": "M"
   },
   {
     "id": 44,
@@ -237,7 +266,8 @@
     "file": "44.jpg",
     "subtitle": "Marcel Lechien Le maître d'école",
     "season": 5,
-    "episode": 11
+    "episode": 11,
+    "gender": "M"
   },
   {
     "id": 45,
@@ -245,7 +275,8 @@
     "file": "45.jpg",
     "subtitle": "Les disparues de l'Yonne",
     "season": 5,
-    "episode": 12
+    "episode": 12,
+    "gender": "M"
   },
   {
     "id": 46,
@@ -253,7 +284,8 @@
     "file": "46.jpg",
     "subtitle": "État de démence",
     "season": 5,
-    "episode": 13
+    "episode": 13,
+    "gender": "M"
   },
   {
     "id": 47,
@@ -261,7 +293,8 @@
     "file": "47.jpg",
     "subtitle": "L’empoisonneuse",
     "season": 5,
-    "episode": 14
+    "episode": 14,
+    "gender": "F"
   },
   {
     "id": 48,
@@ -269,7 +302,8 @@
     "file": "48.jpg",
     "subtitle": "L'affaire Caroline Dickinson",
     "season": 6,
-    "episode": 1
+    "episode": 1,
+    "gender": "M"
   },
   {
     "id": 51,
@@ -277,7 +311,8 @@
     "file": "51.jpg",
     "subtitle": "Le meurtre de maître Flauder",
     "season": 6,
-    "episode": 4
+    "episode": 4,
+    "gender": "M"
   },
   {
     "id": 52,
@@ -285,7 +320,8 @@
     "file": "52.jpg",
     "subtitle": "Meurtre en 2 CV",
     "season": 6,
-    "episode": 5
+    "episode": 5,
+    "gender": "M"
   },
   {
     "id": 54,
@@ -293,7 +329,8 @@
     "file": "54.jpg",
     "subtitle": "L'assassinat",
     "season": 6,
-    "episode": 7
+    "episode": 7,
+    "gender": "M"
   },
   {
     "id": 55,
@@ -301,7 +338,8 @@
     "file": "55_jl.jpg",
     "subtitle": "Meurtres au carnaval",
     "season": 6,
-    "episode": 8
+    "episode": 8,
+    "gender": "M"
   },
   {
     "id": 55,
@@ -309,7 +347,8 @@
     "file": "55_jm.jpg",
     "subtitle": "Meurtres au carnaval",
     "season": 6,
-    "episode": 8
+    "episode": 8,
+    "gender": "M"
   },
   {
     "id": 60,
@@ -317,7 +356,8 @@
     "file": "60.jpg",
     "subtitle": "Le menteur",
     "season": 7,
-    "episode": 1
+    "episode": 1,
+    "gender": "M"
   },
   {
     "id": 61,
@@ -325,7 +365,8 @@
     "file": "61.jpg",
     "subtitle": "« Le Chat »",
     "season": 7,
-    "episode": 2
+    "episode": 2,
+    "gender": "M"
   },
   {
     "id": 62,
@@ -333,7 +374,8 @@
     "file": "62.jpg",
     "subtitle": "« Ennemi public »",
     "season": 7,
-    "episode": 3
+    "episode": 3,
+    "gender": "M"
   },
   {
     "id": 64,
@@ -341,7 +383,8 @@
     "file": "64.jpg",
     "subtitle": "La traque",
     "season": 7,
-    "episode": 5
+    "episode": 5,
+    "gender": "M"
   },
   {
     "id": 65,
@@ -349,7 +392,8 @@
     "file": "65.jpg",
     "subtitle": "Le « Chinois »",
     "season": 7,
-    "episode": 6
+    "episode": 6,
+    "gender": "M"
   },
   {
     "id": 67,
@@ -357,7 +401,8 @@
     "file": "67.jpg",
     "subtitle": "La feuille de boucher",
     "season": 7,
-    "episode": 8
+    "episode": 8,
+    "gender": "M"
   },
   {
     "id": 70,
@@ -365,7 +410,8 @@
     "file": "70.jpg",
     "subtitle": "Le tailleur de pierres",
     "season": 8,
-    "episode": 1
+    "episode": 1,
+    "gender": "M"
   },
   {
     "id": 72,
@@ -373,7 +419,8 @@
     "file": "72.png",
     "subtitle": "L'énigme Alfred Petit",
     "season": 8,
-    "episode": 3
+    "episode": 3,
+    "gender": "M"
   },
   {
     "id": 76,
@@ -381,7 +428,8 @@
     "file": "76.jpg",
     "subtitle": "Le couple pervers",
     "season": 8,
-    "episode": 7
+    "episode": 7,
+    "gender": "M"
   },
   {
     "id": 78,
@@ -389,7 +437,8 @@
     "file": "78.jpg",
     "subtitle": "Le caïd de Dombasle",
     "season": 8,
-    "episode": 9
+    "episode": 9,
+    "gender": "M"
   },
   {
     "id": 81,
@@ -397,7 +446,8 @@
     "file": "81.jpg",
     "subtitle": "Débat : Outreau - Que sont-ils devenus ?",
     "season": 8,
-    "episode": 12
+    "episode": 12,
+    "gender": "F"
   },
   {
     "id": 84,
@@ -405,7 +455,8 @@
     "file": "84.jpg",
     "subtitle": "Innocent à tout prix",
     "season": 8,
-    "episode": 15
+    "episode": 15,
+    "gender": "M"
   },
   {
     "id": 86,
@@ -413,7 +464,8 @@
     "file": "86.jpg",
     "subtitle": "La mort de Jean-Claude Poulet Dachary",
     "season": 8,
-    "episode": 17
+    "episode": 17,
+    "gender": "M"
   },
   {
     "id": 88,
@@ -421,7 +473,8 @@
     "file": "88.jpg",
     "subtitle": "Débat : Que faire des multirécidivistes ?",
     "season": 8,
-    "episode": 19
+    "episode": 19,
+    "gender": "M"
   },
   {
     "id": 90,
@@ -429,7 +482,8 @@
     "file": "90.jpg",
     "subtitle": "Le fantôme de Kehl",
     "season": 9,
-    "episode": 1
+    "episode": 1,
+    "gender": "M"
   },
   {
     "id": 92,
@@ -437,7 +491,8 @@
     "file": "92.jpg",
     "subtitle": "La tuerie du Grand-Bornand",
     "season": 9,
-    "episode": 3
+    "episode": 3,
+    "gender": "M"
   },
   {
     "id": 93,
@@ -445,7 +500,8 @@
     "file": "93.jpg",
     "subtitle": "L'homme aux 1000 visages",
     "season": 9,
-    "episode": 4
+    "episode": 4,
+    "gender": "M"
   },
   {
     "id": 94,
@@ -453,7 +509,8 @@
     "file": "94.jpg",
     "subtitle": "L'homme aux deux visages",
     "season": 9,
-    "episode": 5
+    "episode": 5,
+    "gender": "M"
   },
   {
     "id": 95,
@@ -461,7 +518,8 @@
     "file": "95.jpg",
     "subtitle": "Tueur de femmes",
     "season": 9,
-    "episode": 6
+    "episode": 6,
+    "gender": "M"
   },
   {
     "id": 96,
@@ -469,7 +527,8 @@
     "file": "96.jpg",
     "subtitle": "Massacre à huis clos",
     "season": 9,
-    "episode": 7
+    "episode": 7,
+    "gender": "M"
   },
   {
     "id": 98,
@@ -477,7 +536,8 @@
     "file": "98.jpg",
     "subtitle": "Débat : Que faire de nos criminels fous ?",
     "season": 9,
-    "episode": 9
+    "episode": 9,
+    "gender": "M"
   },
   {
     "id": 99,
@@ -485,7 +545,8 @@
     "file": "99.jpg",
     "subtitle": "Le mystère des boulettes bleues",
     "season": 9,
-    "episode": 10
+    "episode": 10,
+    "gender": "M"
   },
   {
     "id": 100,
@@ -493,7 +554,8 @@
     "file": "100.jpg",
     "subtitle": "L'alliance diabolique",
     "season": 9,
-    "episode": 11
+    "episode": 11,
+    "gender": "M"
   },
   {
     "id": 102,
@@ -501,7 +563,8 @@
     "file": "102.jpg",
     "subtitle": "Le prédateur",
     "season": 9,
-    "episode": 13
+    "episode": 13,
+    "gender": "M"
   },
   {
     "id": 103,
@@ -509,7 +572,8 @@
     "file": "103.jpg",
     "subtitle": "Le routard du viol",
     "season": 9,
-    "episode": 14
+    "episode": 14,
+    "gender": "M"
   },
   {
     "id": 105,
@@ -517,7 +581,8 @@
     "file": "105.jpg",
     "subtitle": "La machination du concierge",
     "season": 9,
-    "episode": 16
+    "episode": 16,
+    "gender": "M"
   },
   {
     "id": 106,
@@ -525,7 +590,8 @@
     "file": "106.jpg",
     "subtitle": "La malédiction des Recco",
     "season": 9,
-    "episode": 17
+    "episode": 17,
+    "gender": "M"
   },
   {
     "id": 108,
@@ -533,7 +599,8 @@
     "file": "108.png",
     "subtitle": "Le tueur aux mains nues",
     "season": 9,
-    "episode": 6
+    "episode": 6,
+    "gender": "M"
   },
   {
     "id": 110,
@@ -541,7 +608,8 @@
     "file": "110.jpg",
     "subtitle": "La diabolique d'Antibes",
     "season": 10,
-    "episode": 3
+    "episode": 3,
+    "gender": "F"
   },
   {
     "id": 111,
@@ -549,7 +617,8 @@
     "file": "111.jpg",
     "subtitle": "Le violeur des parkings",
     "season": 10,
-    "episode": 4
+    "episode": 4,
+    "gender": "M"
   },
   {
     "id": 112,
@@ -557,7 +626,8 @@
     "file": "112.jpg",
     "subtitle": "Meurtre au cinéma",
     "season": 10,
-    "episode": 5
+    "episode": 5,
+    "gender": "M"
   },
   {
     "id": 117,
@@ -565,7 +635,8 @@
     "file": "117.jpg",
     "subtitle": "L'homme aux 50 affaires",
     "season": 10,
-    "episode": 10
+    "episode": 10,
+    "gender": "M"
   },
   {
     "id": 120,
@@ -573,7 +644,8 @@
     "file": "120.jpg",
     "subtitle": "La folle cavale de Lionel Cardon",
     "season": 10,
-    "episode": 13
+    "episode": 13,
+    "gender": "M"
   },
   {
     "id": 121,
@@ -581,7 +653,8 @@
     "file": "121.jpg",
     "subtitle": "Au hasard du crime",
     "season": 10,
-    "episode": 14
+    "episode": 14,
+    "gender": "M"
   },
   {
     "id": 127,
@@ -589,7 +662,8 @@
     "file": "127.jpg",
     "subtitle": "L'affaire des bébés congelés",
     "season": 11,
-    "episode": 3
+    "episode": 3,
+    "gender": "F"
   },
   {
     "id": 130,
@@ -597,7 +671,8 @@
     "file": "130.png",
     "subtitle": "Le tueur de la pleine lune",
     "season": 11,
-    "episode": 6
+    "episode": 6,
+    "gender": "M"
   },
   {
     "id": 136,
@@ -605,7 +680,8 @@
     "file": "136.jpg",
     "subtitle": "Le pompier criminel",
     "season": 11,
-    "episode": 12
+    "episode": 12,
+    "gender": "M"
   },
   {
     "id": 140,
@@ -613,7 +689,8 @@
     "file": "140.jpg",
     "subtitle": "La vengeance de l'assureur",
     "season": 11,
-    "episode": 16
+    "episode": 16,
+    "gender": "M"
   },
   {
     "id": 141,
@@ -621,7 +698,8 @@
     "file": "141.png",
     "subtitle": "Le tueur de la Somme",
     "season": 11,
-    "episode": 17
+    "episode": 17,
+    "gender": "M"
   },
   {
     "id": 143,
@@ -629,7 +707,8 @@
     "file": "143.jpg",
     "subtitle": "L'aventurier et le P.D.G.",
     "season": 11,
-    "episode": 19
+    "episode": 19,
+    "gender": "M"
   },
   {
     "id": 145,
@@ -637,7 +716,8 @@
     "file": "145.png",
     "subtitle": "Les mystères de Meyrargues",
     "season": 12,
-    "episode": 2
+    "episode": 2,
+    "gender": "M"
   },
   {
     "id": 146,
@@ -645,7 +725,8 @@
     "file": "146.jpg",
     "subtitle": "Le cerveau du gang des barbares",
     "season": 12,
-    "episode": 3
+    "episode": 3,
+    "gender": "M"
   },
   {
     "id": 148,
@@ -653,7 +734,8 @@
     "file": "148.jpg",
     "subtitle": "L'homme à la cigarette",
     "season": 12,
-    "episode": 5
+    "episode": 5,
+    "gender": "M"
   },
   {
     "id": 150,
@@ -661,7 +743,8 @@
     "file": "150.png",
     "subtitle": "Le sanglier des Maures",
     "season": 12,
-    "episode": 7
+    "episode": 7,
+    "gender": "M"
   },
   {
     "id": 155,
@@ -669,7 +752,8 @@
     "file": "155.jpg",
     "subtitle": "L'homme qui enlevait les femmes",
     "season": 12,
-    "episode": 12
+    "episode": 12,
+    "gender": "M"
   },
   {
     "id": 157,
@@ -677,7 +761,8 @@
     "file": "157.jpg",
     "subtitle": "L'assassin du minitel",
     "season": 12,
-    "episode": 14
+    "episode": 14,
+    "gender": "M"
   },
   {
     "id": 161,
@@ -685,7 +770,8 @@
     "file": "161.jpg",
     "subtitle": "La grande évasion",
     "season": 12,
-    "episode": 18
+    "episode": 18,
+    "gender": "M"
   },
   {
     "id": 165,
@@ -693,7 +779,8 @@
     "file": "165.jpg",
     "subtitle": "Mortelle jalousie",
     "season": 13,
-    "episode": 2
+    "episode": 2,
+    "gender": "M"
   },
   {
     "id": 175,
@@ -701,7 +788,8 @@
     "file": "175.jpg",
     "subtitle": "L'empoisonneuse de Maxéville",
     "season": 13,
-    "episode": 12
+    "episode": 12,
+    "gender": "F"
   },
   {
     "id": 179,
@@ -709,7 +797,8 @@
     "file": "179.jpg",
     "subtitle": "Le mystère du lac",
     "season": 13,
-    "episode": 16
+    "episode": 16,
+    "gender": "M"
   },
   {
     "id": 180,
@@ -717,7 +806,8 @@
     "file": "180.jpg",
     "subtitle": "La haine au cœur",
     "season": 13,
-    "episode": 17
+    "episode": 17,
+    "gender": "M"
   },
   {
     "id": 183,
@@ -725,7 +815,8 @@
     "file": "183.jpg",
     "subtitle": "Les meurtres du Pont de Neuilly",
     "season": 14,
-    "episode": 3
+    "episode": 3,
+    "gender": "M"
   },
   {
     "id": 185,
@@ -733,7 +824,8 @@
     "file": "185.jpg",
     "subtitle": "L'enlèvement du petit Enis",
     "season": 14,
-    "episode": 5
+    "episode": 5,
+    "gender": "M"
   },
   {
     "id": 194,
@@ -741,7 +833,8 @@
     "file": "194.png",
     "subtitle": "Affaires de femmes",
     "season": 14,
-    "episode": 14
+    "episode": 14,
+    "gender": "F"
   },
   {
     "id": 200,
@@ -749,7 +842,8 @@
     "file": "200.jpg",
     "subtitle": "Guet-apens au Haras",
     "season": 14,
-    "episode": 20
+    "episode": 20,
+    "gender": "M"
   },
   {
     "id": 207,
@@ -757,7 +851,8 @@
     "file": "207.jpg",
     "subtitle": "Le sang et la rumeur",
     "season": 15,
-    "episode": 7
+    "episode": 7,
+    "gender": "M"
   },
   {
     "id": 209,
@@ -765,7 +860,8 @@
     "file": "209.webp",
     "subtitle": "L'assassin aux cordelettes",
     "season": 15,
-    "episode": 9
+    "episode": 9,
+    "gender": "M"
   },
   {
     "id": 213,
@@ -773,7 +869,8 @@
     "file": "213.png",
     "subtitle": "Le charme au poing",
     "season": 15,
-    "episode": 13
+    "episode": 13,
+    "gender": "M"
   },
   {
     "id": 217,
@@ -781,7 +878,8 @@
     "file": "217.jpg",
     "subtitle": "La traque",
     "season": 16,
-    "episode": 1
+    "episode": 1,
+    "gender": "M"
   },
   {
     "id": 221,
@@ -789,7 +887,8 @@
     "file": "221.jpg",
     "subtitle": "Liaisons fatales",
     "season": 16,
-    "episode": 5
+    "episode": 5,
+    "gender": "F"
   },
   {
     "id": 224,
@@ -797,7 +896,8 @@
     "file": "224.jpg",
     "subtitle": "Le crime fou de Stéphane Moitoiret",
     "season": 16,
-    "episode": 8
+    "episode": 8,
+    "gender": "M"
   },
   {
     "id": 232,
@@ -805,7 +905,8 @@
     "file": "232.jpg",
     "subtitle": "Le dépeceur de Montréal",
     "season": 17,
-    "episode": 3
+    "episode": 3,
+    "gender": "M"
   },
   {
     "id": 234,
@@ -813,7 +914,8 @@
     "file": "234.jpg",
     "subtitle": "Ange ou démon",
     "season": 17,
-    "episode": 5
+    "episode": 5,
+    "gender": "F"
   },
   {
     "id": 235,
@@ -821,7 +923,8 @@
     "file": "235.jpg",
     "subtitle": "La mauvaise rencontre de Lætitia",
     "season": 18,
-    "episode": 1
+    "episode": 1,
+    "gender": "M"
   },
   {
     "id": 238,
@@ -829,7 +932,8 @@
     "file": "238.png",
     "subtitle": "Un gendre insoupçonnable",
     "season": 18,
-    "episode": 4
+    "episode": 4,
+    "gender": "M"
   },
   {
     "id": 239,
@@ -837,7 +941,8 @@
     "file": "239.png",
     "subtitle": "Le faux taxi",
     "season": 18,
-    "episode": 5
+    "episode": 5,
+    "gender": "M"
   },
   {
     "id": 244,
@@ -845,7 +950,8 @@
     "file": "244.jpg",
     "subtitle": "Le tueur de l'Essonne",
     "season": 19,
-    "episode": 2
+    "episode": 2,
+    "gender": "M"
   },
   {
     "id": 250,
@@ -853,7 +959,8 @@
     "file": "250.png",
     "subtitle": "Plutôt veuve que divorcée",
     "season": 20,
-    "episode": 6
+    "episode": 6,
+    "gender": "F"
   },
   {
     "id": 251,
@@ -861,7 +968,8 @@
     "file": "251.jpg",
     "subtitle": "Le tueur à la hache",
     "season": 20,
-    "episode": 7
+    "episode": 7,
+    "gender": "M"
   },
   {
     "id": 255,
@@ -869,7 +977,8 @@
     "file": "255.jpg",
     "subtitle": "La Veuve Noire de l'Isère",
     "season": 21,
-    "episode": 4
+    "episode": 4,
+    "gender": "F"
   },
   {
     "id": 256,
@@ -877,7 +986,8 @@
     "file": "256.jpg",
     "subtitle": "Le tueur de la gare de Perpignan",
     "season": 21,
-    "episode": 5
+    "episode": 5,
+    "gender": "M"
   },
   {
     "id": 259,
@@ -885,7 +995,8 @@
     "file": "259.jpg",
     "subtitle": "Le Jack l’Éventreur de Marseille",
     "season": 22,
-    "episode": 2
+    "episode": 2,
+    "gender": "M"
   },
   {
     "id": 261,
@@ -893,7 +1004,8 @@
     "file": "261.jpg",
     "subtitle": "La Traque",
     "season": 22,
-    "episode": 4
+    "episode": 4,
+    "gender": "M"
   },
   {
     "id": 262,
@@ -901,7 +1013,8 @@
     "file": "262.jpg",
     "subtitle": "La trahison du gendre idéal",
     "season": 22,
-    "episode": 5
+    "episode": 5,
+    "gender": "M"
   },
   {
     "id": 265,
@@ -909,7 +1022,8 @@
     "file": "265.jpg",
     "subtitle": "Lame fatale",
     "season": 22,
-    "episode": 8
+    "episode": 8,
+    "gender": "M"
   },
   {
     "id": 266,
@@ -917,7 +1031,8 @@
     "file": "266.jpg",
     "subtitle": "Obsession sur les Troadec",
     "season": 23,
-    "episode": 1
+    "episode": 1,
+    "gender": "M"
   },
   {
     "id": 275,
@@ -925,7 +1040,8 @@
     "file": "275.jpg",
     "subtitle": "Le roi de l'évasion",
     "season": 23,
-    "episode": 10
+    "episode": 10,
+    "gender": "M"
   },
   {
     "id": 276,
@@ -933,7 +1049,8 @@
     "file": "276.jpg",
     "subtitle": "Les secrets de Nordahl Lelandais",
     "season": 24,
-    "episode": 1
+    "episode": 1,
+    "gender": "M"
   },
   {
     "id": 284,
@@ -941,7 +1058,8 @@
     "file": "284.png",
     "subtitle": "Willy Bardon, la voix du sang",
     "season": 24,
-    "episode": 9
+    "episode": 9,
+    "gender": "M"
   },
   {
     "id": 298,
@@ -949,7 +1067,8 @@
     "file": "298.png",
     "subtitle": "Le violeur de la Sambre",
     "season": 25,
-    "episode": 7
+    "episode": 7,
+    "gender": "M"
   },
   {
     "id": 302,
@@ -957,7 +1076,8 @@
     "file": "302.png",
     "subtitle": "Le Crime sans visage",
     "season": 25,
-    "episode": 11
+    "episode": 11,
+    "gender": "M"
   },
   {
     "id": 313,
@@ -965,6 +1085,7 @@
     "file": "313.png",
     "subtitle": "Le Piège de Jean Marc Reiser",
     "season": 26,
-    "episode": 7
+    "episode": 7,
+    "gender": "M"
   }
 ]
