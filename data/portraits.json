@@ -640,12 +640,76 @@
     "episode": 18
   },
   {
+    "id": 165,
+    "name": "Joseph Messina",
+    "file": "165.jpg",
+    "subtitle": "Mortelle jalousie",
+    "season": 13,
+    "episode": 2
+  },
+  {
+    "id": 175,
+    "name": "Rodica Negroiu",
+    "file": "175.jpg",
+    "subtitle": "L'empoisonneuse de Maxéville",
+    "season": 13,
+    "episode": 12
+  },
+  {
+    "id": 179,
+    "name": "Robert Lund",
+    "file": "179.jpg",
+    "subtitle": "Le mystère du lac",
+    "season": 13,
+    "episode": 16
+  },
+  {
+    "id": 180,
+    "name": "Emmanuel Rist",
+    "file": "180.jpg",
+    "subtitle": "La haine au cœur",
+    "season": 13,
+    "episode": 17
+  },
+  {
     "id": 183,
     "name": "Marc Machin",
     "file": "183.jpg",
     "subtitle": "Les meurtres du Pont de Neuilly",
     "season": 14,
     "episode": 3
+  },
+  {
+    "id": 185,
+    "name": "Francis Evrard",
+    "file": "185.jpg",
+    "subtitle": "L'enlèvement du petit Enis",
+    "season": 14,
+    "episode": 5
+  },
+  {
+    "id": 194,
+    "name": "Monique Lejeune",
+    "file": "194.png",
+    "subtitle": "Affaires de femmes",
+    "season": 14,
+    "episode": 14
+  },
+  {
+    "id": 200,
+    "name": "Rémi Chesne",
+    "file": "200.jpg",
+    "subtitle": "Guet-apens au Haras",
+    "season": 14,
+    "episode": 20
+  },
+  {
+    "id": 207,
+    "name": "Patrice Alègre",
+    "file": "207.jpg",
+    "subtitle": "Le sang et la rumeur",
+    "season": 15,
+    "episode": 7
   },
   {
     "id": 209,
@@ -656,12 +720,28 @@
     "episode": 9
   },
   {
+    "id": 213,
+    "name": "Bruno Sulak",
+    "file": "213.png",
+    "subtitle": "Le charme au poing",
+    "season": 15,
+    "episode": 13
+  },
+  {
     "id": 217,
     "name": "Yvan Colonna",
     "file": "217.jpg",
     "subtitle": "La traque",
     "season": 16,
     "episode": 1
+  },
+  {
+    "id": 221,
+    "name": "Betina Beau",
+    "file": "221.jpg",
+    "subtitle": "Liaisons fatales",
+    "season": 16,
+    "episode": 5
   },
   {
     "id": 234,

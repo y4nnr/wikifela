@@ -187,7 +187,13 @@
       "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -c \"\n-- Arrest locations\nUPDATE \\\\\"EpisodeLocation\\\\\" SET category = 'arrest' \nWHERE lower\\(\\\\\"eventDescription\\\\\"\\) ~ '\\(arrest|interpell|garde à vue|appréhend|captur|menott|écroué\\)';\n\n-- Trial locations\nUPDATE \\\\\"EpisodeLocation\\\\\" SET category = 'trial' \nWHERE lower\\(\\\\\"eventDescription\\\\\"\\) ~ '\\(assises|procès|condamn|tribunal|jugé|jugement|verdict|acquitt\\)';\n\n-- Everything else stays as 'crime' \\(default\\)\n\n-- Check distribution\nSELECT category, count\\(*\\) FROM \\\\\"EpisodeLocation\\\\\" GROUP BY category ORDER BY category;\")",
       "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -t -A -c \"\nSELECT id, title FROM \\\\\"Episode\\\\\" WHERE title ILIKE '%Gaudissard%' OR title ILIKE '%Hyver%' OR title ILIKE '%Leconte%';\")",
       "Bash(file:*)",
-      "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -t -A -c \"\nSELECT description, substring\\(coalesce\\(\\\\\"wikiSummary\\\\\",''\\) from 1 for 200\\) FROM \\\\\"Episode\\\\\" WHERE id = 148;\")"
+      "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -t -A -c \"\nSELECT description, substring\\(coalesce\\(\\\\\"wikiSummary\\\\\",''\\) from 1 for 200\\) FROM \\\\\"Episode\\\\\" WHERE id = 148;\")",
+      "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -t -A -c \"\nSELECT description, substring\\(coalesce\\(\\\\\"wikiSummary\\\\\",''\\) from 1 for 200\\) FROM \\\\\"Episode\\\\\" WHERE id = 174;\")",
+      "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -t -A -c \"\nSELECT description, substring\\(coalesce\\(\\\\\"wikiSummary\\\\\",''\\) from 1 for 200\\) FROM \\\\\"Episode\\\\\" WHERE id = 187;\")",
+      "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -t -A -c \"\nSELECT description, substring\\(coalesce\\(\\\\\"wikiSummary\\\\\",''\\) from 1 for 200\\) FROM \\\\\"Episode\\\\\" WHERE id = 196;\")",
+      "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -t -A -c \"\nSELECT description, substring\\(coalesce\\(\\\\\"wikiSummary\\\\\",''\\) from 1 for 300\\) FROM \\\\\"Episode\\\\\" WHERE id = 200;\")",
+      "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -t -A -c \"\nSELECT description, substring\\(coalesce\\(\\\\\"wikiSummary\\\\\",''\\) from 1 for 250\\) FROM \\\\\"Episode\\\\\" WHERE id = 204;\")",
+      "Bash(PGPASSWORD=fela_dev psql -h localhost -U fela -d fela -t -A -c \"\nSELECT description, substring\\(coalesce\\(\\\\\"wikiSummary\\\\\",''\\) from 1 for 200\\) FROM \\\\\"Episode\\\\\" WHERE id = 221;\")"
     ]
   }
 }
