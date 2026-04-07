@@ -16,6 +16,14 @@
     "episode": 6
   },
   {
+    "id": 8,
+    "name": "Simone Weber",
+    "file": "8.jpg",
+    "subtitle": "La « diabolique » de Nancy",
+    "season": 2,
+    "episode": 1
+  },
+  {
     "id": 9,
     "name": "Patrick Henry",
     "file": "9.png",
@@ -40,12 +48,28 @@
     "episode": 4
   },
   {
+    "id": 12,
+    "name": "Pierre Chanal",
+    "file": "12.jpg",
+    "subtitle": "L'énigme de Mourmelon",
+    "season": 2,
+    "episode": 5
+  },
+  {
     "id": 14,
     "name": "Christian Ranucci",
     "file": "14.jpg",
     "subtitle": "L'énigme du pull-over rouge",
     "season": 3,
     "episode": 2
+  },
+  {
+    "id": 16,
+    "name": "Christine Malèvre",
+    "file": "16.jpg",
+    "subtitle": "La mort au bout de l'aiguille",
+    "season": 3,
+    "episode": 4
   },
   {
     "id": 17,
@@ -102,6 +126,14 @@
     "subtitle": "La mort du petit Lubin",
     "season": 4,
     "episode": 4
+  },
+  {
+    "id": 25,
+    "name": "Christian van Geloven",
+    "file": "25.jpg",
+    "subtitle": "Criminel sexuel",
+    "season": 4,
+    "episode": 5
   },
   {
     "id": 26,
@@ -168,12 +200,28 @@
     "episode": 2
   },
   {
+    "id": 38,
+    "name": "Joël Matencio",
+    "file": "38.jpg",
+    "subtitle": "Le groupe 666",
+    "season": 5,
+    "episode": 5
+  },
+  {
     "id": 40,
     "name": "Alfredo Stranieri",
     "file": "40.jpg",
     "subtitle": "Voleur de vies",
     "season": 5,
     "episode": 7
+  },
+  {
+    "id": 41,
+    "name": "Sid Ahmed Rezala",
+    "file": "41.jpg",
+    "subtitle": "Le tueur des trains",
+    "season": 5,
+    "episode": 8
   },
   {
     "id": 43,
