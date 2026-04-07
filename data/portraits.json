@@ -744,11 +744,99 @@
     "episode": 5
   },
   {
+    "id": 224,
+    "name": "Stéphane Moitoiret",
+    "file": "224.jpg",
+    "subtitle": "Le crime fou de Stéphane Moitoiret",
+    "season": 16,
+    "episode": 8
+  },
+  {
+    "id": 232,
+    "name": "Luka Rocco Magnotta",
+    "file": "232.jpg",
+    "subtitle": "Le dépeceur de Montréal",
+    "season": 17,
+    "episode": 3
+  },
+  {
     "id": 234,
     "name": "Amanda Knox",
     "file": "234.jpg",
     "subtitle": "Ange ou démon",
     "season": 17,
     "episode": 5
+  },
+  {
+    "id": 235,
+    "name": "Tony Meilhon",
+    "file": "235.jpg",
+    "subtitle": "La mauvaise rencontre de Lætitia",
+    "season": 18,
+    "episode": 1
+  },
+  {
+    "id": 238,
+    "name": "Sylvain Schrutt",
+    "file": "238.png",
+    "subtitle": "Un gendre insoupçonnable",
+    "season": 18,
+    "episode": 4
+  },
+  {
+    "id": 239,
+    "name": "Bruno Cholet",
+    "file": "239.png",
+    "subtitle": "Le faux taxi",
+    "season": 18,
+    "episode": 5
+  },
+  {
+    "id": 244,
+    "name": "Yoni Palmier",
+    "file": "244.jpg",
+    "subtitle": "Le tueur de l'Essonne",
+    "season": 19,
+    "episode": 2
+  },
+  {
+    "id": 250,
+    "name": "Roselyne Lejard",
+    "file": "250.png",
+    "subtitle": "Plutôt veuve que divorcée",
+    "season": 20,
+    "episode": 6
+  },
+  {
+    "id": 251,
+    "name": "Mohamed Faleh",
+    "file": "251.jpg",
+    "subtitle": "Le tueur à la hache",
+    "season": 20,
+    "episode": 7
+  },
+  {
+    "id": 255,
+    "name": "Manuela Gonzalez",
+    "file": "255.jpg",
+    "subtitle": "La Veuve Noire de l'Isère",
+    "season": 21,
+    "episode": 4
+  },
+  {
+    "id": 256,
+    "name": "Jacques Rançon",
+    "file": "256.jpg",
+    "subtitle": "Le tueur de la gare de Perpignan",
+    "season": 21,
+    "episode": 5
+  },
+  {
+    "id": 259,
+    "name": "Patrick Salameh",
+    "file": "259.jpg",
+    "subtitle": "Le Jack l’Éventreur de Marseille",
+    "season": 22,
+    "episode": 2
   }
 ]
