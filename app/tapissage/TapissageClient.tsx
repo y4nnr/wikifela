@@ -355,7 +355,7 @@ export default function TapissageClient() {
               {score}
             </div>
             <p className="text-sm text-[var(--fg-muted)] mb-1">
-              identification{score !== 1 ? "s" : ""} correcte{score !== 1 ? "s" : ""} d&apos;affilée
+              identification{score !== 1 ? "s " : " "}correcte{score !== 1 ? "s " : " "}d&apos;affilée
             </p>
             <p className="text-base sm:text-lg text-[var(--fg)] mt-3">{streakVerdict}</p>
           </div>

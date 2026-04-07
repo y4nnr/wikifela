@@ -302,7 +302,7 @@ export default function QuizClient() {
               {score}
             </div>
             <p className="text-sm text-[var(--fg-muted)] mb-1">
-              bonne{score !== 1 ? "s" : ""} réponse{score !== 1 ? "s" : ""} d&apos;affilée
+              bonne{score !== 1 ? "s " : " "}réponse{score !== 1 ? "s " : " "}d&apos;affilée
             </p>
             <p className="text-base sm:text-lg text-[var(--fg)] mt-3">{streakVerdict}</p>
           </div>
