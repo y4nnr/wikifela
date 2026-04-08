@@ -3,6 +3,7 @@
 import { useCallback, useState } from "react";
 import Link from "next/link";
 import PageTitle from "@/components/PageTitle";
+import Leaderboard from "@/components/Leaderboard";
 
 interface Question {
   question: string;
@@ -171,6 +172,12 @@ export default function QuizClient() {
           >
             {loading ? "Chargement..." : "Commencer"}
           </button>
+
+          {mode === "survie" && (
+            <div className="mt-2">
+              <Leaderboard game="quiz" difficulty={difficulty} readOnly />
+            </div>
+          )}
         </div>
       </div>
     );
@@ -294,7 +301,7 @@ export default function QuizClient() {
     return (
       <div className="flex-1 flex flex-col items-center justify-center px-4">
         <div className="text-center max-w-sm w-full">
-          <div className="border border-[var(--border)] rounded-lg bg-[var(--bg-card)] p-5 sm:p-6 mb-6">
+          <div className="border border-[var(--border)] rounded-lg bg-[var(--bg-card)] p-5 sm:p-6 mb-4">
             <div className="text-[10px] text-[var(--fg-dim)] uppercase tracking-wider mb-4">
               Fin de la série
             </div>
@@ -305,6 +312,10 @@ export default function QuizClient() {
               bonne{score !== 1 ? "s " : " "}réponse{score !== 1 ? "s " : " "}d&apos;affilée
             </p>
             <p className="text-base sm:text-lg text-[var(--fg)] mt-3">{streakVerdict}</p>
+          </div>
+
+          <div className="mb-4">
+            <Leaderboard game="quiz" difficulty={difficulty} playerScore={score} />
           </div>
 
           <button

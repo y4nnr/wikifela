@@ -40,3 +40,14 @@ model EpisodeLocation {
   @@index([episodeId])
   @@index([department])
 }
+
+model LeaderboardEntry {
+  id         Int      @id @default(autoincrement())
+  game       String   // "quiz" | "tapissage"
+  difficulty String?  // "facile" | "moyen" | "difficile" (quiz only)
+  nickname   String
+  score      Int
+  createdAt  DateTime @default(now())
+
+  @@index([game, difficulty])
+}

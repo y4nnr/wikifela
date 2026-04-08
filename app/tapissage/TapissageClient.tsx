@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import PageTitle from "@/components/PageTitle";
+import Leaderboard from "@/components/Leaderboard";
 
 interface LineupMember {
   file: string;
@@ -172,6 +173,12 @@ export default function TapissageClient() {
           >
             {loading ? "Chargement..." : "Commencer le tapissage"}
           </button>
+
+          {mode === "survie" && (
+            <div className="mt-2">
+              <Leaderboard game="tapissage" readOnly />
+            </div>
+          )}
         </div>
       </div>
     );
@@ -347,7 +354,7 @@ export default function TapissageClient() {
     return (
       <div className="flex-1 flex flex-col items-center justify-center px-4">
         <div className="text-center max-w-sm w-full">
-          <div className="border border-[var(--border)] rounded-lg bg-[var(--bg-card)] p-5 sm:p-6 mb-6">
+          <div className="border border-[var(--border)] rounded-lg bg-[var(--bg-card)] p-5 sm:p-6 mb-4">
             <div className="text-[10px] text-[var(--fg-dim)] uppercase tracking-wider mb-4">
               Fin de la série
             </div>
@@ -358,6 +365,10 @@ export default function TapissageClient() {
               identification{score !== 1 ? "s " : " "}correcte{score !== 1 ? "s " : " "}d&apos;affilée
             </p>
             <p className="text-base sm:text-lg text-[var(--fg)] mt-3">{streakVerdict}</p>
+          </div>
+
+          <div className="mb-4">
+            <Leaderboard game="tapissage" playerScore={score} />
           </div>
 
           <button
