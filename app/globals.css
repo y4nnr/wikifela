@@ -1,26 +1,6 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #0a0a0a;
-  --bg-card: #111111;
-  --bg-input: #1a1a1a;
-  --fg: #f5f5f5;
-  --fg-muted: #d4d4d4;
-  --fg-dim: #a3a3a3;
-  --border: #262626;
-  --border-hover: #404040;
-  --accent: #fcf84f;
-  --accent-link: #4285f4;
-  --brand-red: #fe0000;
-  --brand-red-hover: #e00000;
-  --brand-orange: #fe6c03;
-  --success: #4ade80;
-  --success-dim: #22c55e;
-  --terminal: #4ade80;
-  --terminal-dim: #22c55e;
-}
-
-html.light {
   --bg: #fafafa;
   --bg-card: #ffffff;
   --bg-input: #ffffff;
@@ -38,6 +18,26 @@ html.light {
   --success-dim: #15803d;
   --terminal: #4a4a4a;
   --terminal-dim: #737373;
+}
+
+html.dark {
+  --bg: #0a0a0a;
+  --bg-card: #111111;
+  --bg-input: #1a1a1a;
+  --fg: #f5f5f5;
+  --fg-muted: #d4d4d4;
+  --fg-dim: #a3a3a3;
+  --border: #262626;
+  --border-hover: #404040;
+  --accent: #fcf84f;
+  --accent-link: #4285f4;
+  --brand-red: #fe0000;
+  --brand-red-hover: #e00000;
+  --brand-orange: #fe6c03;
+  --success: #4ade80;
+  --success-dim: #22c55e;
+  --terminal: #4ade80;
+  --terminal-dim: #22c55e;
 }
 
 body {
