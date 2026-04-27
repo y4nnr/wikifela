@@ -3,7 +3,7 @@
 import Link from "next/link";
 
 const links = [
-  { href: "/", label: "Recherche", icon: (
+  { href: "/recherche", label: "Recherche", icon: (
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="11" cy="11" r="8"/>
       <line x1="21" y1="21" x2="16.65" y2="16.65"/>
@@ -40,23 +40,15 @@ const links = [
       <line x1="17.5" y1="15" x2="17.5" y2="21"/>
     </svg>
   )},
-  { href: "/roadmap", label: "Roadmap", desktopOnly: true, icon: (
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
-      <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
-      <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
-      <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
-    </svg>
-  )},
 ];
 
 export default function Header() {
 
   return (
     <>
-      {/* Top header — logo + desktop nav */}
+      {/* Top header — logo + desktop nav (left-aligned, masthead style) */}
       <header className="border-b border-[var(--border)] bg-[var(--bg)] relative z-50">
-        <div className="flex items-center justify-between px-4 py-3">
+        <div className="max-w-2xl mx-auto flex items-center gap-6 lg:gap-8 px-4 sm:px-8 py-3">
           <Link
             href="/"
             className="text-2xl font-black font-[family-name:var(--font-fela)] uppercase shrink-0 bg-black inline-flex items-center px-2.5 py-1 rounded-md tracking-wide"
@@ -66,7 +58,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-2">
+          <nav className="hidden md:flex items-center gap-1 lg:gap-2">
             {links.map((link) => (
               <Link
                 key={link.href}
@@ -84,7 +76,7 @@ export default function Header() {
       {/* Mobile bottom tab bar */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[var(--bg)] border-t border-[var(--border)] safe-bottom">
         <div className="flex justify-around items-center py-1.5 pb-[max(0.375rem,env(safe-area-inset-bottom))]">
-          {links.filter((l) => !(l as any).desktopOnly).map((link) => (
+          {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
