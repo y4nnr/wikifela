@@ -12,15 +12,13 @@ export default async function HomePage({ searchParams }: HomeProps) {
 
   return (
     <div className="flex-1 w-full">
-      <div className="max-w-2xl mx-auto px-4 sm:px-8 py-10 sm:py-16">
-        <div className="mt-12">
-          <hr className="border-t border-[var(--border)]" />
-          <p className="my-8 text-base sm:text-lg text-[var(--fg-muted)] text-center">
-            Site non-officiel dédié à l&apos;émission{" "}
-            <em>Faites entrer l&apos;accusé</em>.
-          </p>
-          <hr className="border-t border-[var(--border)]" />
-        </div>
+      <div className="max-w-2xl mx-auto px-4 sm:px-8 pt-6 sm:pt-12 pb-10 sm:pb-16">
+        <hr className="border-t border-[var(--border)]" />
+        <p className="my-8 text-base sm:text-lg text-[var(--fg-muted)] text-center">
+          Site non-officiel dédié à l&apos;émission{" "}
+          <em>Faites entrer l&apos;accusé</em>.
+        </p>
+        <hr className="border-t border-[var(--border)]" />
 
         <ul className="list-disc pl-6 mt-12 space-y-3 text-[var(--fg)] leading-relaxed">
           <li>

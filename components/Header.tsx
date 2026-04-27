@@ -46,9 +46,9 @@ export default function Header() {
 
   return (
     <>
-      {/* Top header — logo + desktop nav (left-aligned, masthead style) */}
+      {/* Top header — logo + nav items grouped and centered as one cluster */}
       <header className="border-b border-[var(--border)] bg-[var(--bg)] relative z-50">
-        <div className="max-w-2xl mx-auto flex items-center gap-6 lg:gap-8 px-4 sm:px-8 py-3">
+        <div className="flex items-center justify-start md:justify-center gap-6 lg:gap-8 px-4 py-3">
           <Link
             href="/"
             className="text-2xl font-black font-[family-name:var(--font-fela)] uppercase shrink-0 bg-black inline-flex items-center px-2.5 py-1 rounded-md tracking-wide"
@@ -57,7 +57,7 @@ export default function Header() {
             <span className="text-[#fe0000]">FELA</span>
           </Link>
 
-          {/* Desktop nav */}
+          {/* Desktop nav — sits next to logo, the whole group is centered */}
           <nav className="hidden md:flex items-center gap-1 lg:gap-2">
             {links.map((link) => (
               <Link

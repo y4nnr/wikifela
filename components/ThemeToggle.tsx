@@ -8,8 +8,9 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggle}
-      className="fixed top-3 right-3 md:bottom-4 md:top-auto md:right-4 z-50 w-8 h-8 md:w-9 md:h-9 rounded-full bg-[var(--bg-card)] border border-[var(--border)] shadow-lg flex items-center justify-center text-[var(--fg-muted)] hover:text-[var(--fg)] hover:border-[var(--border-hover)] transition-colors"
+      className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-[var(--bg-card)] border border-[var(--border)] shadow-lg flex items-center justify-center text-[var(--fg-muted)] hover:text-[var(--fg)] hover:border-[var(--border-hover)] transition-colors"
       title={theme === "dark" ? "Mode clair" : "Mode sombre"}
+      aria-label={theme === "dark" ? "Activer le mode clair" : "Activer le mode sombre"}
     >
       {theme === "dark" ? (
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

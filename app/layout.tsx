@@ -4,7 +4,7 @@ import localFont from "next/font/local";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ThemeProvider from "@/components/ThemeProvider";
-import ThemeToggle from "@/components/ThemeToggle";
+import FloatingActions from "@/components/FloatingActions";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -49,7 +49,7 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
-          <ThemeToggle />
+          <FloatingActions />
         </ThemeProvider>
       </body>
     </html>
