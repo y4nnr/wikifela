@@ -14,7 +14,7 @@ interface FileStat {
   outputBytes: number;
 }
 
-function pad(n: number, len: number): string {
+function pad(n: number | string, len: number): string {
   return String(n).padStart(len, " ");
 }
 

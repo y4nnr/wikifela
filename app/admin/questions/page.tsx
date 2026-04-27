@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import AdminQuestions from "./AdminQuestions";
 
 export const metadata = {
@@ -6,5 +7,9 @@ export const metadata = {
 };
 
 export default function AdminQuestionsPage() {
-  return <AdminQuestions />;
+  return (
+    <Suspense fallback={null}>
+      <AdminQuestions />
+    </Suspense>
+  );
 }
