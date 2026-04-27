@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import PageTitle from "@/components/PageTitle";
 import SearchResults from "@/components/SearchResults";
 import type { SearchResult } from "@/lib/search";
@@ -37,11 +37,21 @@ export default function Home() {
 
   const hasQuery = query.trim().length > 0;
 
+  // When transitioning from landing to results view, the input gets remounted
+  // in a different DOM position and loses focus. Refocus it after transition.
+  useEffect(() => {
+    if (hasQuery && inputRef.current && document.activeElement !== inputRef.current) {
+      inputRef.current.focus();
+      const len = inputRef.current.value.length;
+      inputRef.current.setSelectionRange(len, len);
+    }
+  }, [hasQuery]);
+
   const searchInput = (
     <div className="flex items-center w-full rounded border border-[var(--border)] bg-[var(--bg)] font-mono">
       <span className="ml-3 text-[var(--terminal)] text-sm shrink-0">&gt;</span>
       <input
-        ref={!hasQuery ? inputRef : undefined}
+        ref={inputRef}
         type="text"
         defaultValue={hasQuery ? query : undefined}
         onChange={(e) => handleChange(e.target.value)}

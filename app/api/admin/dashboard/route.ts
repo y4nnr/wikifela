@@ -1,50 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
-import { readFileSync } from "fs";
-import { resolve } from "path";
-
-function checkAuth(request: NextRequest): boolean {
-  const authHeader = request.headers.get("authorization");
-  if (!authHeader?.startsWith("Basic ")) return false;
-  const decoded = Buffer.from(authHeader.slice(6), "base64").toString();
-  const expected = process.env.ADMIN_CREDENTIALS || "admin:admin";
-  return decoded === expected;
-}
+import { checkAdminAuth, unauthorized } from "@/lib/admin-auth";
 
 export async function GET(request: NextRequest) {
-  if (!checkAuth(request)) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  if (!checkAdminAuth(request)) return unauthorized();
 
   try {
-    // Load static JSON data
-    const quizBank: { episodeId: number; difficulty: string }[] = JSON.parse(
-      readFileSync(resolve(process.cwd(), "data/quiz-bank.json"), "utf-8")
-    );
-    const portraits: { id: number; name: string; file: string; gender: string }[] = JSON.parse(
-      readFileSync(resolve(process.cwd(), "data/portraits.json"), "utf-8")
-    );
-
-    // Index quiz questions by episodeId
-    const quizByEpisode = new Map<number, { total: number; facile: number; moyen: number; difficile: number }>();
-    for (const q of quizBank) {
-      const entry = quizByEpisode.get(q.episodeId) || { total: 0, facile: 0, moyen: 0, difficile: 0 };
-      entry.total++;
-      if (q.difficulty === "facile") entry.facile++;
-      else if (q.difficulty === "moyen") entry.moyen++;
-      else if (q.difficulty === "difficile") entry.difficile++;
-      quizByEpisode.set(q.episodeId, entry);
-    }
-
-    // Index portraits by episode id
-    const portraitsByEpisode = new Map<number, typeof portraits>();
-    for (const p of portraits) {
-      const list = portraitsByEpisode.get(p.id) || [];
-      list.push(p);
-      portraitsByEpisode.set(p.id, list);
-    }
-
-    // Fetch all episodes with location counts
+    // Fetch all episodes with locations, quiz questions, and portraits
     const episodes = await prisma.episode.findMany({
       select: {
         id: true,
@@ -63,36 +25,67 @@ export async function GET(request: NextRequest) {
             eventDescription: true,
           },
         },
+        quizQuestions: {
+          select: {
+            id: true,
+            difficulty: true,
+          },
+        },
+        portraits: {
+          select: {
+            id: true,
+            personName: true,
+            imagePath: true,
+            gender: true,
+          },
+        },
       },
       orderBy: [{ season: "asc" }, { episode: "asc" }],
     });
 
     // Build per-episode report
-    const episodeData = episodes.map((ep) => ({
-      id: ep.id,
-      title: ep.title,
-      season: ep.season,
-      episode: ep.episode,
-      airDate: ep.airDate,
-      hasDescription: !!ep.description,
-      hasWikiSummary: !!ep.wikiSummary,
-      keywordCount: ep.keywords.length,
-      locations: ep.locations,
-      locationCount: ep.locations.length,
-      quiz: quizByEpisode.get(ep.id) || { total: 0, facile: 0, moyen: 0, difficile: 0 },
-      portraits: portraitsByEpisode.get(ep.id) || [],
-      portraitCount: (portraitsByEpisode.get(ep.id) || []).length,
-    }));
+    const episodeData = episodes.map((ep) => {
+      const quizStats = { total: ep.quizQuestions.length, facile: 0, moyen: 0, difficile: 0 };
+      for (const q of ep.quizQuestions) {
+        if (q.difficulty === "facile") quizStats.facile++;
+        else if (q.difficulty === "moyen") quizStats.moyen++;
+        else if (q.difficulty === "difficile") quizStats.difficile++;
+      }
 
-    // Summary stats
+      return {
+        id: ep.id,
+        title: ep.title,
+        season: ep.season,
+        episode: ep.episode,
+        airDate: ep.airDate,
+        hasDescription: !!ep.description,
+        hasWikiSummary: !!ep.wikiSummary,
+        keywordCount: ep.keywords.length,
+        locations: ep.locations,
+        locationCount: ep.locations.length,
+        quiz: quizStats,
+        portraits: ep.portraits.map((p) => ({
+          id: p.id,
+          name: p.personName,
+          file: p.imagePath,
+          gender: p.gender,
+        })),
+        portraitCount: ep.portraits.length,
+      };
+    });
+
+    // Count totals including general questions (no episode)
+    const totalQuestions = await prisma.quizQuestion.count();
+    const totalPortraits = await prisma.portrait.count();
+
     const summary = {
       totalEpisodes: episodes.length,
       withLocations: episodeData.filter((e) => e.locationCount > 0).length,
       totalPins: episodeData.reduce((s, e) => s + e.locationCount, 0),
       withQuiz: episodeData.filter((e) => e.quiz.total > 0).length,
-      totalQuestions: quizBank.length,
+      totalQuestions,
       withPortraits: episodeData.filter((e) => e.portraitCount > 0).length,
-      totalPortraits: portraits.length,
+      totalPortraits,
       withDescription: episodeData.filter((e) => e.hasDescription).length,
       withWikiSummary: episodeData.filter((e) => e.hasWikiSummary).length,
       withKeywords: episodeData.filter((e) => e.keywordCount > 0).length,

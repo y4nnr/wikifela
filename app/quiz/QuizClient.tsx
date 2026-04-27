@@ -7,7 +7,7 @@ import Leaderboard from "@/components/Leaderboard";
 
 interface Question {
   question: string;
-  episodeId: number;
+  episodeId: number | null;
   options: string[];
   correctIndex: number;
 }
@@ -262,12 +262,16 @@ export default function QuizClient() {
 
           {revealed && (
             <div className="mt-6 flex justify-between items-center">
-              <Link
-                href={`/episode/${q.episodeId}`}
-                className="text-xs text-[var(--fg-dim)] hover:text-[var(--brand-red)] transition-colors"
-              >
-                Voir l&apos;épisode
-              </Link>
+              {q.episodeId ? (
+                <Link
+                  href={`/episode/${q.episodeId}`}
+                  className="text-xs text-[var(--fg-dim)] hover:text-[var(--brand-red)] transition-colors"
+                >
+                  Voir l&apos;épisode
+                </Link>
+              ) : (
+                <span />
+              )}
               <button
                 onClick={nextQuestion}
                 className="px-6 py-2 rounded-lg bg-[var(--bg-input)] border border-[var(--border)] text-sm hover:border-[var(--border-hover)] transition-colors"

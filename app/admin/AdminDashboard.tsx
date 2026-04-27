@@ -245,13 +245,27 @@ export default function AdminDashboard() {
           <h1 className="text-xl font-bold text-[var(--fg)]">Tableau de bord</h1>
           <p className="text-xs text-[var(--fg-dim)] mt-0.5">{summary.totalEpisodes} episodes indexees</p>
         </div>
-        <button
-          onClick={() => fetchData(credentials)}
-          disabled={loading}
-          className="px-3 py-1.5 rounded border border-[var(--border)] text-xs text-[var(--fg-muted)] hover:border-[var(--border-hover)] transition-colors disabled:opacity-50"
-        >
-          {loading ? "..." : "Rafraichir"}
-        </button>
+        <div className="flex items-center gap-2">
+          <Link
+            href="/admin/questions"
+            className="px-3 py-1.5 rounded border border-[var(--border)] text-xs text-[var(--fg-muted)] hover:border-[var(--border-hover)] transition-colors"
+          >
+            Questions
+          </Link>
+          <Link
+            href="/admin/portraits"
+            className="px-3 py-1.5 rounded border border-[var(--border)] text-xs text-[var(--fg-muted)] hover:border-[var(--border-hover)] transition-colors"
+          >
+            Portraits
+          </Link>
+          <button
+            onClick={() => fetchData(credentials)}
+            disabled={loading}
+            className="px-3 py-1.5 rounded border border-[var(--border)] text-xs text-[var(--fg-muted)] hover:border-[var(--border-hover)] transition-colors disabled:opacity-50"
+          >
+            {loading ? "..." : "Rafraichir"}
+          </button>
+        </div>
       </div>
 
       {/* Summary cards */}

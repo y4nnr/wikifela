@@ -1,23 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
-import { readFileSync } from "fs";
-import { resolve } from "path";
-
-function checkAuth(request: NextRequest): boolean {
-  const authHeader = request.headers.get("authorization");
-  if (!authHeader?.startsWith("Basic ")) return false;
-  const decoded = Buffer.from(authHeader.slice(6), "base64").toString();
-  const expected = process.env.ADMIN_CREDENTIALS || "admin:admin";
-  return decoded === expected;
-}
+import { checkAdminAuth, unauthorized } from "@/lib/admin-auth";
 
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  if (!checkAuth(request)) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  if (!checkAdminAuth(request)) return unauthorized();
 
   const { id: idStr } = await params;
   const id = parseInt(idStr, 10);
@@ -30,6 +19,24 @@ export async function GET(
       where: { id },
       include: {
         locations: true,
+        quizQuestions: {
+          select: {
+            id: true,
+            question: true,
+            correctAnswer: true,
+            wrongAnswers: true,
+            difficulty: true,
+          },
+        },
+        portraits: {
+          select: {
+            id: true,
+            personName: true,
+            imagePath: true,
+            subtitle: true,
+            gender: true,
+          },
+        },
       },
     });
 
@@ -37,15 +44,21 @@ export async function GET(
       return NextResponse.json({ error: "Not found" }, { status: 404 });
     }
 
-    // Load quiz questions for this episode
-    const quizBank: { question: string; answer: string; options: string[]; episodeId: number; difficulty: string }[] =
-      JSON.parse(readFileSync(resolve(process.cwd(), "data/quiz-bank.json"), "utf-8"));
-    const questions = quizBank.filter((q) => q.episodeId === id);
+    // Map to the shape the admin frontend expects
+    const questions = episode.quizQuestions.map((q) => ({
+      question: q.question,
+      answer: q.correctAnswer,
+      options: q.wrongAnswers,
+      difficulty: q.difficulty,
+    }));
 
-    // Load portraits for this episode
-    const allPortraits: { id: number; name: string; file: string; subtitle: string; season: number; episode: number; gender: string }[] =
-      JSON.parse(readFileSync(resolve(process.cwd(), "data/portraits.json"), "utf-8"));
-    const portraits = allPortraits.filter((p) => p.id === id);
+    const portraits = episode.portraits.map((p) => ({
+      id: p.id,
+      name: p.personName,
+      file: p.imagePath,
+      subtitle: p.subtitle,
+      gender: p.gender,
+    }));
 
     // Find prev/next episodes
     const [prev, next] = await Promise.all([
@@ -65,6 +78,8 @@ export async function GET(
       episode: {
         ...episode,
         searchVector: undefined,
+        quizQuestions: undefined,
+        portraits: undefined,
       },
       questions,
       portraits,

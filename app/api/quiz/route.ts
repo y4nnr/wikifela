@@ -1,30 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { readFileSync } from "fs";
-import { resolve } from "path";
-
-interface QuizQuestion {
-  question: string;
-  answer: string;
-  options: string[];
-  episodeId: number;
-  difficulty: "facile" | "moyen" | "difficile";
-}
-
-let questionsCache: QuizQuestion[] | null = null;
-
-function loadQuestions(): QuizQuestion[] {
-  if (questionsCache) return questionsCache;
-  try {
-    const data = readFileSync(
-      resolve(process.cwd(), "data/quiz-bank.json"),
-      "utf-8"
-    );
-    questionsCache = JSON.parse(data);
-    return questionsCache!;
-  } catch {
-    return [];
-  }
-}
+import { prisma } from "@/lib/db";
+import { Difficulty } from "@prisma/client";
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -42,29 +18,41 @@ export async function GET(request: NextRequest) {
   const maxCount = mode === "survie" ? 100 : 10;
   const count = Math.min(parseInt(params.get("count") || "5", 10), maxCount);
 
-  const allQuestions = loadQuestions();
-  const filtered = allQuestions.filter((q) => q.difficulty === difficulty);
-
-  if (filtered.length === 0) {
+  if (!["facile", "moyen", "difficile"].includes(difficulty)) {
     return NextResponse.json({ questions: [] });
   }
 
-  const selected = shuffle(filtered).slice(0, count);
+  try {
+    const allQuestions = await prisma.quizQuestion.findMany({
+      where: { difficulty: difficulty as Difficulty },
+      select: {
+        id: true,
+        question: true,
+        correctAnswer: true,
+        wrongAnswers: true,
+        episodeId: true,
+      },
+    });
 
-  // Shuffle options with the answer for each question
-  const questions = selected.map((q) => ({
-    question: q.question,
-    episodeId: q.episodeId,
-    options: shuffle([q.answer, ...q.options]),
-    correctIndex: -1, // will be set below
-  }));
+    if (allQuestions.length === 0) {
+      return NextResponse.json({ questions: [] });
+    }
 
-  // Set correctIndex after shuffle
-  for (let i = 0; i < questions.length; i++) {
-    questions[i].correctIndex = questions[i].options.indexOf(
-      selected[i].answer
-    );
+    const selected = shuffle(allQuestions).slice(0, count);
+
+    const questions = selected.map((q) => {
+      const options = shuffle([q.correctAnswer, ...q.wrongAnswers]);
+      return {
+        question: q.question,
+        episodeId: q.episodeId,
+        options,
+        correctIndex: options.indexOf(q.correctAnswer),
+      };
+    });
+
+    return NextResponse.json({ questions });
+  } catch (err) {
+    console.error("Quiz API error:", err);
+    return NextResponse.json({ questions: [] }, { status: 500 });
   }
-
-  return NextResponse.json({ questions });
 }

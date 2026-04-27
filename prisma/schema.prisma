@@ -19,6 +19,8 @@ model Episode {
   wikiSummary  String?
   searchVector Unsupported("tsvector")?
   locations    EpisodeLocation[]
+  quizQuestions QuizQuestion[]
+  portraits    Portrait[]
 
   @@index([searchVector], type: Gin)
   @@unique([season, episode])
@@ -41,6 +43,41 @@ model EpisodeLocation {
   @@index([department])
 }
 
+model QuizQuestion {
+  id            Int        @id @default(autoincrement())
+  episodeId     Int?
+  episode       Episode?   @relation(fields: [episodeId], references: [id])
+  difficulty    Difficulty
+  question      String
+  correctAnswer String
+  wrongAnswers  String[]
+  category      String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  @@index([episodeId])
+  @@index([difficulty])
+}
+
+model Portrait {
+  id              Int       @id @default(autoincrement())
+  episodeId       Int
+  episode         Episode   @relation(fields: [episodeId], references: [id])
+  imagePath       String
+  personName      String
+  subtitle        String?
+  gender          Gender
+  isPrimary       Boolean   @default(false)
+  takedownAt      DateTime?
+  takedownReason  String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([episodeId])
+  @@index([gender])
+  @@index([takedownAt])
+}
+
 model LeaderboardEntry {
   id         Int      @id @default(autoincrement())
   game       String   // "quiz" | "tapissage"
@@ -50,4 +87,15 @@ model LeaderboardEntry {
   createdAt  DateTime @default(now())
 
   @@index([game, difficulty])
+}
+
+enum Difficulty {
+  facile
+  moyen
+  difficile
+}
+
+enum Gender {
+  M
+  F
 }

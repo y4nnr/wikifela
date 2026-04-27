@@ -2,8 +2,6 @@ import { prisma } from "@/lib/db";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { readFileSync } from "fs";
-import { resolve } from "path";
 import PageTitle from "@/components/PageTitle";
 
 function formatDate(date: Date | null): string {
@@ -71,13 +69,14 @@ export default async function EpisodePage({
 
   // Check for portrait
   let portrait: { name: string; file: string } | null = null;
-  try {
-    const portraits = JSON.parse(
-      readFileSync(resolve(process.cwd(), "data/portraits.json"), "utf-8")
-    ) as { id: number; name: string; file: string }[];
-    const match = portraits.find((p) => p.id === episodeId);
-    if (match) portrait = match;
-  } catch {}
+  const portraitRow = await prisma.portrait.findFirst({
+    where: { episodeId, takedownAt: null },
+    select: { personName: true, imagePath: true },
+    orderBy: { isPrimary: "desc" },
+  });
+  if (portraitRow) {
+    portrait = { name: portraitRow.personName, file: portraitRow.imagePath };
+  }
 
   const shortSummary = episode.wikiSummary
     ? getSummary(episode.wikiSummary)
