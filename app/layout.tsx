@@ -44,7 +44,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className={`${geistSans.variable} ${titleFont.variable} ${poppins.variable} ${archivoBlack.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col font-[family-name:var(--font-geist-sans)] pb-16 md:pb-0" suppressHydrationWarning>
+      <body className="min-h-full flex flex-col font-[family-name:var(--font-geist-sans)] pt-[58px] pb-16 md:pt-0 md:pb-0" suppressHydrationWarning>
         <ThemeProvider>
           <Header />
           {children}

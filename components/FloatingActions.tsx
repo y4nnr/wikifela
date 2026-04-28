@@ -10,7 +10,7 @@ export default function FloatingActions() {
         href="/a-propos"
         title="À propos"
         aria-label="À propos"
-        className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-[var(--bg-card)] border border-[var(--border)] shadow-lg flex items-center justify-center text-[var(--fg-muted)] hover:text-[var(--fg)] hover:border-[var(--border-hover)] transition-colors"
+        className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-[#111111] md:bg-[var(--bg-card)] border border-[#262626] md:border-[var(--border)] shadow-lg flex items-center justify-center text-[#d4d4d4] md:text-[var(--fg-muted)] hover:text-[#f5f5f5] md:hover:text-[var(--fg)] hover:border-[#404040] md:hover:border-[var(--border-hover)] transition-colors"
       >
         <Info size={16} strokeWidth={2} />
       </Link>

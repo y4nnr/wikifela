@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const links = [
   { href: "/recherche", label: "Recherche", icon: (
@@ -43,12 +44,16 @@ const links = [
 ];
 
 export default function Header() {
+  const pathname = usePathname();
 
   return (
     <>
-      {/* Top header — logo + nav items grouped and centered as one cluster */}
-      <header className="border-b border-[var(--border)] bg-[var(--bg)] relative z-50">
-        <div className="flex items-center justify-start md:justify-center gap-6 lg:gap-8 px-4 py-3">
+      {/* Top header — logo + nav items grouped and centered as one cluster.
+          Mobile (<768px): fixed-position pinned to top, black bg, 2px white seam,
+          identical in both themes, height matches bottom nav (h-14).
+          Desktop (>=768px): static, theme-driven bg, 1px gray border. */}
+      <header className="fixed top-0 left-0 right-0 border-b-2 border-white bg-black z-50 md:static md:top-auto md:left-auto md:right-auto md:border-b md:border-[var(--border)] md:bg-[var(--bg)] md:relative">
+        <div className="h-14 md:h-auto flex items-center justify-start md:justify-center gap-6 lg:gap-8 px-4 md:py-3">
           <Link
             href="/"
             className="text-2xl font-black font-[family-name:var(--font-fela)] uppercase shrink-0 bg-black inline-flex items-center px-2.5 py-1 rounded-md tracking-wide"
@@ -73,19 +78,28 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Mobile bottom tab bar */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[var(--bg)] border-t border-[var(--border)] safe-bottom">
+      {/* Mobile bottom tab bar — black with white items + 2px white seam on top. */}
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[var(--tab-bg)] shadow-[var(--shadow-tab-top)] border-t-2 border-white safe-bottom">
         <div className="flex justify-around items-center py-1.5 pb-[max(0.375rem,env(safe-area-inset-bottom))]">
-          {links.map((link) => (
+          {links.map((link) => {
+            // Active = exact match, OR /episode/[id] activates the /episodes tab.
+            const isActive =
+              pathname === link.href ||
+              (link.href === "/episodes" && pathname.startsWith("/episode/"));
+            return (
               <Link
                 key={link.href}
                 href={link.href}
-                className="flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg transition-colors min-w-[3rem] text-[var(--fg-dim)] hover:text-[var(--fg-muted)]"
+                className={`flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg transition-opacity min-w-[3rem] ${
+                  isActive ? "opacity-100" : "opacity-60"
+                }`}
+                style={{ color: "var(--tab-fg)" }}
               >
                 {link.icon}
                 <span className="text-[9px]">{link.label}</span>
               </Link>
-          ))}
+            );
+          })}
         </div>
       </nav>
     </>

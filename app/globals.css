@@ -18,6 +18,16 @@
   --success-dim: #15803d;
   --terminal: #4a4a4a;
   --terminal-dim: #737373;
+  /* Mobile tab bar — black bar, white fg, same in both themes.
+     Active vs inactive distinguished by opacity (100% / 60%). */
+  --tab-bg: #000000;
+  --tab-fg: #ffffff;
+
+  /* Soft elevation above mobile tab bar. */
+  --shadow-tab-top: 0 -4px 12px rgba(0, 0, 0, 0.1);
+
+  /* Homepage chevron foreground — themed: black on light, white on dark. */
+  --chevron-fg: #000000;
 }
 
 html.dark {
@@ -38,6 +48,13 @@ html.dark {
   --success-dim: #22c55e;
   --terminal: #4ade80;
   --terminal-dim: #22c55e;
+  /* Stronger elevation in dark mode (dark bg needs more shadow to show). */
+  --shadow-tab-top: 0 -4px 12px rgba(0, 0, 0, 0.4);
+
+  /* Tab bar stays black/white in dark mode too — overrides intentionally omitted. */
+
+  /* Chevron flips to white on dark page background. */
+  --chevron-fg: #ffffff;
 }
 
 body {
