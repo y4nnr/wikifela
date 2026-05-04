@@ -162,7 +162,7 @@ export default function Header() {
                   role="menu"
                   className="absolute left-0 top-[calc(100%+6px)] w-48 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] shadow-lg overflow-hidden z-50"
                 >
-                  {gameItems.map((item) => (
+                  {[...gameItems, enqueteItem].map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
@@ -176,18 +176,6 @@ export default function Header() {
                       {item.label}
                     </Link>
                   ))}
-                  <div className="h-px bg-[var(--border)]" />
-                  <Link
-                    href={enqueteItem.href}
-                    role="menuitem"
-                    onClick={() => setDesktopOpen(false)}
-                    className="flex items-center gap-3 px-3.5 py-3 text-sm text-[var(--fg)] hover:bg-[var(--bg-input)] transition-colors"
-                  >
-                    <span className="text-[var(--fg-muted)] [&_svg]:w-[18px] [&_svg]:h-[18px]">
-                      {enqueteItem.icon}
-                    </span>
-                    {enqueteItem.label}
-                  </Link>
                 </div>
               )}
             </div>
@@ -259,7 +247,7 @@ export default function Header() {
             Le commissariat
           </div>
           <ul className="divide-y divide-[var(--border)]">
-            {gameItems.map((item) => (
+            {[...gameItems, enqueteItem].map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
@@ -278,26 +266,6 @@ export default function Header() {
                 </Link>
               </li>
             ))}
-          </ul>
-          <div className="h-px bg-[var(--border)] my-1" />
-          <ul>
-            <li>
-              <Link
-                href={enqueteItem.href}
-                onClick={() => setMobileSheetOpen(false)}
-                className="flex items-center gap-4 py-4 text-[var(--fg)] active:bg-[var(--bg-input)] transition-colors"
-              >
-                <span className="text-[var(--fg-muted)] [&_svg]:w-[22px] [&_svg]:h-[22px]">
-                  {enqueteItem.icon}
-                </span>
-                <span className="flex-1 text-base font-medium">{enqueteItem.label}</span>
-                <ChevronRight
-                  size={18}
-                  strokeWidth={2}
-                  className="shrink-0 text-[var(--fg-dim)]"
-                />
-              </Link>
-            </li>
           </ul>
         </div>
       </div>

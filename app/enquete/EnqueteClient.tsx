@@ -1,9 +1,10 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Crown, HelpCircle, Glasses, MapPin } from "lucide-react";
+import { Crown, HelpCircle, Glasses, MapPin, ArrowRight } from "lucide-react";
 import PageTitle from "@/components/PageTitle";
 import Leaderboard from "@/components/Leaderboard";
+import GameProcedureDiagram from "@/components/GameProcedureDiagram";
 import QuizRoundView, { QuizQuestion } from "@/components/QuizRoundView";
 import TapissageRoundView, { TapissageRound } from "@/components/TapissageRoundView";
 import GeoFelaRoundView, { GeoCase, GeoFelaRound } from "@/components/GeoFelaRoundView";
@@ -230,6 +231,20 @@ export default function EnqueteClient() {
         </div>
 
         <div className="w-full max-w-sm space-y-5 px-4">
+          <GameProcedureDiagram
+            title="Comment jouer"
+            subtitle="Trois jeux qui s'enchaînent. Une erreur, et c'est terminé."
+            visual={
+              <div className="flex items-center justify-center gap-2 sm:gap-3 text-[var(--fg-dim)]">
+                <HelpCircle size={32} strokeWidth={1.75} />
+                <ArrowRight size={16} strokeWidth={2} />
+                <Glasses size={32} strokeWidth={1.75} />
+                <ArrowRight size={16} strokeWidth={2} />
+                <MapPin size={32} strokeWidth={1.75} />
+              </div>
+            }
+          />
+
           {error && (
             <p className="text-xs text-[var(--brand-red)] text-center">{error}</p>
           )}
