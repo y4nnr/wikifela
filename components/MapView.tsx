@@ -76,6 +76,7 @@ function TileSwapper({ theme }: { theme: "dark" | "light" }) {
   const layerRef = useRef<L.TileLayer | null>(null);
 
   useEffect(() => {
+    map.attributionControl?.setPrefix(false);
     if (layerRef.current) {
       map.removeLayer(layerRef.current);
     }

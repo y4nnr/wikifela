@@ -98,7 +98,7 @@ export default function MapClient() {
         initialAffaireIds={initialAffaireIds}
         onFilterChange={handleFilterChange}
       />
-      <div className="flex-1 relative">
+      <div className="flex-1 relative z-0">
         {loading && (
           <div className="absolute inset-0 flex items-center justify-center z-[1000] bg-[var(--bg)]/80">
             <p className="text-[var(--fg-muted)] text-sm">Chargement de la carte...</p>

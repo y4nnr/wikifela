@@ -438,7 +438,7 @@ function GeoFelaPlayingView({
       </div>
 
       <div className="w-full max-w-3xl">
-        <div className="border border-[var(--border)] rounded-lg overflow-hidden mb-3" style={{ height: "min(45vh, 360px)" }}>
+        <div className="relative z-0 border border-[var(--border)] rounded-lg overflow-hidden mb-3" style={{ height: "min(45vh, 360px)" }}>
           <GeoFelaMap
             key={mapKey}
             locations={round.correct.locations}
