@@ -127,7 +127,7 @@ export default function Header() {
               </Link>
             ))}
 
-            {/* Jeux dropdown trigger */}
+            {/* Commissariat dropdown trigger */}
             <div className="relative">
               <button
                 ref={triggerRef}
@@ -135,10 +135,11 @@ export default function Header() {
                 onClick={() => setDesktopOpen((v) => !v)}
                 aria-haspopup="menu"
                 aria-expanded={desktopOpen}
+                aria-label="Le commissariat"
                 className="flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg border border-[var(--border)] text-[var(--fg-muted)] hover:text-[var(--fg)] hover:border-[var(--border-hover)] transition-colors"
               >
                 <Gamepad2 className="w-3.5 h-3.5" strokeWidth={2} />
-                Jeux
+                Commissariat
               </button>
               {desktopOpen && (
                 <div
@@ -193,18 +194,19 @@ export default function Header() {
             onClick={() => setMobileSheetOpen((v) => !v)}
             aria-haspopup="dialog"
             aria-expanded={mobileSheetOpen}
+            aria-label="Le commissariat"
             className={`flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg transition-opacity min-w-[3rem] ${
               mobileSheetOpen ? "opacity-100" : "opacity-60"
             }`}
             style={{ color: "var(--tab-fg)" }}
           >
             <Gamepad2 size={20} strokeWidth={2} />
-            <span className="text-[9px]">Jeux</span>
+            <span className="text-[9px]">Commissariat</span>
           </button>
         </div>
       </nav>
 
-      {/* Mobile bottom sheet for Jeux */}
+      {/* Mobile bottom sheet for Commissariat */}
       <div
         aria-hidden={!mobileSheetOpen}
         className={`md:hidden fixed inset-0 z-[60] bg-black transition-opacity duration-300 ${
@@ -218,7 +220,7 @@ export default function Header() {
       <div
         role="dialog"
         aria-modal="true"
-        aria-label="Choisir un jeu"
+        aria-label="Le commissariat"
         aria-hidden={!mobileSheetOpen}
         className={`md:hidden fixed left-0 right-0 bottom-0 z-[70] bg-[var(--bg-card)] rounded-t-lg border-t border-[var(--border)] shadow-[var(--shadow-sheet)] transition-transform duration-300 ease-out ${
           mobileSheetOpen ? "translate-y-0" : "translate-y-full"
@@ -226,7 +228,7 @@ export default function Header() {
       >
         <div className="px-4 pt-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
           <div className="text-[10px] uppercase tracking-wider text-[var(--fg-dim)] pb-2">
-            Jeux
+            Le commissariat
           </div>
           <ul className="divide-y divide-[var(--border)]">
             {gameItems.map((item) => (
