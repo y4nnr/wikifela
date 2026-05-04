@@ -5,6 +5,7 @@ import Link from "next/link";
 import PageTitle from "@/components/PageTitle";
 import Leaderboard from "@/components/Leaderboard";
 import GeoFelaRoundView, { GeoCase, GeoFelaRound } from "@/components/GeoFelaRoundView";
+import GameProcedureDiagram from "@/components/GameProcedureDiagram";
 
 type Mode = "classique" | "survie";
 type Difficulty = "easy" | "hard";
@@ -162,6 +163,11 @@ export default function GeoFelaClient() {
         </div>
 
         <div className="w-full max-w-sm space-y-6 px-4">
+          <GameProcedureDiagram
+            title="Comment jouer"
+            subtitle="4 affaires — 1 à identifier d'après les lieux"
+          />
+
           <div>
             <label className="block text-sm text-[var(--fg-muted)] mb-3">Mode</label>
             <div className="flex gap-3">

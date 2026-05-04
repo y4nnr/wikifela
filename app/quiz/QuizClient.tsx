@@ -5,6 +5,7 @@ import Link from "next/link";
 import PageTitle from "@/components/PageTitle";
 import Leaderboard from "@/components/Leaderboard";
 import QuizRoundView, { QuizQuestion } from "@/components/QuizRoundView";
+import GameProcedureDiagram from "@/components/GameProcedureDiagram";
 
 type Difficulty = "facile" | "moyen" | "difficile";
 type Mode = "classique" | "survie";
@@ -84,6 +85,11 @@ export default function QuizClient() {
         </div>
 
         <div className="w-full max-w-sm space-y-6 px-4">
+          <GameProcedureDiagram
+            title="Comment jouer"
+            subtitle="4 réponses — 1 bonne réponse à choisir"
+          />
+
           <div>
             <label className="block text-sm text-[var(--fg-muted)] mb-3">Mode</label>
             <div className="flex gap-3">

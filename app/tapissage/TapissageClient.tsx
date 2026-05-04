@@ -5,6 +5,7 @@ import Link from "next/link";
 import PageTitle from "@/components/PageTitle";
 import Leaderboard from "@/components/Leaderboard";
 import TapissageRoundView, { TapissageRound } from "@/components/TapissageRoundView";
+import GameProcedureDiagram from "@/components/GameProcedureDiagram";
 
 type Mode = "classique" | "survie";
 type Phase = "setup" | "playing" | "result";
@@ -72,22 +73,10 @@ export default function TapissageClient() {
         </div>
 
         <div className="w-full max-w-sm space-y-6 px-4">
-          <div className="border border-[var(--border)] rounded bg-[var(--bg-card)] p-4 text-center">
-            <div className="text-[10px] text-[var(--fg-dim)] uppercase tracking-wider mb-3">
-              Procédure de tapissage
-            </div>
-            <div className="flex justify-center gap-2 sm:gap-3 mb-3">
-              {[1, 2, 3, 4].map((n) => (
-                <div
-                  key={n}
-                  className="w-10 h-12 sm:w-12 sm:h-14 border border-[var(--border)] rounded bg-[var(--bg)] flex items-end justify-center pb-1"
-                >
-                  <span className="text-[10px] text-[var(--fg-dim)]">{n}</span>
-                </div>
-              ))}
-            </div>
-            <div className="text-[10px] text-[var(--fg-dim)]">4 suspects — 1 accusé à identifier</div>
-          </div>
+          <GameProcedureDiagram
+            title="Procédure de tapissage"
+            subtitle="4 suspects — 1 accusé à identifier"
+          />
 
           <div>
             <label className="block text-sm text-[var(--fg-muted)] mb-3">Mode</label>
