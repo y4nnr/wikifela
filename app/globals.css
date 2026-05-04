@@ -28,6 +28,10 @@
 
   /* Homepage chevron foreground — themed: black on light, white on dark. */
   --chevron-fg: #000000;
+
+  /* Mobile Jeux bottom sheet — opacity of the dim backdrop and shadow above the sheet. */
+  --backdrop-jeux-opacity: 0.30;
+  --shadow-sheet: 0 -2px 8px rgba(0, 0, 0, 0.08);
 }
 
 html.dark {
@@ -55,6 +59,10 @@ html.dark {
 
   /* Chevron flips to white on dark page background. */
   --chevron-fg: #ffffff;
+
+  /* Slightly stronger but still light dim and shadow in dark mode. */
+  --backdrop-jeux-opacity: 0.50;
+  --shadow-sheet: 0 -2px 8px rgba(0, 0, 0, 0.30);
 }
 
 body {

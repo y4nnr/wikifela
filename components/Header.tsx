@@ -208,10 +208,11 @@ export default function Header() {
       <div
         aria-hidden={!mobileSheetOpen}
         className={`md:hidden fixed inset-0 z-[60] bg-black transition-opacity duration-300 ${
-          mobileSheetOpen
-            ? "opacity-50 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+          mobileSheetOpen ? "pointer-events-auto" : "pointer-events-none"
         }`}
+        style={{
+          opacity: mobileSheetOpen ? "var(--backdrop-jeux-opacity, 0.3)" : 0,
+        }}
         onClick={() => setMobileSheetOpen(false)}
       />
       <div
@@ -219,15 +220,12 @@ export default function Header() {
         aria-modal="true"
         aria-label="Choisir un jeu"
         aria-hidden={!mobileSheetOpen}
-        className={`md:hidden fixed left-0 right-0 bottom-0 z-[70] bg-[var(--bg-card)] rounded-t-2xl shadow-2xl border-t border-[var(--border)] transition-transform duration-300 ease-out ${
+        className={`md:hidden fixed left-0 right-0 bottom-0 z-[70] bg-[var(--bg-card)] rounded-t-lg border-t border-[var(--border)] shadow-[var(--shadow-sheet)] transition-transform duration-300 ease-out ${
           mobileSheetOpen ? "translate-y-0" : "translate-y-full"
         }`}
       >
-        <div className="flex justify-center pt-2.5 pb-1">
-          <span className="block w-9 h-1 rounded-full bg-[var(--fg-muted)] opacity-50" />
-        </div>
-        <div className="px-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
-          <div className="text-[10px] uppercase tracking-wider text-[var(--fg-dim)] py-2">
+        <div className="px-4 pt-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
+          <div className="text-[10px] uppercase tracking-wider text-[var(--fg-dim)] pb-2">
             Jeux
           </div>
           <ul className="divide-y divide-[var(--border)]">
