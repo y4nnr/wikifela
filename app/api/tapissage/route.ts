@@ -10,6 +10,16 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
+function parseExclude(raw: string | null): Set<number> {
+  if (!raw) return new Set();
+  return new Set(
+    raw
+      .split(",")
+      .map((s) => parseInt(s, 10))
+      .filter((n) => Number.isInteger(n))
+  );
+}
+
 export async function GET(request: NextRequest) {
   const mode = request.nextUrl.searchParams.get("mode") || "classique";
   const maxCount = mode === "survie" ? 100 : 10;
@@ -17,9 +27,9 @@ export async function GET(request: NextRequest) {
     parseInt(request.nextUrl.searchParams.get("count") || "5", 10),
     maxCount
   );
+  const excludeCorrect = parseExclude(request.nextUrl.searchParams.get("excludeCorrect"));
 
   try {
-    // Exclude taken-down portraits
     const allPortraits = await prisma.portrait.findMany({
       where: { takedownAt: null },
       include: {
@@ -32,7 +42,7 @@ export async function GET(request: NextRequest) {
     }
 
     const rounds = [];
-    const usedAsCorrect = new Set<number>();
+    const usedAsCorrect = new Set<number>(excludeCorrect);
     const usedAsWrong = new Set<number>();
 
     for (let i = 0; i < count; i++) {
@@ -61,6 +71,7 @@ export async function GET(request: NextRequest) {
         season: correct.episode?.season || null,
         episode: correct.episode?.episode || null,
         episodeId: correct.episodeId,
+        correctId: correct.id,
         lineup: lineup.map((p, idx) => ({
           file: `/portraits/${p.imagePath}`,
           name: p.personName,

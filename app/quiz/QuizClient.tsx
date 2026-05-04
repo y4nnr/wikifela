@@ -4,13 +4,7 @@ import { useCallback, useState } from "react";
 import Link from "next/link";
 import PageTitle from "@/components/PageTitle";
 import Leaderboard from "@/components/Leaderboard";
-
-interface Question {
-  question: string;
-  episodeId: number | null;
-  options: string[];
-  correctIndex: number;
-}
+import QuizRoundView, { QuizQuestion } from "@/components/QuizRoundView";
 
 type Difficulty = "facile" | "moyen" | "difficile";
 type Mode = "classique" | "survie";
@@ -21,13 +15,12 @@ export default function QuizClient() {
   const [difficulty, setDifficulty] = useState<Difficulty>("facile");
   const [mode, setMode] = useState<Mode>("classique");
   const [count, setCount] = useState(5);
-  const [questions, setQuestions] = useState<Question[]>([]);
+  const [questions, setQuestions] = useState<QuizQuestion[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selected, setSelected] = useState<number | null>(null);
-  const [revealed, setRevealed] = useState(false);
   const [score, setScore] = useState(0);
   const [loading, setLoading] = useState(false);
   const [survieOver, setSurvieOver] = useState(false);
+  const [advanceReady, setAdvanceReady] = useState(false);
 
   const startQuiz = useCallback(async () => {
     setLoading(true);
@@ -42,10 +35,9 @@ export default function QuizClient() {
       if (data.questions?.length > 0) {
         setQuestions(data.questions);
         setCurrentIndex(0);
-        setSelected(null);
-        setRevealed(false);
         setScore(0);
         setSurvieOver(false);
+        setAdvanceReady(false);
         setPhase("playing");
       }
     } catch {
@@ -55,15 +47,13 @@ export default function QuizClient() {
     }
   }, [difficulty, count, mode]);
 
-  const handleAnswer = (optionIndex: number) => {
-    if (revealed) return;
-    setSelected(optionIndex);
-    setRevealed(true);
-    if (optionIndex === questions[currentIndex].correctIndex) {
+  const handleAnswered = ({ correct }: { correct: boolean; episodeId: number | null }) => {
+    if (correct) {
       setScore((s) => s + 1);
     } else if (mode === "survie") {
       setSurvieOver(true);
     }
+    setAdvanceReady(true);
   };
 
   const nextQuestion = () => {
@@ -75,8 +65,7 @@ export default function QuizClient() {
       setPhase("result");
     } else {
       setCurrentIndex((i) => i + 1);
-      setSelected(null);
-      setRevealed(false);
+      setAdvanceReady(false);
     }
   };
 
@@ -96,9 +85,7 @@ export default function QuizClient() {
 
         <div className="w-full max-w-sm space-y-6 px-4">
           <div>
-            <label className="block text-sm text-[var(--fg-muted)] mb-3">
-              Mode
-            </label>
+            <label className="block text-sm text-[var(--fg-muted)] mb-3">Mode</label>
             <div className="flex gap-3">
               {(["classique", "survie"] as Mode[]).map((m) => (
                 <button
@@ -125,9 +112,7 @@ export default function QuizClient() {
 
           {mode === "classique" && (
             <div>
-              <label className="block text-sm text-[var(--fg-muted)] mb-3">
-                Difficulté
-              </label>
+              <label className="block text-sm text-[var(--fg-muted)] mb-3">Difficulté</label>
               <div className="flex gap-3">
                 {(["facile", "moyen", "difficile"] as Difficulty[]).map((d) => (
                   <button
@@ -148,9 +133,7 @@ export default function QuizClient() {
 
           {mode === "classique" && (
             <div>
-              <label className="block text-sm text-[var(--fg-muted)] mb-3">
-                Nombre de questions
-              </label>
+              <label className="block text-sm text-[var(--fg-muted)] mb-3">Nombre de questions</label>
               <div className="flex gap-3">
                 {[3, 5, 10].map((n) => (
                   <button
@@ -192,7 +175,6 @@ export default function QuizClient() {
     const q = questions[currentIndex];
     return (
       <div className="flex-1 flex flex-col items-center px-4 pt-8">
-        {/* Progress */}
         <div className="w-full max-w-lg mb-6">
           <div className="flex justify-between text-xs text-[var(--fg-dim)] mb-2">
             {mode === "survie" ? (
@@ -201,15 +183,11 @@ export default function QuizClient() {
                   <span className="inline-block w-1.5 h-1.5 rounded-full bg-[var(--brand-red)] animate-pulse" />
                   Survie
                 </span>
-                <span>
-                  Série : {score}
-                </span>
+                <span>Série : {score}</span>
               </>
             ) : (
               <>
-                <span>
-                  Question {currentIndex + 1} / {questions.length}
-                </span>
+                <span>Question {currentIndex + 1} / {questions.length}</span>
                 <span>
                   {score} bonne{score !== 1 ? "s" : ""} réponse
                   {score !== 1 ? "s" : ""}
@@ -221,54 +199,21 @@ export default function QuizClient() {
             <div className="w-full h-1 bg-[var(--border)] rounded-full">
               <div
                 className="h-1 bg-[var(--brand-red)] rounded-full transition-all"
-                style={{
-                  width: `${((currentIndex + 1) / questions.length) * 100}%`,
-                }}
+                style={{ width: `${((currentIndex + 1) / questions.length) * 100}%` }}
               />
             </div>
           )}
         </div>
 
-        {/* Question */}
-        <div className="w-full max-w-lg">
-          <h3 className="text-lg font-medium mb-6 leading-relaxed">
-            {q.question}
-          </h3>
-
-          <div className="space-y-3">
-            {q.options.map((option, i) => {
-              let cls =
-                "w-full text-left px-4 py-3 rounded-lg border transition-all text-sm ";
-              if (!revealed) {
-                cls +=
-                  selected === i
-                    ? "border-[var(--accent)] text-[var(--accent)] bg-white/5"
-                    : "border-[var(--border)] text-[var(--fg-muted)] hover:border-[var(--border-hover)]";
-              } else if (i === q.correctIndex) {
-                cls += "border-[var(--success)] text-[var(--success)] bg-[var(--success)]/10";
-              } else if (i === selected) {
-                cls += "border-[var(--brand-red)] text-[var(--brand-red)] bg-red-500/10";
-              } else {
-                cls += "border-[var(--border)] text-[var(--fg-dim)]";
-              }
-
-              return (
-                <button
-                  key={i}
-                  onClick={() => handleAnswer(i)}
-                  className={cls}
-                >
-                  {option}
-                </button>
-              );
-            })}
-          </div>
-
-          {revealed && (
+        <QuizRoundView
+          key={currentIndex}
+          question={q}
+          onAnswered={handleAnswered}
+          renderAfter={({ episodeId }) => (
             <div className="mt-6 flex justify-between items-center">
-              {q.episodeId ? (
+              {episodeId ? (
                 <Link
-                  href={`/episode/${q.episodeId}`}
+                  href={`/episode/${episodeId}`}
                   className="text-xs text-[var(--fg-dim)] hover:text-[var(--brand-red)] transition-colors"
                 >
                   Voir l&apos;épisode
@@ -278,6 +223,7 @@ export default function QuizClient() {
               )}
               <button
                 onClick={nextQuestion}
+                disabled={!advanceReady}
                 className="px-6 py-2 rounded-lg bg-[var(--bg-input)] border border-[var(--border)] text-sm hover:border-[var(--border-hover)] transition-colors"
               >
                 {mode === "survie" && survieOver
@@ -288,7 +234,7 @@ export default function QuizClient() {
               </button>
             </div>
           )}
-        </div>
+        />
       </div>
     );
   }
@@ -310,12 +256,8 @@ export default function QuizClient() {
       <div className="flex-1 flex flex-col items-center justify-center px-4">
         <div className="text-center max-w-sm w-full">
           <div className="border border-[var(--border)] rounded-lg bg-[var(--bg-card)] p-5 sm:p-6 mb-4">
-            <div className="text-[10px] text-[var(--fg-dim)] uppercase tracking-wider mb-4">
-              Fin de la série
-            </div>
-            <div className="text-4xl sm:text-5xl font-bold mb-2 text-[var(--brand-red)]">
-              {score}
-            </div>
+            <div className="text-[10px] text-[var(--fg-dim)] uppercase tracking-wider mb-4">Fin de la série</div>
+            <div className="text-4xl sm:text-5xl font-bold mb-2 text-[var(--brand-red)]">{score}</div>
             <p className="text-sm text-[var(--fg-muted)] mb-1">
               bonne{score !== 1 ? "s " : " "}réponse{score !== 1 ? "s " : " "}d&apos;affilée
             </p>
@@ -354,9 +296,7 @@ export default function QuizClient() {
     <div className="flex-1 flex flex-col items-center justify-center px-4">
       <div className="text-center max-w-sm">
         <div className="text-6xl font-bold mb-2">
-          <span className={percentage >= 50 ? "text-[var(--success)]" : "text-[var(--brand-red)]"}>
-            {score}
-          </span>
+          <span className={percentage >= 50 ? "text-[var(--success)]" : "text-[var(--brand-red)]"}>{score}</span>
           <span className="text-[var(--fg-dim)]">/{questions.length}</span>
         </div>
         <p className="text-xl text-[var(--fg-muted)] mb-2">{emoji}</p>

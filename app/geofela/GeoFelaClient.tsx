@@ -1,30 +1,10 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import PageTitle from "@/components/PageTitle";
 import Leaderboard from "@/components/Leaderboard";
-import { useTheme } from "@/components/ThemeProvider";
-
-const GeoFelaMap = dynamic(() => import("@/components/GeoFelaMap"), { ssr: false });
-
-interface GeoCase {
-  id: number;
-  title: string;
-  airDate: string | null;
-  locations: {
-    id: number;
-    communeName: string;
-    department: string;
-    departmentName: string;
-    latitude: number;
-    longitude: number;
-    category: string;
-    eventDescription: string | null;
-    eventDescriptionGame: string | null;
-  }[];
-}
+import GeoFelaRoundView, { GeoCase, GeoFelaRound } from "@/components/GeoFelaRoundView";
 
 type Mode = "classique" | "survie";
 type Difficulty = "easy" | "hard";
@@ -48,14 +28,11 @@ function pickDecoys(correct: GeoCase, pool: GeoCase[]): GeoCase[] {
   const remaining = others.filter((c) => !sameDept.includes(c));
 
   const decoys: GeoCase[] = [];
-  const sameDeptShuffled = shuffle(sameDept);
-  const remainingShuffled = shuffle(remaining);
-
-  for (const c of sameDeptShuffled) {
+  for (const c of shuffle(sameDept)) {
     if (decoys.length >= 3) break;
     decoys.push(c);
   }
-  for (const c of remainingShuffled) {
+  for (const c of shuffle(remaining)) {
     if (decoys.length >= 3) break;
     decoys.push(c);
   }
@@ -63,8 +40,6 @@ function pickDecoys(correct: GeoCase, pool: GeoCase[]): GeoCase[] {
 }
 
 export default function GeoFelaClient() {
-  const { theme } = useTheme();
-
   const [phase, setPhase] = useState<Phase>("setup");
   const [mode, setMode] = useState<Mode>("classique");
   const [difficulty, setDifficulty] = useState<Difficulty>("easy");
@@ -75,17 +50,14 @@ export default function GeoFelaClient() {
   const [poolError, setPoolError] = useState<string | null>(null);
 
   const playedIds = useRef<Set<number>>(new Set());
-  const [round, setRound] = useState<{ correct: GeoCase; candidates: GeoCase[] } | null>(null);
+  const [round, setRound] = useState<GeoFelaRound | null>(null);
   const [roundIndex, setRoundIndex] = useState(0);
-  const [selected, setSelected] = useState<number | null>(null);
-  const [revealed, setRevealed] = useState(false);
   const [score, setScore] = useState(0);
   const [survieOver, setSurvieOver] = useState(false);
+  const [advanceReady, setAdvanceReady] = useState(false);
 
-  // Hard difficulty only available in Classique. Survie always uses Easy.
   const effectiveDifficulty: Difficulty = mode === "survie" ? "easy" : difficulty;
 
-  // Fetch eligible pool once
   useEffect(() => {
     let cancelled = false;
     (async () => {
@@ -112,19 +84,16 @@ export default function GeoFelaClient() {
     };
   }, []);
 
-  const startNewRound = useCallback(
-    (currentPool: GeoCase[]) => {
-      const available = currentPool.filter((c) => !playedIds.current.has(c.id));
-      const usable = available.length > 0 ? available : currentPool;
-      if (usable.length === 0) return null;
-      const correct = usable[Math.floor(Math.random() * usable.length)];
-      playedIds.current.add(correct.id);
-      const decoys = pickDecoys(correct, currentPool);
-      const candidates = shuffle([correct, ...decoys]);
-      return { correct, candidates };
-    },
-    []
-  );
+  const startNewRound = useCallback((currentPool: GeoCase[]): GeoFelaRound | null => {
+    const available = currentPool.filter((c) => !playedIds.current.has(c.id));
+    const usable = available.length > 0 ? available : currentPool;
+    if (usable.length === 0) return null;
+    const correct = usable[Math.floor(Math.random() * usable.length)];
+    playedIds.current.add(correct.id);
+    const decoys = pickDecoys(correct, currentPool);
+    const candidates = shuffle([correct, ...decoys]);
+    return { correct, candidates };
+  }, []);
 
   const startGame = () => {
     if (pool.length < 4) return;
@@ -132,23 +101,20 @@ export default function GeoFelaClient() {
     setRoundIndex(0);
     setScore(0);
     setSurvieOver(false);
-    setSelected(null);
-    setRevealed(false);
+    setAdvanceReady(false);
     const r = startNewRound(pool);
     if (!r) return;
     setRound(r);
     setPhase("playing");
   };
 
-  const handleAnswer = (caseId: number) => {
-    if (revealed || !round) return;
-    setSelected(caseId);
-    setRevealed(true);
-    if (caseId === round.correct.id) {
+  const handleAnswered = ({ correct }: { correct: boolean }) => {
+    if (correct) {
       setScore((s) => s + 1);
     } else if (mode === "survie") {
       setSurvieOver(true);
     }
+    setAdvanceReady(true);
   };
 
   const nextRound = () => {
@@ -167,11 +133,9 @@ export default function GeoFelaClient() {
     }
     setRound(r);
     setRoundIndex((i) => i + 1);
-    setSelected(null);
-    setRevealed(false);
+    setAdvanceReady(false);
   };
 
-  // Loading / error states
   if (poolLoading) {
     return (
       <div className="flex-1 flex items-center justify-center">
@@ -190,7 +154,6 @@ export default function GeoFelaClient() {
     );
   }
 
-  // SETUP
   if (phase === "setup") {
     return (
       <div className="flex-1 flex flex-col items-center pb-6">
@@ -294,28 +257,78 @@ export default function GeoFelaClient() {
     );
   }
 
-  // PLAYING
   if (phase === "playing" && round) {
-    const hardMode = effectiveDifficulty === "hard";
     return (
-      <GeoFelaPlayingView
-        round={round}
-        mode={mode}
-        roundIndex={roundIndex}
-        count={count}
-        score={score}
-        revealed={revealed}
-        selected={selected}
-        survieOver={survieOver}
-        hardMode={hardMode}
-        theme={theme}
-        onAnswer={handleAnswer}
-        onNext={nextRound}
-      />
+      <div className="flex-1 flex flex-col items-center px-3 sm:px-4 pt-3 sm:pt-4 pb-4">
+        <div className="w-full max-w-3xl mb-3">
+          <div className="flex justify-between text-[10px] sm:text-xs text-[var(--fg-dim)] mb-1.5">
+            {mode === "survie" ? (
+              <>
+                <span className="flex items-center gap-1.5">
+                  <span className="inline-block w-1.5 h-1.5 rounded-full bg-[var(--brand-red)] animate-pulse" />
+                  Survie
+                </span>
+                <span>Série : {score}</span>
+              </>
+            ) : (
+              <>
+                <span>{roundIndex + 1} / {count}</span>
+                <span>{score} correcte{score !== 1 ? "s" : ""}</span>
+              </>
+            )}
+          </div>
+          {mode === "classique" && (
+            <div className="w-full h-1 bg-[var(--border)] rounded-full">
+              <div
+                className="h-1 bg-[var(--brand-red)] rounded-full transition-all"
+                style={{ width: `${((roundIndex + 1) / count) * 100}%` }}
+              />
+            </div>
+          )}
+        </div>
+
+        <GeoFelaRoundView
+          key={`geofela-${roundIndex}-${round.correct.id}`}
+          round={round}
+          hardMode={effectiveDifficulty === "hard"}
+          onAnswered={handleAnswered}
+          renderAfter={({ correct, episodeId, correctTitle }) => (
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+              <div className="flex items-center gap-3 flex-wrap">
+                {correct ? (
+                  <span className="text-[var(--success)] text-sm font-medium">
+                    ✓ Bravo ! C&apos;est bien {correctTitle}.
+                  </span>
+                ) : (
+                  <span className="text-[var(--brand-red)] text-sm font-medium">
+                    ✗ Il s&apos;agissait de {correctTitle}.
+                  </span>
+                )}
+                <Link
+                  href={`/episode/${episodeId}`}
+                  className="text-xs text-[var(--fg-dim)] hover:text-[var(--brand-red)] transition-colors"
+                >
+                  Voir l&apos;épisode →
+                </Link>
+              </div>
+              <button
+                onClick={nextRound}
+                disabled={!advanceReady}
+                className="w-full sm:w-auto px-6 py-2.5 sm:py-2 rounded-lg bg-[var(--brand-red)] text-white text-sm font-semibold hover:bg-[var(--brand-red-hover)] transition-colors"
+              >
+                {mode === "survie" && survieOver
+                  ? "Voir le résultat"
+                  : mode === "classique" && roundIndex + 1 >= count
+                    ? "Voir le résultat →"
+                    : "Suivant →"}
+              </button>
+            </div>
+          )}
+        />
+      </div>
     );
   }
 
-  // RESULT — Survie
   if (mode === "survie") {
     const verdict =
       score >= 15 ? "Maître géographe !" : score >= 8 ? "Impressionnant !" : score >= 4 ? "Bien joué !" : score >= 1 ? "Pas mal !" : "Encore un essai…";
@@ -347,7 +360,6 @@ export default function GeoFelaClient() {
     );
   }
 
-  // RESULT — Classique
   const total = count;
   const percentage = total > 0 ? Math.round((score / total) * 100) : 0;
   const verdict = percentage === 100 ? "Maître géographe !" : percentage >= 70 ? "Bien joué !" : percentage >= 40 ? "Pas mal !" : "À revoir…";
@@ -371,134 +383,6 @@ export default function GeoFelaClient() {
         >
           Rejouer
         </button>
-      </div>
-    </div>
-  );
-}
-
-interface PlayingViewProps {
-  round: { correct: GeoCase; candidates: GeoCase[] };
-  mode: Mode;
-  roundIndex: number;
-  count: number;
-  score: number;
-  revealed: boolean;
-  selected: number | null;
-  survieOver: boolean;
-  hardMode: boolean;
-  theme: "dark" | "light";
-  onAnswer: (caseId: number) => void;
-  onNext: () => void;
-}
-
-function GeoFelaPlayingView({
-  round,
-  mode,
-  roundIndex,
-  count,
-  score,
-  revealed,
-  selected,
-  survieOver,
-  hardMode,
-  theme,
-  onAnswer,
-  onNext,
-}: PlayingViewProps) {
-  const correctId = round.correct.id;
-  const mapKey = useMemo(() => `geofela-${correctId}-${roundIndex}`, [correctId, roundIndex]);
-
-  return (
-    <div className="flex-1 flex flex-col items-center px-3 sm:px-4 pt-3 sm:pt-4 pb-4">
-      <div className="w-full max-w-3xl mb-3">
-        <div className="flex justify-between text-[10px] sm:text-xs text-[var(--fg-dim)] mb-1.5">
-          {mode === "survie" ? (
-            <>
-              <span className="flex items-center gap-1.5">
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-[var(--brand-red)] animate-pulse" />
-                Survie
-              </span>
-              <span>Série : {score}</span>
-            </>
-          ) : (
-            <>
-              <span>{roundIndex + 1} / {count}</span>
-              <span>{score} correcte{score !== 1 ? "s" : ""}</span>
-            </>
-          )}
-        </div>
-        {mode === "classique" && (
-          <div className="w-full h-1 bg-[var(--border)] rounded-full">
-            <div
-              className="h-1 bg-[var(--brand-red)] rounded-full transition-all"
-              style={{ width: `${((roundIndex + 1) / count) * 100}%` }}
-            />
-          </div>
-        )}
-      </div>
-
-      <div className="w-full max-w-3xl">
-        <div className="relative z-0 border border-[var(--border)] rounded-lg overflow-hidden mb-3" style={{ height: "min(45vh, 360px)" }}>
-          <GeoFelaMap
-            key={mapKey}
-            locations={round.correct.locations}
-            hardMode={hardMode}
-            theme={theme}
-            airDate={round.correct.airDate}
-          />
-        </div>
-
-        <p className="text-center text-xs text-[var(--fg-muted)] mb-3">
-          Cliquez sur les pins pour voir les indices, puis identifiez l&apos;affaire :
-        </p>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-3">
-          {round.candidates.map((c) => {
-            let cls = "px-3 py-2.5 rounded-lg border text-sm text-left transition-all ";
-            if (!revealed) {
-              cls += "border-[var(--border)] text-[var(--fg)] hover:border-[var(--border-hover)] hover:bg-[var(--bg-input)]";
-            } else if (c.id === correctId) {
-              cls += "border-[var(--success)] text-[var(--success)] bg-[var(--success)]/10";
-            } else if (c.id === selected) {
-              cls += "border-[var(--brand-red)] text-[var(--brand-red)] bg-[var(--brand-red)]/10";
-            } else {
-              cls += "border-[var(--border)] text-[var(--fg-dim)] opacity-60";
-            }
-            return (
-              <button key={c.id} onClick={() => onAnswer(c.id)} className={cls} disabled={revealed}>
-                {c.title}
-              </button>
-            );
-          })}
-        </div>
-
-        {revealed && (
-          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
-            <div className="flex items-center gap-3 flex-wrap">
-              {selected === correctId ? (
-                <span className="text-[var(--success)] text-sm font-medium">✓ Bravo ! C&apos;est bien {round.correct.title}.</span>
-              ) : (
-                <span className="text-[var(--brand-red)] text-sm font-medium">✗ Il s&apos;agissait de {round.correct.title}.</span>
-              )}
-              <Link
-                href={`/episode/${correctId}`}
-                className="text-xs text-[var(--fg-dim)] hover:text-[var(--brand-red)] transition-colors"
-              >
-                Voir l&apos;épisode →
-              </Link>
-            </div>
-            <button
-              onClick={onNext}
-              className="w-full sm:w-auto px-6 py-2.5 sm:py-2 rounded-lg bg-[var(--brand-red)] text-white text-sm font-semibold hover:bg-[var(--brand-red-hover)] transition-colors"
-            >
-              {mode === "survie" && survieOver
-                ? "Voir le résultat"
-                : mode === "classique" && roundIndex + 1 >= count
-                  ? "Voir le résultat →"
-                  : "Suivant →"}
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );

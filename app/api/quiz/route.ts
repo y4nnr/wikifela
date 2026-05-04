@@ -11,24 +11,36 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
+function parseExclude(raw: string | null): number[] {
+  if (!raw) return [];
+  return raw
+    .split(",")
+    .map((s) => parseInt(s, 10))
+    .filter((n) => Number.isInteger(n));
+}
+
 export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams;
   const mode = params.get("mode") || "classique";
   const difficultyParam = params.get("difficulty");
   const maxCount = mode === "survie" ? 100 : 10;
   const count = Math.min(parseInt(params.get("count") || "5", 10), maxCount);
+  const exclude = parseExclude(params.get("exclude"));
 
-  // Survie: mixed-difficulty pool. Classique: filter by selected difficulty.
-  const where =
+  const baseWhere =
     mode === "survie"
       ? {}
       : difficultyParam && ["facile", "moyen", "difficile"].includes(difficultyParam)
         ? { difficulty: difficultyParam as Difficulty }
         : null;
 
-  if (where === null) {
+  if (baseWhere === null) {
     return NextResponse.json({ questions: [] });
   }
+
+  const where = exclude.length > 0
+    ? { ...baseWhere, id: { notIn: exclude } }
+    : baseWhere;
 
   try {
     const allQuestions = await prisma.quizQuestion.findMany({
@@ -51,6 +63,7 @@ export async function GET(request: NextRequest) {
     const questions = selected.map((q) => {
       const options = shuffle([q.correctAnswer, ...q.wrongAnswers]);
       return {
+        id: q.id,
         question: q.question,
         episodeId: q.episodeId,
         options,

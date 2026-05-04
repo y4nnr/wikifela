@@ -9,7 +9,7 @@ interface LeaderboardEntry {
   createdAt: string;
 }
 
-type Game = "quiz" | "tapissage" | "geofela";
+type Game = "quiz" | "tapissage" | "geofela" | "ultime";
 
 interface LeaderboardProps {
   game: Game;
@@ -22,6 +22,7 @@ const GAME_LABELS: Record<Game, string> = {
   quiz: "Quiz",
   tapissage: "Tapissage",
   geofela: "GeoFELA",
+  ultime: "Ultime",
 };
 
 export default function Leaderboard({ game, playerScore = 0, readOnly, onSubmitted }: LeaderboardProps) {

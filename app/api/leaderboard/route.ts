@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 
-const VALID_GAMES = ["quiz", "tapissage", "geofela"] as const;
+const VALID_GAMES = ["quiz", "tapissage", "geofela", "ultime"] as const;
 const TOP_N = 5;
 
 type Game = (typeof VALID_GAMES)[number];

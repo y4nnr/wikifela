@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { HelpCircle, Glasses, MapPin, Gamepad2, ChevronRight } from "lucide-react";
+import { HelpCircle, Glasses, MapPin, Gamepad2, ChevronRight, Crown } from "lucide-react";
 
 const SearchIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -47,6 +47,12 @@ const gameItems: NavLink[] = [
   { href: "/tapissage", label: "Tapissage", icon: <Glasses size={20} strokeWidth={2} /> },
   { href: "/geofela", label: "GeoFELA", icon: <MapPin size={20} strokeWidth={2} /> },
 ];
+
+const ultimeItem: NavLink = {
+  href: "/ultime",
+  label: "Ultime",
+  icon: <Crown size={20} strokeWidth={2} />,
+};
 
 export default function Header() {
   const pathname = usePathname();
@@ -161,6 +167,18 @@ export default function Header() {
                       {item.label}
                     </Link>
                   ))}
+                  <div className="h-px bg-[var(--border)]" />
+                  <Link
+                    href={ultimeItem.href}
+                    role="menuitem"
+                    onClick={() => setDesktopOpen(false)}
+                    className="flex items-center gap-3 px-3.5 py-3 text-sm text-[var(--fg)] hover:bg-[var(--bg-input)] transition-colors"
+                  >
+                    <span className="text-[var(--fg-muted)] [&_svg]:w-[18px] [&_svg]:h-[18px]">
+                      {ultimeItem.icon}
+                    </span>
+                    {ultimeItem.label}
+                  </Link>
                 </div>
               )}
             </div>
@@ -250,6 +268,26 @@ export default function Header() {
                 </Link>
               </li>
             ))}
+          </ul>
+          <div className="h-px bg-[var(--border)] my-1" />
+          <ul>
+            <li>
+              <Link
+                href={ultimeItem.href}
+                onClick={() => setMobileSheetOpen(false)}
+                className="flex items-center gap-4 py-4 text-[var(--fg)] active:bg-[var(--bg-input)] transition-colors"
+              >
+                <span className="text-[var(--fg-muted)] [&_svg]:w-[22px] [&_svg]:h-[22px]">
+                  {ultimeItem.icon}
+                </span>
+                <span className="flex-1 text-base font-medium">{ultimeItem.label}</span>
+                <ChevronRight
+                  size={18}
+                  strokeWidth={2}
+                  className="shrink-0 text-[var(--fg-dim)]"
+                />
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
