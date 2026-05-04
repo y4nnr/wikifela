@@ -104,7 +104,7 @@ export default function TapissageClient() {
                       : "border-[var(--border)] text-[var(--fg-dim)] hover:border-[var(--border-hover)]"
                   }`}
                 >
-                  {m === "classique" ? "Classique" : "Survie"}
+                  {m === "classique" ? "Sur mesure" : "Survie"}
                 </button>
               ))}
             </div>
@@ -270,7 +270,7 @@ export default function TapissageClient() {
     );
   }
 
-  // RESULT — Classique
+  // RESULT — Sur mesure (mode='classique' internally)
   const percentage = Math.round((score / rounds.length) * 100);
   const verdict =
     percentage === 100

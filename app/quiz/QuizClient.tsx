@@ -99,7 +99,7 @@ export default function QuizClient() {
                       : "border-[var(--border)] text-[var(--fg-dim)] hover:border-[var(--border-hover)]"
                   }`}
                 >
-                  {m === "classique" ? "Classique" : "Survie"}
+                  {m === "classique" ? "Sur mesure" : "Survie"}
                 </button>
               ))}
             </div>

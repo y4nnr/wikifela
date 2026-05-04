@@ -41,7 +41,7 @@ function pickDecoys(correct: GeoCase, pool: GeoCase[]): GeoCase[] {
 
 export default function GeoFelaClient() {
   const [phase, setPhase] = useState<Phase>("setup");
-  const [mode, setMode] = useState<Mode>("classique");
+  const [mode, setMode] = useState<Mode>("survie");
   const [difficulty, setDifficulty] = useState<Difficulty>("easy");
   const [count, setCount] = useState(5);
 
@@ -177,7 +177,7 @@ export default function GeoFelaClient() {
                       : "border-[var(--border)] text-[var(--fg-dim)] hover:border-[var(--border-hover)]"
                   }`}
                 >
-                  {m === "classique" ? "Classique" : "Survie"}
+                  {m === "classique" ? "Sur mesure" : "Survie"}
                 </button>
               ))}
             </div>
