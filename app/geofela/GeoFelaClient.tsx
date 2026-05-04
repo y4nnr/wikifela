@@ -6,6 +6,7 @@ import PageTitle from "@/components/PageTitle";
 import Leaderboard from "@/components/Leaderboard";
 import GeoFelaRoundView, { GeoCase, GeoFelaRound } from "@/components/GeoFelaRoundView";
 import GameProcedureDiagram from "@/components/GameProcedureDiagram";
+import { MapPin } from "lucide-react";
 
 type Mode = "classique" | "survie";
 type Difficulty = "easy" | "hard";
@@ -165,7 +166,18 @@ export default function GeoFelaClient() {
         <div className="w-full max-w-sm space-y-6 px-4">
           <GameProcedureDiagram
             title="Comment jouer"
-            subtitle="4 affaires — 1 à identifier d'après les lieux"
+            subtitle={
+              effectiveDifficulty === "easy"
+                ? "Cliquez sur les pins pour voir les détails. Identifiez l'affaire parmi 4 propositions."
+                : "Cliquez sur les pins pour voir le lieu (sans description). Identifiez l'affaire parmi 4 propositions."
+            }
+            visual={
+              <MapPin
+                size={48}
+                strokeWidth={1.75}
+                className="text-[var(--fg-dim)] sm:!w-14 sm:!h-14"
+              />
+            }
           />
 
           <div>
