@@ -13,7 +13,7 @@ type Phase = "setup" | "playing" | "result";
 export default function QuizClient() {
   const [phase, setPhase] = useState<Phase>("setup");
   const [difficulty, setDifficulty] = useState<Difficulty>("facile");
-  const [mode, setMode] = useState<Mode>("classique");
+  const [mode, setMode] = useState<Mode>("survie");
   const [count, setCount] = useState(5);
   const [questions, setQuestions] = useState<QuizQuestion[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);

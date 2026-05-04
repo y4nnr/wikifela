@@ -11,7 +11,7 @@ type Phase = "setup" | "playing" | "result";
 
 export default function TapissageClient() {
   const [phase, setPhase] = useState<Phase>("setup");
-  const [mode, setMode] = useState<Mode>("classique");
+  const [mode, setMode] = useState<Mode>("survie");
   const [count, setCount] = useState(5);
   const [rounds, setRounds] = useState<TapissageRound[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);

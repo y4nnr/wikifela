@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { HelpCircle, Glasses, MapPin, Gamepad2, ChevronRight, Crown } from "lucide-react";
+import { HelpCircle, Glasses, MapPin, Gamepad2, ChevronRight, Crown, Home } from "lucide-react";
 
 const SearchIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -41,6 +41,15 @@ const pageLinks: NavLink[] = [
   { href: "/episodes", label: "Épisodes", icon: ListIcon },
   { href: "/carte", label: "Carte", icon: MapIcon },
 ];
+
+// Mobile bottom nav prepends an Accueil tab to pageLinks. Desktop nav
+// leaves pageLinks alone (Accueil is only useful on mobile, where the
+// header logo is harder to tap).
+const mobileHomeLink: NavLink = {
+  href: "/",
+  label: "Accueil",
+  icon: <Home size={20} strokeWidth={2} />,
+};
 
 const gameItems: NavLink[] = [
   { href: "/quiz", label: "Quiz", icon: <HelpCircle size={20} strokeWidth={2} /> },
@@ -186,10 +195,11 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Mobile bottom tab bar */}
+      {/* Mobile bottom tab bar — 5 tabs at 390px ÷ 5 ≈ 78px each.
+          px-1 + min-w-[3rem] keeps Commissariat (~60px at text-[9px]) inside its slot. */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[var(--tab-bg)] shadow-[var(--shadow-tab-top)] border-t-2 border-white safe-bottom">
         <div className="flex justify-around items-center py-1.5 pb-[max(0.375rem,env(safe-area-inset-bottom))]">
-          {pageLinks.map((link) => {
+          {[mobileHomeLink, ...pageLinks].map((link) => {
             const isActive =
               pathname === link.href ||
               (link.href === "/episodes" && pathname.startsWith("/episode/"));
@@ -197,7 +207,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg transition-opacity min-w-[3rem] ${
+                className={`flex flex-col items-center gap-0.5 px-1 py-1 rounded-lg transition-opacity min-w-[3rem] ${
                   isActive ? "opacity-100" : "opacity-60"
                 }`}
                 style={{ color: "var(--tab-fg)" }}
@@ -213,7 +223,7 @@ export default function Header() {
             aria-haspopup="dialog"
             aria-expanded={mobileSheetOpen}
             aria-label="Le commissariat"
-            className={`flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg transition-opacity min-w-[3rem] ${
+            className={`flex flex-col items-center gap-0.5 px-1 py-1 rounded-lg transition-opacity min-w-[3rem] ${
               mobileSheetOpen ? "opacity-100" : "opacity-60"
             }`}
             style={{ color: "var(--tab-fg)" }}
