@@ -48,9 +48,9 @@ const gameItems: NavLink[] = [
   { href: "/geofela", label: "GeoFELA", icon: <MapPin size={20} strokeWidth={2} /> },
 ];
 
-const ultimeItem: NavLink = {
-  href: "/ultime",
-  label: "Ultime",
+const enqueteItem: NavLink = {
+  href: "/enquete",
+  label: "L'enquête",
   icon: <Crown size={20} strokeWidth={2} />,
 };
 
@@ -169,15 +169,15 @@ export default function Header() {
                   ))}
                   <div className="h-px bg-[var(--border)]" />
                   <Link
-                    href={ultimeItem.href}
+                    href={enqueteItem.href}
                     role="menuitem"
                     onClick={() => setDesktopOpen(false)}
                     className="flex items-center gap-3 px-3.5 py-3 text-sm text-[var(--fg)] hover:bg-[var(--bg-input)] transition-colors"
                   >
                     <span className="text-[var(--fg-muted)] [&_svg]:w-[18px] [&_svg]:h-[18px]">
-                      {ultimeItem.icon}
+                      {enqueteItem.icon}
                     </span>
-                    {ultimeItem.label}
+                    {enqueteItem.label}
                   </Link>
                 </div>
               )}
@@ -273,14 +273,14 @@ export default function Header() {
           <ul>
             <li>
               <Link
-                href={ultimeItem.href}
+                href={enqueteItem.href}
                 onClick={() => setMobileSheetOpen(false)}
                 className="flex items-center gap-4 py-4 text-[var(--fg)] active:bg-[var(--bg-input)] transition-colors"
               >
                 <span className="text-[var(--fg-muted)] [&_svg]:w-[22px] [&_svg]:h-[22px]">
-                  {ultimeItem.icon}
+                  {enqueteItem.icon}
                 </span>
-                <span className="flex-1 text-base font-medium">{ultimeItem.label}</span>
+                <span className="flex-1 text-base font-medium">{enqueteItem.label}</span>
                 <ChevronRight
                   size={18}
                   strokeWidth={2}

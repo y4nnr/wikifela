@@ -77,7 +77,7 @@ const FEEDBACK_DELAY_CORRECT_MS = 500;
 const FEEDBACK_DELAY_WRONG_MS = 1500;
 const TRANSITION_VISIBLE_MS = 800;
 
-export default function UltimeClient() {
+export default function EnqueteClient() {
   const [phase, setPhase] = useState<Phase>("setup");
   const [score, setScore] = useState(0);
   const [roundIndex, setRoundIndex] = useState(0);
@@ -226,19 +226,10 @@ export default function UltimeClient() {
     return (
       <div className="flex-1 flex flex-col items-center pb-6">
         <div className="w-full max-w-3xl">
-          <PageTitle title="Ultime" subtitle="Le challenge complet : Quiz, Tapissage, GeoFELA" />
+          <PageTitle title="L'enquête" subtitle="Quiz, Tapissage et GeoFELA en Survie" />
         </div>
 
         <div className="w-full max-w-sm space-y-5 px-4">
-          <div className="border border-[var(--border)] rounded-lg bg-[var(--bg-card)] p-4">
-            <div className="text-[10px] text-[var(--fg-dim)] uppercase tracking-wider mb-2">Règles</div>
-            <ul className="text-sm text-[var(--fg-muted)] leading-relaxed space-y-1.5">
-              <li>• Mode Survie uniquement, série infinie.</li>
-              <li>• Rotation fixe : Quiz → Tapissage → GeoFELA.</li>
-              <li>• Une seule erreur termine la série.</li>
-            </ul>
-          </div>
-
           {error && (
             <p className="text-xs text-[var(--brand-red)] text-center">{error}</p>
           )}
@@ -253,7 +244,7 @@ export default function UltimeClient() {
           </button>
 
           <div className="mt-2">
-            <Leaderboard game="ultime" readOnly />
+            <Leaderboard game="enquete" readOnly />
           </div>
         </div>
       </div>
@@ -263,7 +254,7 @@ export default function UltimeClient() {
   // GAMEOVER
   if (phase === "gameover") {
     const verdict = perfectRun
-      ? "Vous avez complété toutes les épreuves !"
+      ? "Vous avez complété toutes les épreuves de l'enquête !"
       : score >= 30
         ? "Légendaire !"
         : score >= 15
@@ -289,7 +280,7 @@ export default function UltimeClient() {
           </div>
 
           <div className="mb-4">
-            <Leaderboard game="ultime" playerScore={score} />
+            <Leaderboard game="enquete" playerScore={score} />
           </div>
 
           <button
@@ -311,7 +302,7 @@ export default function UltimeClient() {
           <div className="text-base sm:text-lg text-[var(--success)] font-semibold mb-3">✓ Bravo !</div>
           <div className="mb-5">
             <div className="text-[10px] text-[var(--fg-dim)] uppercase tracking-wider mb-1">Score</div>
-            <div className="text-5xl font-bold inline-block ultime-score-pop">{score}</div>
+            <div className="text-5xl font-bold inline-block enquete-score-pop">{score}</div>
           </div>
           <div className="flex items-center justify-center gap-2 text-sm text-[var(--fg-muted)]">
             <span>Prochain :</span>
@@ -335,7 +326,7 @@ export default function UltimeClient() {
           <div className="flex justify-between items-center text-[10px] sm:text-xs text-[var(--fg-dim)] mb-1.5">
             <span className="flex items-center gap-1.5">
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-[var(--brand-red)] animate-pulse" />
-              Ultime · Série : {score}
+              L&apos;enquête · Série : {score}
             </span>
             <span className="flex items-center gap-1.5 px-2 py-0.5 rounded border border-[var(--border)] text-[var(--fg-muted)] font-mono text-[10px]">
               <GameIcon type={currentType} size={12} />
