@@ -9,15 +9,22 @@ interface LeaderboardEntry {
   createdAt: string;
 }
 
+type Game = "quiz" | "tapissage" | "geofela";
+
 interface LeaderboardProps {
-  game: "quiz" | "tapissage";
-  difficulty?: string;
+  game: Game;
   playerScore?: number;
   readOnly?: boolean;
   onSubmitted?: () => void;
 }
 
-export default function Leaderboard({ game, difficulty, playerScore = 0, readOnly, onSubmitted }: LeaderboardProps) {
+const GAME_LABELS: Record<Game, string> = {
+  quiz: "Quiz",
+  tapissage: "Tapissage",
+  geofela: "GeoFELA",
+};
+
+export default function Leaderboard({ game, playerScore = 0, readOnly, onSubmitted }: LeaderboardProps) {
   const [entries, setEntries] = useState<LeaderboardEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [qualifies, setQualifies] = useState(false);
@@ -28,21 +35,18 @@ export default function Leaderboard({ game, difficulty, playerScore = 0, readOnl
 
   const fetchLeaderboard = useCallback(async () => {
     const params = new URLSearchParams({ game });
-    if (difficulty) params.set("difficulty", difficulty);
     try {
       const res = await fetch(`/api/leaderboard?${params}`);
       const data = await res.json();
       setEntries(data.entries || []);
       const top = data.entries || [];
-      setQualifies(
-        top.length < 5 || playerScore > top[top.length - 1].score
-      );
+      setQualifies(top.length < 5 || playerScore > top[top.length - 1].score);
     } catch {
       // ignore
     } finally {
       setLoading(false);
     }
-  }, [game, difficulty, playerScore]);
+  }, [game, playerScore]);
 
   useEffect(() => {
     fetchLeaderboard();
@@ -57,7 +61,7 @@ export default function Leaderboard({ game, difficulty, playerScore = 0, readOnl
       const res = await fetch("/api/leaderboard", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ game, difficulty: difficulty || undefined, nickname: trimmed, score: playerScore }),
+        body: JSON.stringify({ game, nickname: trimmed, score: playerScore }),
       });
       if (!res.ok) {
         const data = await res.json();
@@ -89,10 +93,9 @@ export default function Leaderboard({ game, difficulty, playerScore = 0, readOnl
   return (
     <div className="border border-[var(--border)] rounded-lg bg-[var(--bg-card)] p-4 sm:p-5">
       <div className="text-[10px] text-[var(--fg-dim)] uppercase tracking-wider mb-3 text-center">
-        Top 5 — {game === "quiz" ? `Quiz ${difficulty}` : "Tapissage"}
+        Top 5 — {GAME_LABELS[game]} Survie
       </div>
 
-      {/* Nickname input if qualifies */}
       {!readOnly && qualifies && !submitted && playerScore > 0 && (
         <div className="mb-4 p-3 rounded-lg border border-[var(--brand-red)]/30 bg-[var(--brand-red)]/5">
           <p className="text-sm text-[var(--fg)] mb-2 text-center font-medium">
@@ -121,7 +124,6 @@ export default function Leaderboard({ game, difficulty, playerScore = 0, readOnl
         </div>
       )}
 
-      {/* Leaderboard table */}
       {entries.length > 0 ? (
         <div className="space-y-1.5">
           {entries.map((entry, i) => (

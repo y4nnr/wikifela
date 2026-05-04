@@ -33,9 +33,11 @@ export default function QuizClient() {
     setLoading(true);
     try {
       const fetchCount = mode === "survie" ? 100 : count;
-      const res = await fetch(
-        `/api/quiz?difficulty=${difficulty}&count=${fetchCount}&mode=${mode}`
-      );
+      const url =
+        mode === "survie"
+          ? `/api/quiz?count=${fetchCount}&mode=survie`
+          : `/api/quiz?difficulty=${difficulty}&count=${fetchCount}&mode=classique`;
+      const res = await fetch(url);
       const data = await res.json();
       if (data.questions?.length > 0) {
         setQuestions(data.questions);
@@ -121,26 +123,28 @@ export default function QuizClient() {
             )}
           </div>
 
-          <div>
-            <label className="block text-sm text-[var(--fg-muted)] mb-3">
-              Difficulté
-            </label>
-            <div className="flex gap-3">
-              {(["facile", "moyen", "difficile"] as Difficulty[]).map((d) => (
-                <button
-                  key={d}
-                  onClick={() => setDifficulty(d)}
-                  className={`flex-1 py-2.5 rounded-lg border text-sm font-medium capitalize transition-all ${
-                    difficulty === d
-                      ? `${difficultyColors[d]} bg-white/5`
-                      : "border-[var(--border)] text-[var(--fg-dim)] hover:border-[var(--border-hover)]"
-                  }`}
-                >
-                  {d}
-                </button>
-              ))}
+          {mode === "classique" && (
+            <div>
+              <label className="block text-sm text-[var(--fg-muted)] mb-3">
+                Difficulté
+              </label>
+              <div className="flex gap-3">
+                {(["facile", "moyen", "difficile"] as Difficulty[]).map((d) => (
+                  <button
+                    key={d}
+                    onClick={() => setDifficulty(d)}
+                    className={`flex-1 py-2.5 rounded-lg border text-sm font-medium capitalize transition-all ${
+                      difficulty === d
+                        ? `${difficultyColors[d]} bg-white/5`
+                        : "border-[var(--border)] text-[var(--fg-dim)] hover:border-[var(--border-hover)]"
+                    }`}
+                  >
+                    {d}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           {mode === "classique" && (
             <div>
@@ -175,7 +179,7 @@ export default function QuizClient() {
 
           {mode === "survie" && (
             <div className="mt-2">
-              <Leaderboard game="quiz" difficulty={difficulty} readOnly />
+              <Leaderboard game="quiz" readOnly />
             </div>
           )}
         </div>
@@ -319,7 +323,7 @@ export default function QuizClient() {
           </div>
 
           <div className="mb-4">
-            <Leaderboard game="quiz" difficulty={difficulty} playerScore={score} />
+            <Leaderboard game="quiz" playerScore={score} />
           </div>
 
           <button

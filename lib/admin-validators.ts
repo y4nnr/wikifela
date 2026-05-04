@@ -43,3 +43,15 @@ export type PortraitInput = z.infer<typeof PortraitSchema>;
 export const TakedownSchema = z.object({
   reason: z.string().trim().nullable().optional(),
 });
+
+export const LocationPatchSchema = z
+  .object({
+    eventDescription: z.string().trim().nullable().optional(),
+    eventDescriptionGame: z.string().trim().nullable().optional(),
+  })
+  .refine(
+    (d) => d.eventDescription !== undefined || d.eventDescriptionGame !== undefined,
+    { message: "Au moins un champ requis" }
+  );
+
+export type LocationPatchInput = z.infer<typeof LocationPatchSchema>;

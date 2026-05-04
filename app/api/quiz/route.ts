@@ -13,18 +13,26 @@ function shuffle<T>(arr: T[]): T[] {
 
 export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams;
-  const difficulty = params.get("difficulty") || "facile";
   const mode = params.get("mode") || "classique";
+  const difficultyParam = params.get("difficulty");
   const maxCount = mode === "survie" ? 100 : 10;
   const count = Math.min(parseInt(params.get("count") || "5", 10), maxCount);
 
-  if (!["facile", "moyen", "difficile"].includes(difficulty)) {
+  // Survie: mixed-difficulty pool. Classique: filter by selected difficulty.
+  const where =
+    mode === "survie"
+      ? {}
+      : difficultyParam && ["facile", "moyen", "difficile"].includes(difficultyParam)
+        ? { difficulty: difficultyParam as Difficulty }
+        : null;
+
+  if (where === null) {
     return NextResponse.json({ questions: [] });
   }
 
   try {
     const allQuestions = await prisma.quizQuestion.findMany({
-      where: { difficulty: difficulty as Difficulty },
+      where,
       select: {
         id: true,
         question: true,

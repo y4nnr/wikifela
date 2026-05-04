@@ -13,6 +13,7 @@ interface Location {
   longitude: number;
   isPrimary: boolean;
   eventDescription: string | null;
+  eventDescriptionGame: string | null;
   category: string;
 }
 
@@ -95,6 +96,180 @@ function getSummary(text: string): string {
   }
 
   return summary;
+}
+
+type DescField = "eventDescription" | "eventDescriptionGame";
+
+function DescriptionEditor({
+  loc,
+  field,
+  label,
+  credentials,
+  onUpdated,
+}: {
+  loc: Location;
+  field: DescField;
+  label: string;
+  credentials: string;
+  onUpdated: (updated: Partial<Location> & { id: number }) => void;
+}) {
+  const initial = loc[field] ?? "";
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState(initial);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
+
+  const startEdit = () => {
+    setDraft(loc[field] ?? "");
+    setError("");
+    setEditing(true);
+  };
+
+  const cancel = () => {
+    setEditing(false);
+    setDraft(loc[field] ?? "");
+    setError("");
+  };
+
+  const save = async () => {
+    setSaving(true);
+    setError("");
+    try {
+      const res = await fetch(`/api/admin/locations/${loc.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Basic ${credentials}`,
+        },
+        body: JSON.stringify({ [field]: draft.trim() || null }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setError(data.error || "Erreur");
+        return;
+      }
+      const data = await res.json();
+      onUpdated({ id: loc.id, [field]: data.location[field] });
+      setEditing(false);
+    } catch {
+      setError("Erreur réseau");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const value = loc[field];
+
+  if (editing) {
+    return (
+      <div className="mt-1.5">
+        <div className="text-[10px] uppercase tracking-wider text-[var(--fg-dim)] mb-1">{label}</div>
+        <textarea
+          value={draft}
+          onChange={(e) => setDraft(e.target.value)}
+          rows={3}
+          className="w-full px-2.5 py-1.5 rounded border border-[var(--border)] bg-[var(--bg-input)] text-xs text-[var(--fg)] focus:outline-none focus:border-[var(--border-hover)] resize-none"
+          autoFocus
+        />
+        {error && <p className="text-[10px] text-[var(--brand-red)] mt-1">{error}</p>}
+        <div className="flex gap-2 mt-1.5">
+          <button
+            onClick={save}
+            disabled={saving}
+            className="px-3 py-1 rounded text-[10px] font-medium bg-[var(--brand-red)] text-white hover:bg-[var(--brand-red-hover)] disabled:opacity-50"
+          >
+            {saving ? "..." : "Enregistrer"}
+          </button>
+          <button
+            onClick={cancel}
+            disabled={saving}
+            className="px-3 py-1 rounded text-[10px] font-medium border border-[var(--border)] text-[var(--fg-dim)] hover:text-[var(--fg)]"
+          >
+            Annuler
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mt-1.5">
+      <div className="flex items-baseline gap-1.5 text-[10px] uppercase tracking-wider text-[var(--fg-dim)] mb-0.5">
+        <span>{label}</span>
+        <button
+          onClick={startEdit}
+          className="text-[10px] normal-case tracking-normal text-[var(--accent-link)] hover:underline"
+          aria-label={`Modifier ${label}`}
+        >
+          ✏︎ Modifier
+        </button>
+      </div>
+      {value ? (
+        <div className="text-xs text-[var(--fg-muted)] leading-relaxed">{value}</div>
+      ) : (
+        <div className="text-xs text-[var(--fg-dim)] italic">Non défini</div>
+      )}
+    </div>
+  );
+}
+
+function LocationRow({
+  loc,
+  credentials,
+  onUpdated,
+}: {
+  loc: Location;
+  credentials: string;
+  onUpdated: (updated: Partial<Location> & { id: number }) => void;
+}) {
+  return (
+    <div className="py-2 border-b border-[var(--border)] last:border-0">
+      <div className="flex items-start gap-3">
+        <span
+          className="inline-block w-2.5 h-2.5 rounded-full mt-1 flex-shrink-0"
+          style={{ backgroundColor: categoryColor(loc.category) }}
+        />
+        <div className="flex-1 min-w-0">
+          <div className="text-sm text-[var(--fg)]">
+            {loc.communeName}
+            {loc.isPrimary && (
+              <span className="ml-1.5 text-[10px]" style={{ color: categoryColor(loc.category) }}>principal</span>
+            )}
+          </div>
+          <div className="text-xs text-[var(--fg-dim)]">
+            {loc.departmentName} ({loc.department})
+          </div>
+        </div>
+        <div className="text-right flex-shrink-0">
+          <span
+            className="inline-block px-2 py-0.5 rounded text-[10px] border"
+            style={{ borderColor: categoryColor(loc.category), color: categoryColor(loc.category) }}
+          >
+            {categoryLabel(loc.category)}
+          </span>
+          <div className="text-[10px] text-[var(--fg-dim)] mt-1 font-mono">
+            {loc.latitude.toFixed(4)}, {loc.longitude.toFixed(4)}
+          </div>
+        </div>
+      </div>
+      <div className="ml-5 mt-1">
+        <DescriptionEditor
+          loc={loc}
+          field="eventDescription"
+          label="Description carte"
+          credentials={credentials}
+          onUpdated={onUpdated}
+        />
+        <DescriptionEditor
+          loc={loc}
+          field="eventDescriptionGame"
+          label="Description GeoFELA"
+          credentials={credentials}
+          onUpdated={onUpdated}
+        />
+      </div>
+    </div>
+  );
 }
 
 export default function AdminEpisodeDetail({ id }: { id: string }) {
@@ -388,37 +563,28 @@ export default function AdminEpisodeDetail({ id }: { id: string }) {
         {/* Locations */}
         <Section title="Localisations" count={ep.locations.length} color="var(--accent-link)">
           {ep.locations.length > 0 ? (
-            <div className="space-y-2">
+            <div className="space-y-3">
               {ep.locations.map((loc) => (
-                <div
+                <LocationRow
                   key={loc.id}
-                  className="flex items-start gap-3 py-2 border-b border-[var(--border)] last:border-0"
-                >
-                  <span
-                    className="inline-block w-2.5 h-2.5 rounded-full mt-1 flex-shrink-0"
-                    style={{ backgroundColor: categoryColor(loc.category) }}
-                  />
-                  <div className="flex-1">
-                    <div className="text-sm text-[var(--fg)]">
-                      {loc.communeName}
-                      {loc.isPrimary && (
-                        <span className="ml-1.5 text-[10px]" style={{ color: categoryColor(loc.category) }}>principal</span>
-                      )}
-                    </div>
-                    <div className="text-xs text-[var(--fg-dim)]">
-                      {loc.departmentName} ({loc.department})
-                    </div>
-                    {loc.eventDescription && (
-                      <div className="text-xs text-[var(--fg-muted)] mt-0.5">{loc.eventDescription}</div>
-                    )}
-                  </div>
-                  <div className="text-right flex-shrink-0">
-                    <Badge label={categoryLabel(loc.category)} color={categoryColor(loc.category)} />
-                    <div className="text-[10px] text-[var(--fg-dim)] mt-1 font-mono">
-                      {loc.latitude.toFixed(4)}, {loc.longitude.toFixed(4)}
-                    </div>
-                  </div>
-                </div>
+                  loc={loc}
+                  credentials={credentials}
+                  onUpdated={(updated) => {
+                    setData((prev) =>
+                      prev
+                        ? {
+                            ...prev,
+                            episode: {
+                              ...prev.episode,
+                              locations: prev.episode.locations.map((l) =>
+                                l.id === updated.id ? { ...l, ...updated } : l
+                              ),
+                            },
+                          }
+                        : prev
+                    );
+                  }}
+                />
               ))}
             </div>
           ) : (
