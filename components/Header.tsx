@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { HelpCircle, Glasses, MapPin, Gamepad2, ChevronRight, Crown, Home } from "lucide-react";
+import { HelpCircle, Glasses, MapPin, Gamepad2, Crown, Home } from "lucide-react";
 
 const SearchIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -69,6 +69,8 @@ export default function Header() {
   const [mobileSheetOpen, setMobileSheetOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const mobileTriggerRef = useRef<HTMLButtonElement>(null);
+  const popoverRef = useRef<HTMLDivElement>(null);
 
   // Close desktop dropdown on outside click
   useEffect(() => {
@@ -101,14 +103,20 @@ export default function Header() {
     return () => document.removeEventListener("keydown", handler);
   }, [desktopOpen, mobileSheetOpen]);
 
-  // Lock body scroll when bottom sheet is open
+  // Close mobile popover on outside tap
   useEffect(() => {
     if (!mobileSheetOpen) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
+    const handler = (e: MouseEvent) => {
+      const target = e.target as Node;
+      if (
+        !mobileTriggerRef.current?.contains(target) &&
+        !popoverRef.current?.contains(target)
+      ) {
+        setMobileSheetOpen(false);
+      }
     };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
   }, [mobileSheetOpen]);
 
   // Close menus on route change
@@ -206,9 +214,10 @@ export default function Header() {
             );
           })}
           <button
+            ref={mobileTriggerRef}
             type="button"
             onClick={() => setMobileSheetOpen((v) => !v)}
-            aria-haspopup="dialog"
+            aria-haspopup="menu"
             aria-expanded={mobileSheetOpen}
             aria-label="Le commissariat"
             className={`flex flex-col items-center gap-0.5 px-1 py-1 rounded-lg transition-opacity min-w-[3rem] ${
@@ -222,52 +231,45 @@ export default function Header() {
         </div>
       </nav>
 
-      {/* Mobile bottom sheet for Commissariat */}
+      {/* Mobile Commissariat popover — anchored above the rightmost tab.
+          No backdrop. Notch (rotated diamond) at the bottom-right points to the tab. */}
       <div
-        aria-hidden={!mobileSheetOpen}
-        className={`md:hidden fixed inset-0 z-[60] bg-black transition-opacity duration-300 ${
-          mobileSheetOpen ? "pointer-events-auto" : "pointer-events-none"
-        }`}
-        style={{
-          opacity: mobileSheetOpen ? "var(--backdrop-jeux-opacity, 0.3)" : 0,
-        }}
-        onClick={() => setMobileSheetOpen(false)}
-      />
-      <div
-        role="dialog"
-        aria-modal="true"
+        ref={popoverRef}
+        role="menu"
         aria-label="Le commissariat"
         aria-hidden={!mobileSheetOpen}
-        className={`md:hidden fixed left-0 right-0 bottom-0 z-[70] bg-[var(--bg-card)] rounded-t-lg border-t border-[var(--border)] shadow-[var(--shadow-sheet)] transition-transform duration-300 ease-out ${
-          mobileSheetOpen ? "translate-y-0" : "translate-y-full"
+        className={`md:hidden fixed z-[60] w-[220px] bg-[var(--bg-card)] border border-[var(--border)] rounded-lg shadow-[var(--shadow-popover-jeux)] origin-bottom-right transition-all duration-150 ease-out ${
+          mobileSheetOpen
+            ? "opacity-100 scale-100 pointer-events-auto"
+            : "opacity-0 scale-95 pointer-events-none"
         }`}
+        style={{
+          right: "12px",
+          bottom: "calc(64px + env(safe-area-inset-bottom, 0px))",
+        }}
       >
-        <div className="px-4 pt-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
-          <div className="text-[10px] uppercase tracking-wider text-[var(--fg-dim)] pb-2">
-            Le commissariat
-          </div>
-          <ul className="divide-y divide-[var(--border)]">
-            {[...gameItems, enqueteItem].map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  onClick={() => setMobileSheetOpen(false)}
-                  className="flex items-center gap-4 py-4 text-[var(--fg)] active:bg-[var(--bg-input)] transition-colors"
-                >
-                  <span className="text-[var(--fg-muted)] [&_svg]:w-[22px] [&_svg]:h-[22px]">
-                    {item.icon}
-                  </span>
-                  <span className="flex-1 text-base font-medium">{item.label}</span>
-                  <ChevronRight
-                    size={18}
-                    strokeWidth={2}
-                    className="shrink-0 text-[var(--fg-dim)]"
-                  />
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {/* Notch pointing down to the Commissariat tab */}
+        <span
+          aria-hidden="true"
+          className="absolute w-[10px] h-[10px] bg-[var(--bg-card)] border-r border-b border-[var(--border)]"
+          style={{ right: "22px", bottom: "-6px", transform: "rotate(45deg)" }}
+        />
+        <ul className="py-1.5 divide-y divide-[var(--border)]">
+          {[...gameItems, enqueteItem].map((item) => (
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                onClick={() => setMobileSheetOpen(false)}
+                className="flex items-center gap-3 px-3.5 py-3 text-sm text-[var(--fg)] hover:bg-[var(--bg-input)] active:bg-[var(--bg-input)] transition-colors"
+              >
+                <span className="text-[var(--fg-muted)] [&_svg]:w-[18px] [&_svg]:h-[18px]">
+                  {item.icon}
+                </span>
+                <span className="font-medium">{item.label}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
     </>
   );

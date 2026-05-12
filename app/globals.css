@@ -32,6 +32,8 @@
   /* Mobile Jeux bottom sheet — opacity of the dim backdrop and shadow above the sheet. */
   --backdrop-jeux-opacity: 0.30;
   --shadow-sheet: 0 -2px 8px rgba(0, 0, 0, 0.08);
+  /* Mobile Commissariat popover (anchored above the tab). */
+  --shadow-popover-jeux: 0 4px 16px rgba(0, 0, 0, 0.10);
 }
 
 html.dark {
@@ -63,6 +65,7 @@ html.dark {
   /* Slightly stronger but still light dim and shadow in dark mode. */
   --backdrop-jeux-opacity: 0.50;
   --shadow-sheet: 0 -2px 8px rgba(0, 0, 0, 0.30);
+  --shadow-popover-jeux: 0 4px 16px rgba(0, 0, 0, 0.40);
 }
 
 body {
