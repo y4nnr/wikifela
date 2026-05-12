@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Geist, Poppins, Archivo_Black } from "next/font/google";
 import localFont from "next/font/local";
 import Header from "@/components/Header";
@@ -49,7 +50,9 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
-          <FloatingActions />
+          <Suspense fallback={null}>
+            <FloatingActions />
+          </Suspense>
         </ThemeProvider>
       </body>
     </html>

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { HelpCircle, Glasses, MapPin, Gamepad2, Crown, Home } from "lucide-react";
+import { HelpCircle, Glasses, MapPin, Landmark, Crown, Home } from "lucide-react";
 
 const SearchIcon = (
   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -161,7 +161,7 @@ export default function Header() {
                 aria-label="Le commissariat"
                 className="flex items-center gap-1.5 px-3 py-1.5 text-sm rounded-lg border border-[var(--border)] text-[var(--fg-muted)] hover:text-[var(--fg)] hover:border-[var(--border-hover)] transition-colors"
               >
-                <Gamepad2 className="w-3.5 h-3.5" strokeWidth={2} />
+                <Landmark className="w-3.5 h-3.5" strokeWidth={2} />
                 Commissariat
               </button>
               {desktopOpen && (
@@ -225,7 +225,7 @@ export default function Header() {
             }`}
             style={{ color: "var(--tab-fg)" }}
           >
-            <Gamepad2 size={20} strokeWidth={2} />
+            <Landmark size={20} strokeWidth={2} />
             <span className="text-[9px]">Commissariat</span>
           </button>
         </div>
